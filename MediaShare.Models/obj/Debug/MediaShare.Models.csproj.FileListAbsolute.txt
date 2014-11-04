@@ -1,0 +1,14 @@
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\obj\Debug\MediaShare.Models.csprojResolveAssemblyReference.cache
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\MediaShare.Models.dll.config
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\MediaShare.Models.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\MediaShare.Models.pdb
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\EntityFramework.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\EntityFramework.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\obj\Debug\MediaShare.Models.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Models\obj\Debug\MediaShare.Models.pdb

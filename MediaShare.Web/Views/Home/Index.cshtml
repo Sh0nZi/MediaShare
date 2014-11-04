@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="jumbotron">
+    <video width="320" height="240" controls>
+        <source src="@Url.Action("Index", "Video")" type="video/mp4" />
+    </video>
+
+    <audio controls>
+        <source src="@Url.Action("Index", "Audio")" type="audio/mp3" />
+    </audio>
+ 
+</div>
+
