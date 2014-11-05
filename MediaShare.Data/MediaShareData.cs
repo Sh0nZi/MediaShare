@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace MediaShare.Data
 {
-   using System;
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Data.Entity.Validation;
     using MediaShare.Data.Repositories;
     using MediaShare.Models;
 
@@ -62,7 +63,27 @@ namespace MediaShare.Data
 
         public int SaveChanges()
         {
-            return this.context.SaveChanges();
+            try
+            {
+                // Your code...
+                // Could also be before try if you know the exception occurs in SaveChanges
+                return this.context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+            //return this.context.SaveChanges();
         }
 
         private IRepository<T> GetRepository<T>() where T : class

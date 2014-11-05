@@ -10,7 +10,7 @@
 
         [Required]
         [MinLength(10)]
-        [MaxLength(200)]
+        [MaxLength(300)]
         public string Content { get; set; }
 
         [Required]
@@ -20,5 +20,8 @@
         public string AuthorId { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
+
+        [Required]
+        public int FileId { get; set; }
     }
 }

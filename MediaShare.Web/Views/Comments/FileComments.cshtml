@@ -1,0 +1,11 @@
+﻿
+@using MediaShare.Models;
+@model ICollection<Comment>
+
+@foreach (var comment in Model.OrderByDescending(c => c.DateCreated))
+{
+    <div class="well">
+        <p>@comment.Content</p>
+        <p class="pull-right"> on @comment.DateCreated by @comment.Author.UserName</p>
+    </div>
+}

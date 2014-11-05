@@ -1,19 +1,37 @@
 ﻿using System.Threading.Tasks;
 using MediaShare.Data;
 using MediaShare.Models;
+using MediaShare.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
-namespace MediaShare.Web
+
+namespace MediaShare.Web.App_Start
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
+    public class SmsService : IIdentityMessageService
+    {
+        public Task SendAsync(IdentityMessage message)
+        {
+            // Plug in your sms service here to send a text message.
+            return Task.FromResult(0);
+        }
+    }
+
+    public class EmailService : IIdentityMessageService
+    {
+        public Task SendAsync(IdentityMessage message)
+        {
+            // Plug in your email service here to send an email.
+            return Task.FromResult(0);
+        }
+    }
 
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store)
-            : base(store)
+        public ApplicationUserManager(IUserStore<ApplicationUser> store) : base(store)
         {
         }
 
@@ -56,22 +74,8 @@ namespace MediaShare.Web
             return manager;
         }
     }
+}
 
-    public class EmailService : IIdentityMessageService
-    {
-        public Task SendAsync(IdentityMessage message)
-        {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
-        }
-    }
-
-    public class SmsService : IIdentityMessageService
-    {
-        public Task SendAsync(IdentityMessage message)
-        {
-            // Plug in your sms service here to send a text message.
-            return Task.FromResult(0);
-        }
-    }
+namespace MediaShare.Web.App_Start
+{
 }

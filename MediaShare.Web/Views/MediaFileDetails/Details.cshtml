@@ -1,0 +1,75 @@
+﻿@using MediaShare.Models;
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="well">
+    @model MediaFile
+    <h3>@Model.Title</h3>
+
+    <p>
+        <b>Created on: </b> @Model.DateCreated
+    </p>
+    <p>
+        <b>Created by: </b> @Model.Author.UserName
+    </p>
+
+    @if (Model.Type == MediaType.Video)
+    {
+            <video width="650" height="500" controls>
+                <source src="@Url.Action("ByIdContent", "MediaFiles", new { Id = Model.Id })" type="video/mp4" />
+            </video>
+    }
+    else
+    {
+            <img src="~/MediaFiles/mp3.jpg" />
+            <audio controls>
+                <source src="@Url.Action("ByIdContent", "MediaFiles", new { Id = Model.Id })" type="audio/mp3" />
+            </audio>
+    }
+
+    <div style="margin-bottom:50px">
+        <b>Rating:</b> @(Model.Votes.Sum(x => x.Value) / (Model.Votes.Count == 0 ? 1 : Model.Votes.Count)) / 5
+        (@Model.Votes.Count users voted)
+    </div>
+
+    <p>
+        <b>Description:</b>
+    </p>
+    <pre>@Model.Description</pre>
+
+    <div style="margin-top:50px">
+        <h4> @Model.Comments.Count comments: </h4>
+        @if (@Request.IsAuthenticated)
+        {
+            <input id="show-comment-pannel" class="btn btn-success" type="button" value="Add Comment" onclick="showCommentContainer()" />
+        }
+    </div>
+    <div id="comment-container">
+        @using (Html.BeginForm("Post", "Comments", new { Id = Model.Id }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.TextArea("Content", "", 3, 70, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model=>model.Content, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-success" type="submit" value="Post" />
+                        <input class="btn btn-error" type="button" value="Cancel" onclick="hideCommentContainer()" />
+                    </div>
+                   
+        }
+    </div>
+
+    <div >
+        @{
+            Html.RenderAction("FileComments", "Comments", new { Id = Model.Id });            
+        }
+    </div>
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

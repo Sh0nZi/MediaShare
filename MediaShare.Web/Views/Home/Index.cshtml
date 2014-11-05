@@ -1,14 +1,21 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<div class="jumbotron">
-    <video width="320" height="240" controls>
-        <source src="@Url.Action("Index", "Video")" type="video/mp4" />
-    </video>
+@model MediaShare.Web.Models.HomeViewModel
+<div>
 
-    <audio controls>
-        <source src="@Url.Action("Index", "Audio")" type="audio/mp3" />
-    </audio>
- 
+    <div class="table row well">
+
+        @{
+            Html.RenderPartial("HomePartial", Model.Top3VideoFiles);
+        }
+
+    </div>
+    <div class="table row well">
+        @{
+            Html.RenderPartial("HomePartial", Model.Top3AudioFiles);
+        }
+
+    </div>
 </div>
 

@@ -24,11 +24,11 @@ namespace MediaShare.Models
 
         [Required]
         [MinLength(5)]
-        [MaxLength(30)]
+        [MaxLength(50)]
         public string Title { get; set; }
 
         [Required]
-        public string Content { get; set; }
+        public byte[] Content { get; set; }
         
         public string Description { get; set; }
 
@@ -41,6 +41,8 @@ namespace MediaShare.Models
         
         [Required]
         public string AuthorId { get; set; }
+
+        public byte[] Thumbnail { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
 

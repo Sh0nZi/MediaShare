@@ -1,6 +1,7 @@
 ﻿using MediaShare.Data;
 using MediaShare.Models;
 using MediaShare.Web;
+using MediaShare.Web.App_Start;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
