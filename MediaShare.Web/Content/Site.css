@@ -1,10 +1,12 @@
-﻿body {
+﻿body
+{
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
+.body-content
+{
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -12,15 +14,53 @@
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
-textarea {
+textarea
+{
     max-width: 280px;
 }
-a:hover{
-    opacity:0.8;
+a:hover
+{
+    opacity: 0.8;
 }
-.well{
-    border-radius:5px;
+.well
+{
+    border-radius: 5px;
 }
-.btn{
-    margin-bottom:20px;
+.btn
+{
+    margin-bottom: 20px;
+}
+#show-comment-pannel
+{
+    margin-bottom: 0;
+}
+#comment-body p
+{
+    font-size: 12px;
+    color: ButtonShadow
+}
+#comment-body, pre
+{
+    width: 700px;
+    border-bottom-color: ButtonShadow;
+    border-right-color: ButtonShadow
+}
+pre
+{
+    background-color: #f1f0e9;
+}
+.validation-summary-errors
+{
+    border: 1px solid red;   
+    color: #e24343;
+    background-color: #ee7d7d;
+    border-radius:10px;
+}
+.field-validation-error{
+    color:red;
+}
+
+h2{
+    color:crimson;
+    margin-bottom:25px;
 }

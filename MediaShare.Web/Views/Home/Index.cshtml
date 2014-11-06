@@ -3,19 +3,26 @@
 }
 @model MediaShare.Web.Models.HomeViewModel
 <div>
-
+    @if (TempData["Success"] != null)
+    {
+            <div id="success-message" class="alert alert-dismissable alert-success" style="position:fixed"> @TempData["Success"]</div>            
+    }
+  
     <div class="table row well">
-
+        <h3 style="color:crimson">Top 3 Video</h3>
         @{
             Html.RenderPartial("HomePartial", Model.Top3VideoFiles);
         }
-
+        
     </div>
     <div class="table row well">
+        <h3 style="color:crimson">Top 3 Audio</h3>
         @{
             Html.RenderPartial("HomePartial", Model.Top3AudioFiles);
         }
-
+        
     </div>
 </div>
+
+
 

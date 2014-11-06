@@ -1,58 +1,85 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title </title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
 
-    <meta name="description" content="The description of my page" />
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("MediaShare", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (Request.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Upload Audio/Video", "Index", "Upload")</li>
-                    }
-                </ul>
+        <meta name="description" content="The description of my page" />
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("MediaShare", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        @if (Request.IsAuthenticated)
+                        {
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                            Upload <b class="caret"></b>
+                                                        </a>
+                                                        <ul class="dropdown-menu">
+                                                            <li>@Html.ActionLink("Upload Video", "Upload", "Video")</li>
+                                                            <li>@Html.ActionLink("Upload Audio", "Upload", "Audio")</li>
+                                                        </ul>
+                                                    </li>
 
-                @Html.Partial("_LoginPartial")
+
+                        }
+                    </ul>
+
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - MediaShare</p>
+            </footer>
+        </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    <script>
-        $('#comment-container').hide();
-        function showCommentContainer() {
-            $('#comment-container').show();
-            $('#show-comment-panel').hide();
-        }
-        function hideCommentContainer() {
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/jqueryval")
+        @RenderSection("scripts", required: false)
+        <script>
             $('#comment-container').hide();
-            $('#show-comment-panel').show();
-        }
-    </script>
-</body>
+            function showCommentContainer() {
+                $('#comment-container').show();
+                $('#show-pannel-btn').hide();
+            }
+            function hideCommentContainer(e) {
+                $('#comment-container').hide();
+                $('#show-pannel-btn').show();
+            }
+            function pesho() {
+                $('#comment-message').show();
+                setInterval(function () {
+                    $('#comment-message').fadeOut(2000);
+                }, 2000)
+            }
+            $(document).ready(function () {
+                setInterval(function () {
+                    $('#success-message').fadeOut(2000);
+                }, 2000)               
+            });
+            function clickUploadBtn() {
+                $('#file-upload').click();
+            };
+        </script>
+            
+    </body>
 </html>
+    

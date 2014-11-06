@@ -1,0 +1,34 @@
+﻿@using MediaShare.Models;
+
+@model MediaFile
+<div class="well">
+    <h2>Upload Video</h2>
+    @using (Html.BeginForm("UploadVideo", "Video", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+    {
+            @Html.AntiForgeryToken()
+    
+            <label for="Title">Title</label>
+    
+            @Html.EditorFor(f => f.Title)
+            @Html.ValidationMessageFor(m => m.Title)
+    
+            <p>
+                <label for="Description">Description</label>
+        
+                @Html.TextArea("Description", null, 4, 70, null)
+            </p>
+            <p>
+    
+                <label for="Content">Content:</label><span style="font-size:12px">*allowed formats - mp4 max. size 50 mb</span>
+                <input type="file" name="mediaFile" />
+                @Html.ValidationMessageFor(m => m.Content)
+                @Html.ValidationMessage("Size")
+                @Html.ValidationMessage("Type")
+        
+            </p>
+    
+            <input id="upload-btn" class="btn btn-success" type="submit" value="Upload" />
+    
+    }
+</div>
+

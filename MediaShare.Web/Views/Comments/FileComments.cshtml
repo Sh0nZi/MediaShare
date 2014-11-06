@@ -1,11 +1,40 @@
 ﻿
-@using MediaShare.Models;
-@model ICollection<Comment>
+@using System.Globalization;
+@using MediaShare.Web.Models;
 
-@foreach (var comment in Model.OrderByDescending(c => c.DateCreated))
+@model ICollection<CommentViewModel>
+
+
+
+@if (@Request.IsAuthenticated)
 {
-    <div class="well">
-        <p>@comment.Content</p>
-        <p class="pull-right"> on @comment.DateCreated by @comment.Author.UserName</p>
+    <input id="show-pannel-btn" class="btn btn-success" type="button"  value="Add Comment" onclick="showCommentContainer()" />
+}
+
+<div id="comment-message" class="alert alert-dismissable alert-success" style="display:none"> Comment posted successfully!</div>
+<div style="margin-top:50px">
+    <h4>
+        @Model.Count
+        @if (Model.Count != 1)
+        {
+            <span>comments</span>
+        }
+        else
+        {
+            <span>comment</span>
+        }
+    </h4>
+</div>
+
+
+@foreach (var comment in Model)
+{
+    
+
+    <div id="comment-body" class="well">
+        <div>
+            <b>@comment.Author: </b>@comment.Content
+        </div>
+        <p> <b>Posted on: </b>@comment.DateCreated.ToString("d MMM", CultureInfo.CreateSpecificCulture("en-US")) at @comment.DateCreated.ToString("hh:mm", CultureInfo.CreateSpecificCulture("en-US")) </p>
     </div>
 }

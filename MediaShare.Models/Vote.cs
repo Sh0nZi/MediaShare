@@ -19,7 +19,6 @@ namespace MediaShare.Models
 
         public virtual ApplicationUser Author { get; set; }
 
-        public int FileId { get; set; }
 
     }
 }

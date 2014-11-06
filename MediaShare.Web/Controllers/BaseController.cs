@@ -1,10 +1,8 @@
-﻿using MediaShare.Data;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using MediaShare.Data;
+using Microsoft.AspNet.Identity;
 
 namespace MediaShare.Web.Controllers
 {
@@ -12,7 +10,13 @@ namespace MediaShare.Web.Controllers
     {
         public IMediaShareData Data { get; private set; }
 
-        
+        protected string CurrentUser
+        {
+            get
+            {
+                return User.Identity.GetUserId();
+            }
+        }
 
         public BaseController(IMediaShareData data)
         {

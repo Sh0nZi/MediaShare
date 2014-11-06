@@ -1,29 +1,28 @@
 ﻿@using MediaShare.Models
+
 @model ICollection<MediaFile>
 
 @if (Model.Any())
 {
-    <h2>Top 3 Audio</h2>
+    
+    
     foreach (var item in Model)
     {
 
-        <div class="col-md-4">
-            <h3>
-                <a href="@Url.Action("Details", "MediaFileDetails", new { Id = @item.Id })">
-                    @item.Title
+            <div class="col-md-4">
+                <h3>
+                    <a href="@Url.Action("Details", "MediaFile", new { Id = @item.Id })">
+                        @item.Title
+                    </a>
+                </h3>
+                <p>
+                    <b>Rating:</b> @(string.Format("{0:0.0}", (double)item.Votes.Sum(x => x.Value) / (item.Votes.Count == 0 ? 1 : item.Votes.Count))) / 5 (@item.Votes.Count users voted)
+                </p>
+                <a href="@Url.Action("Details", "MediaFile", new { Id = @item.Id })">
+                    <img width="300" height="200" src="@Url.Action("ByIdThumbnail", "Thumbnail", new { Id = @item.Id })" />
                 </a>
-            </h3>
-            <p>
-                <b>Created on:</b> @item.DateCreated
-            </p>
-            <p>
-                <b>Rating:</b> @(item.Votes.Sum(x => x.Value) / (item.Votes.Count == 0 ? 1 : item.Votes.Count)) / 5 (@item.Votes.Count users voted)
-            </p>
-            <a href="@Url.Action("Details", "MediaFileDetails", new { Id = @item.Id })">
-                <img width="300" height="200" src="@Url.Action("ByIdThumbnail", "MediaFiles", new { Id = @item.Id })" />
-            </a>
 
-        </div>
+            </div>
 
     }
 }

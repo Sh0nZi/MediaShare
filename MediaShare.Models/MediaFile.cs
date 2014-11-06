@@ -27,7 +27,7 @@ namespace MediaShare.Models
         [MaxLength(50)]
         public string Title { get; set; }
 
-        [Required]
+        [MaxLength(50000000)]     
         public byte[] Content { get; set; }
         
         public string Description { get; set; }

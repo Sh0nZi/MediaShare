@@ -1,0 +1,82 @@
+﻿@using MediaShare.Models;
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "Details";
+}
+<div id="details-page" class="well">
+    @model MediaFile
+    <h3 style="color:crimson">@Model.Title</h3>
+
+    <p>
+        <b>Created on: </b> @Model.DateCreated
+    </p>
+    <p>
+        <b>Created by: </b> @Model.Author.UserName
+    </p>
+
+    @if (Model.Type == MediaType.Video)
+    {
+        <video width="650" height="500" controls>
+            <source src="@Url.Action("ContentById", "Video", new { Id = Model.Id })" type="video/mp4" />
+        </video>
+    }
+    else
+    {
+        <img src="~/MediaFiles/mp3.jpg" />
+        <audio controls>
+            <source src="@Url.Action("ContentById", "Audio", new { Id = Model.Id })" type="audio/mp3" />
+        </audio>
+    }
+
+    <div style="margin-bottom:50px">
+        <div id="container-for-votes">
+            @{
+                Html.RenderAction("Index", "Votes", new { Id = Model.Id });
+            }
+
+            @if (Request.IsAuthenticated &&
+                !Model.Votes.Any(v => v.AuthorId == User.Identity.GetUserId()) &&
+                Model.AuthorId != User.Identity.GetUserId())
+            {
+                using (Ajax.BeginForm("Vote", "Votes", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-votes", InsertionMode = InsertionMode.Replace }, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <span class="form-group">
+                        @Html.TextBox("Value")
+                        <input id="post-btn" class="btn btn-success btn-sm" type="submit" value="Vote" />
+                    </span>
+                }
+            }
+        </div>
+    </div>
+
+    <p>
+        <b>Description:</b>
+    </p>
+    <pre>@Model.Description</pre>
+
+    <div style="margin-left:30px" id="comment-container">
+        @using (Ajax.BeginForm("Post", "Comments", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-comments", InsertionMode = InsertionMode.Replace, OnComplete = "hideCommentContainer", OnSuccess = "pesho" }, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.TextArea("Content", "", 3, 70, new { @class = "form-control" })
+                @Html.ValidationMessage("Content")
+            </div>
+            <div class="form-group">
+                <input id="post-btn" class="btn btn-success" type="submit" value="Post" />
+                <input class="btn btn-error" type="button" value="Cancel" onclick="hideCommentContainer()" />
+            </div>
+        }
+    </div>
+
+    <div id="container-for-comments">
+        @{
+            Html.RenderAction("FileComments", "Comments", new { Id = Model.Id });
+        }
+    </div>
+
+</div>
+
