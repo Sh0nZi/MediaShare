@@ -11,14 +11,13 @@ namespace MediaShare.Models
     {
         [Key]
         public int Id { get; set; }
-        
+
+        [Range(1, 5)]
         public int Value { get; set; }
 
         [Required]
         public string AuthorId { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
-
-
     }
 }

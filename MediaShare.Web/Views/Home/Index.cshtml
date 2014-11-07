@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@model MediaShare.Web.Models.HomeViewModel
 <div>
     @if (TempData["Success"] != null)
     {
@@ -10,19 +9,21 @@
   
     <div class="table row well">
         <h3 style="color:crimson">Top 3 Video</h3>
+        <hr />
         @{
-            Html.RenderPartial("HomePartial", Model.Top3VideoFiles);
+            Html.RenderAction("GetTopVideo");
+            //Html.RenderPartial("HomePartial");
         }
         
     </div>
     <div class="table row well">
         <h3 style="color:crimson">Top 3 Audio</h3>
+        <hr />
         @{
-            Html.RenderPartial("HomePartial", Model.Top3AudioFiles);
+            Html.RenderAction("GetTopAudio");
+            //Html.RenderPartial("HomePartial");
         }
         
     </div>
 </div>
-
-
 

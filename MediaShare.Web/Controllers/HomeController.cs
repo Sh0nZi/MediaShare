@@ -17,18 +17,28 @@ namespace MediaShare.Web.Controllers
 
         public ActionResult Index()
         {
-            HomeViewModel homeModel = new HomeViewModel();
-            homeModel.Top3VideoFiles = this.Data.Files.All()
-                                           .Where(f => f.Type == MediaType.Video)
-                                           .OrderByDescending(f => f.Votes.Sum(v => v.Value) / f.Votes.Count)
-                                           .ThenBy(f => f.Votes.Count).Take(3)
-                                           .ToList();
-            homeModel.Top3AudioFiles = this.Data.Files.All()
-                                           .Where(f => f.Type == MediaType.Audio)
-                                           .OrderByDescending(f => f.Votes.Sum(v => v.Value) / f.Votes.Count)
-                                           .ThenBy(f => f.Votes.Count).Take(3)
-                                           .ToList();
-            return View(homeModel);
+            return View();
+        }
+        
+        public ActionResult GetTopVideo()
+        {
+            var topAudio = this.MediaFiles
+                               .Where(f => f.Type == MediaType.Video)
+                               .OrderByDescending(f => f.Votes.Sum(v => v.Value) / f.Votes.Count)
+                               .ThenBy(f => f.Votes.Count)
+                               .Take(3)
+                               .ToList();
+            return PartialView("HomePartial", topAudio);
+        }
+
+        public ActionResult GetTopAudio()
+        {
+            var topVideo = this.MediaFiles
+                               .Where(f => f.Type == MediaType.Audio)
+                               .OrderByDescending(f => f.Votes.Sum(v => v.Value) / f.Votes.Count)
+                               .ThenBy(f => f.Votes.Count).Take(3)
+                               .ToList();
+            return PartialView("HomePartial", topVideo);
         }
     }
 }

@@ -176,21 +176,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Authorized\AuthorizedAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\Authorized\Controllers\AuthorizedController.cs" />
+    <Compile Include="Areas\Authorized\Controllers\DetailsAuthorizedController.cs" />
+    <Compile Include="Areas\Authorized\Controllers\UploadFileController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MediaFileController.cs" />
-    <Compile Include="Controllers\AudioController.cs" />
-    <Compile Include="Controllers\ThumbnailController.cs" />
-    <Compile Include="Controllers\VideoController.cs" />
-    <Compile Include="Controllers\VotesController.cs" />
+    <Compile Include="Controllers\FileDetailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ThumbnailExtractor.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
-    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\Users\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\Users\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\Users\ForgotPasswordViewModel.cs" />
@@ -211,6 +210,8 @@
     <Content Include="MediaFiles\red loader.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Authorized\Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -255,17 +256,23 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\MediaFile\Details.cshtml" />
-    <Content Include="Views\Comments\FileComments.cshtml" />
+    <Content Include="Views\FileDetails\Details.cshtml" />
+    <Content Include="Views\FileDetails\FileComments.cshtml" />
     <Content Include="Views\Home\HomePartial.cshtml" />
-    <Content Include="Views\Video\Upload.cshtml" />
-    <Content Include="Views\Audio\Upload.cshtml" />
-    <Content Include="Views\Votes\RatingPartial.cshtml" />
+    <Content Include="Areas\Authorized\Views\UploadFile\VideoIndex.cshtml" />
+    <Content Include="Areas\Authorized\Views\UploadFile\AudioIndex.cshtml" />
+    <Content Include="Views\FileDetails\RatingPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Authorized\Models\" />
+    <Folder Include="Areas\Authorized\Views\Comments\" />
+    <Folder Include="Areas\Authorized\Views\Shared\" />
+    <Folder Include="Areas\Authorized\Views\Votes\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Thumbnail\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -29,8 +29,8 @@
                                                             Upload <b class="caret"></b>
                                                         </a>
                                                         <ul class="dropdown-menu">
-                                                            <li>@Html.ActionLink("Upload Video", "Upload", "Video")</li>
-                                                            <li>@Html.ActionLink("Upload Audio", "Upload", "Audio")</li>
+                                                            <li>@Html.ActionLink("Upload Video", "VideoIndex", "UploadFile", new { area = "Authorized" }, new { })</li>
+                                                            <li>@Html.ActionLink("Upload Audio", "AudioIndex", "UploadFile", new { area = "Authorized" }, new { })</li>
                                                         </ul>
                                                     </li>
 
@@ -45,7 +45,7 @@
         <div class="container body-content">
             @RenderBody()
             <hr />
-            <footer>
+            <footer class="text-center">
                 <p>&copy; @DateTime.Now.Year - MediaShare</p>
             </footer>
         </div>

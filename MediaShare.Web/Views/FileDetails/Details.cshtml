@@ -18,28 +18,28 @@
     @if (Model.Type == MediaType.Video)
     {
         <video width="650" height="500" controls>
-            <source src="@Url.Action("ContentById", "Video", new { Id = Model.Id })" type="video/mp4" />
+            <source src="@Url.Action("VideoContentById", "FileDetails", new { Id = Model.Id })" type="video/mp4" />
         </video>
     }
     else
     {
         <img src="~/MediaFiles/mp3.jpg" />
         <audio controls>
-            <source src="@Url.Action("ContentById", "Audio", new { Id = Model.Id })" type="audio/mp3" />
+            <source src="@Url.Action("AudioContentById", "FileDetails", new { Id = Model.Id })" type="audio/mp3" />
         </audio>
     }
 
     <div style="margin-bottom:50px">
         <div id="container-for-votes">
             @{
-                Html.RenderAction("Index", "Votes", new { Id = Model.Id });
+                Html.RenderAction("FileVotes", "FileDetails", new { Id = Model.Id });
             }
 
             @if (Request.IsAuthenticated &&
                 !Model.Votes.Any(v => v.AuthorId == User.Identity.GetUserId()) &&
                 Model.AuthorId != User.Identity.GetUserId())
             {
-                using (Ajax.BeginForm("Vote", "Votes", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-votes", InsertionMode = InsertionMode.Replace }, new { @class = "form-horizontal", role = "form" }))
+                using (Ajax.BeginForm("Vote", "DetailsAuthorized", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-votes", InsertionMode = InsertionMode.Replace }, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
                     <span class="form-group">
@@ -57,7 +57,7 @@
     <pre>@Model.Description</pre>
 
     <div style="margin-left:30px" id="comment-container">
-        @using (Ajax.BeginForm("Post", "Comments", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-comments", InsertionMode = InsertionMode.Replace, OnComplete = "hideCommentContainer", OnSuccess = "pesho" }, new { @class = "form-horizontal", role = "form" }))
+        @using (Ajax.BeginForm("Post", "DetailsAuthorized", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-comments", InsertionMode = InsertionMode.Replace, OnComplete = "hideCommentContainer", OnSuccess = "pesho" }, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
 
@@ -74,7 +74,7 @@
 
     <div id="container-for-comments">
         @{
-            Html.RenderAction("FileComments", "Comments", new { Id = Model.Id });
+            Html.RenderAction("FileComments", "FileDetails", new { Id = Model.Id });
         }
     </div>
 
