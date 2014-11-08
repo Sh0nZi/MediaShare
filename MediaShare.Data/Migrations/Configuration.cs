@@ -12,7 +12,7 @@ namespace MediaShare.Data.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = false;
+            this.AutomaticMigrationDataLossAllowed = true;
             ContextKey = "MediaShare.Data.MediaShareContext";
         }
     }

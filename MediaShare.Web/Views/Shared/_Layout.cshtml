@@ -22,17 +22,20 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("All Media", "action", "controller")</li>
                         @if (Request.IsAuthenticated)
                         {
-                                                    <li class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                            Upload <b class="caret"></b>
-                                                        </a>
-                                                        <ul class="dropdown-menu">
-                                                            <li>@Html.ActionLink("Upload Video", "VideoIndex", "UploadFile", new { area = "Authorized" }, new { })</li>
-                                                            <li>@Html.ActionLink("Upload Audio", "AudioIndex", "UploadFile", new { area = "Authorized" }, new { })</li>
-                                                        </ul>
-                                                    </li>
+                                                  
+                                                    
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Upload <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Upload Video", "VideoIndex", "UploadFile", new { area = "Authorized" }, new { })</li>
+                                    <li>@Html.ActionLink("Upload Audio", "AudioIndex", "UploadFile", new { area = "Authorized" }, new { })</li>
+                                </ul>
+                            </li>
 
 
                         }
@@ -78,8 +81,16 @@
             function clickUploadBtn() {
                 $('#file-upload').click();
             };
+            function hideAddFavBtn() {
+                $('#add-fav-btn').hide();
+                $('#rem-fav-btn').show();
+            }
+            function hideRemFavBtn() {
+                $('#add-fav-btn').show();
+                $('#rem-fav-btn').hide();
+            }
         </script>
-            
+
     </body>
 </html>
     

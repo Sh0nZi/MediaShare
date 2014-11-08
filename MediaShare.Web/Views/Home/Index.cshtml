@@ -8,20 +8,18 @@
     }
   
     <div class="table row well">
-        <h3 style="color:crimson">Top 3 Video</h3>
+        <h3 style="color:crimson">Most Popular Video</h3>
         <hr />
         @{
             Html.RenderAction("GetTopVideo");
-            //Html.RenderPartial("HomePartial");
         }
         
     </div>
     <div class="table row well">
-        <h3 style="color:crimson">Top 3 Audio</h3>
+        <h3 style="color:crimson">Most Popular Audio</h3>
         <hr />
         @{
             Html.RenderAction("GetTopAudio");
-            //Html.RenderPartial("HomePartial");
         }
         
     </div>

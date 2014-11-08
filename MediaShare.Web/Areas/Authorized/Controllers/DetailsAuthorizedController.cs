@@ -47,5 +47,37 @@
             
             return this.RedirectToAction("FileComments", "FileDetails", new { Id = id });
         }
+
+        // POST: Favourites Add 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void AddFavourites(int id)
+        {
+            var currentUser = this.Data.Users.All().FirstOrDefault(u => u.Id == this.CurrentUser);
+            var file = this.MediaFiles.FirstOrDefault(f => f.Id == id);
+
+            if (file.AuthorId == currentUser.Id)
+            {
+                return;
+            }
+
+            currentUser.Favourites.Add(file);           
+            this.Data.SaveChanges();
+        }
+
+        // POST: Favourites Remove   
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void RemoveFavourites(int id)
+        {
+            var currentUser = this.Data.Users.All().FirstOrDefault(u => u.Id == this.CurrentUser);
+            var file = this.MediaFiles.FirstOrDefault(f => f.Id == id);
+
+            if (file.AuthorId == currentUser.Id)
+            {
+                return;
+            }
+
+            currentUser.Favourites.Remove(file);            
+            this.Data.SaveChanges();
+        }
     }
 }

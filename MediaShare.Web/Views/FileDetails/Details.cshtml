@@ -3,6 +3,11 @@
 
 @{
     ViewBag.Title = "Details";
+    var items = new List<SelectListItem>();
+    for (int i = 1; i < 6; i++)
+    {
+        items.Add(new SelectListItem() { Value = i.ToString(), Text = i.ToString() });
+    }
 }
 <div id="details-page" class="well">
     @model MediaFile
@@ -17,18 +22,34 @@
 
     @if (Model.Type == MediaType.Video)
     {
-        <video width="650" height="500" controls>
-            <source src="@Url.Action("VideoContentById", "FileDetails", new { Id = Model.Id })" type="video/mp4" />
-        </video>
+            <video width="650" height="500" controls>
+                <source src="@Url.Action("VideoContentById", "FileDetails", new { Id = Model.Id })" type="video/mp4" />
+            </video>
     }
     else
     {
-        <img src="~/MediaFiles/mp3.jpg" />
-        <audio controls>
-            <source src="@Url.Action("AudioContentById", "FileDetails", new { Id = Model.Id })" type="audio/mp3" />
-        </audio>
+            <img src="~/MediaFiles/mp3.jpg" />
+            <audio controls>
+                <source src="@Url.Action("AudioContentById", "FileDetails", new { Id = Model.Id })" type="audio/mp3" />
+            </audio>
     }
-
+    @if (Request.IsAuthenticated && !ViewBag.IsYours)
+    {
+        if (!ViewBag.IsFavourited)
+        {
+            <div>
+                @Ajax.ActionLink("Add to favourites", "AddFavourites", "DetailsAuthorized", new { area = "Authorized", Id = @Model.Id }, new AjaxOptions { OnSuccess = "hideAddFavBtn", HttpMethod = "Post" }, new { @class = "btn btn-info btn-sm", id = "add-fav-btn" })
+                @Ajax.ActionLink("Remove from favourites", "RemoveFavourites", "DetailsAuthorized", new { area = "Authorized", Id = @Model.Id }, new AjaxOptions { OnComplete = "hideRemFavBtn", HttpMethod = "Post" }, new { @class = "btn btn-warning btn-sm", id = "rem-fav-btn", style = "display:none" })
+            </div>
+        }
+        else
+        {
+            <div>
+                @Ajax.ActionLink("Add to favourites", "AddFavourites", "DetailsAuthorized", new { area = "Authorized", Id = @Model.Id }, new AjaxOptions { OnSuccess = "hideAddFavBtn", HttpMethod = "Post" }, new { @class = "btn btn-info btn-sm", id = "add-fav-btn", style = "display:none" })
+                @Ajax.ActionLink("Remove from favourites", "RemoveFavourites", "DetailsAuthorized", new { area = "Authorized", Id = @Model.Id }, new AjaxOptions { OnComplete = "hideRemFavBtn", HttpMethod = "Post" }, new { @class = "btn btn-warning btn-sm", id = "rem-fav-btn" })
+            </div>
+        }
+    }
     <div style="margin-bottom:50px">
         <div id="container-for-votes">
             @{
@@ -42,10 +63,11 @@
                 using (Ajax.BeginForm("Vote", "DetailsAuthorized", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-votes", InsertionMode = InsertionMode.Replace }, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <span class="form-group">
-                        @Html.TextBox("Value")
-                        <input id="post-btn" class="btn btn-success btn-sm" type="submit" value="Vote" />
-                    </span>
+                    <div>
+                        @Html.DropDownList("Value", items, new { @class = "form-control", @style = "width:80px" })
+
+                        <input id="post-btn" class="btn btn-primary btn-sm" type="submit" value="Vote" />
+                    </div>
                 }
             }
         </div>

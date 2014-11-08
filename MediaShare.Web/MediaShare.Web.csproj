@@ -261,7 +261,7 @@
     <Content Include="Views\Home\HomePartial.cshtml" />
     <Content Include="Areas\Authorized\Views\UploadFile\VideoIndex.cshtml" />
     <Content Include="Areas\Authorized\Views\UploadFile\AudioIndex.cshtml" />
-    <Content Include="Views\FileDetails\RatingPartial.cshtml" />
+    <Content Include="Views\FileDetails\FileVotes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

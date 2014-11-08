@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MediaShare.Web.Helpers;
 using MediaShare.Web.Models;
+using Microsoft.AspNet.Identity;
 
 namespace MediaShare.Web.Controllers
 {
@@ -20,11 +21,31 @@ namespace MediaShare.Web.Controllers
         // GET: MediaFileDetails
         public ActionResult Details(int? id)
         {
+            var currentUser = this.User.Identity.GetUserId();
+            if (currentUser != null)
+            {
+                ViewBag.IsFavourited = this.Data.Users.Find(currentUser).Favourites.Any(f => f.Id == id);
+            }
+            else
+            {
+                ViewBag.IsFavourited = false;
+            }
+
             if (id == null)
             {
                 return RedirectToAction("Index", "Home");
             }
             var file = this.MediaFiles.FirstOrDefault(f => f.Id == id);
+
+            if (file.AuthorId == currentUser)
+            {
+                ViewBag.IsYours = true;
+            }
+            else
+            {
+                ViewBag.IsYours = false;
+            }
+
             return View(file);
         }
 

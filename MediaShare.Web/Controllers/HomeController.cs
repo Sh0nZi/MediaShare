@@ -11,12 +11,14 @@ namespace MediaShare.Web.Controllers
 {
     public class HomeController : BaseController
     {
+        private const int ShowTopNumber = 6;
         public HomeController(IMediaShareData data) : base(data)
         {
         }
 
         public ActionResult Index()
         {
+
             return View();
         }
         
@@ -26,7 +28,7 @@ namespace MediaShare.Web.Controllers
                                .Where(f => f.Type == MediaType.Video)
                                .OrderByDescending(f => f.Votes.Sum(v => v.Value) / f.Votes.Count)
                                .ThenBy(f => f.Votes.Count)
-                               .Take(3)
+                               .Take(ShowTopNumber)
                                .ToList();
             return PartialView("HomePartial", topAudio);
         }
@@ -36,7 +38,7 @@ namespace MediaShare.Web.Controllers
             var topVideo = this.MediaFiles
                                .Where(f => f.Type == MediaType.Audio)
                                .OrderByDescending(f => f.Votes.Sum(v => v.Value) / f.Votes.Count)
-                               .ThenBy(f => f.Votes.Count).Take(3)
+                               .ThenBy(f => f.Votes.Count).Take(ShowTopNumber)
                                .ToList();
             return PartialView("HomePartial", topVideo);
         }
