@@ -101,3 +101,5 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaSh
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web.Tests\obj\Debug\MediaShare.Web.Tests.csprojResolveAssemblyReference.cache
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web.Tests\obj\Debug\MediaShare.Web.Tests.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web.Tests\obj\Debug\MediaShare.Web.Tests.pdb
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web.Tests\bin\Debug\PagedList.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web.Tests\bin\Debug\PagedList.xml

@@ -63,27 +63,17 @@ namespace MediaShare.Data
 
         public int SaveChanges()
         {
-            try
+            while (true)
             {
-                // Your code...
-                // Could also be before try if you know the exception occurs in SaveChanges
-                return this.context.SaveChanges();
-            }
-            catch (DbEntityValidationException e)
-            {
-                foreach (var eve in e.EntityValidationErrors)
+                try
                 {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
+                    return this.context.SaveChanges();
                 }
-                throw;
+                catch (Exception ex)
+                {
+                    
+                }
             }
-            //return this.context.SaveChanges();
         }
 
         private IRepository<T> GetRepository<T>() where T : class

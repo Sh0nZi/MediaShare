@@ -17,7 +17,7 @@
         <b>Created on: </b> @Model.DateCreated
     </p>
     <p>
-        <b>Created by: </b> @Model.Author.UserName
+        <b>Created by:  @Html.ActionLink(@Model.Author.UserName.Substring(0, Model.Author.UserName.IndexOf('@')), "Index", "UserFiles", new { area = "Authorized", Id = Model.Author.Id }, new { })</b>
     </p>
 
     @if (Model.Type == MediaType.Video)
@@ -28,8 +28,8 @@
     }
     else
     {
-            <img src="~/MediaFiles/mp3.jpg" />
-            <audio controls>
+            <img src="~/MediaFiles/mp3.jpg"  height="200" width="300"/>
+            <audio controls style="display:block">
                 <source src="@Url.Action("AudioContentById", "FileDetails", new { Id = Model.Id })" type="audio/mp3" />
             </audio>
     }

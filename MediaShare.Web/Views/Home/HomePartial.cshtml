@@ -6,22 +6,12 @@
 {
     foreach (var item in Model)
     {
-           
-            <div class="col-md-4" style="margin-bottom:50px">
-                <h3 style="height:50px">
-                    <a href="@Url.Action("Details", "FileDetails", new { Id = @item.Id })">
-                        @item.Title
-                    </a>
-                </h3>
-                <p>
-                    <b>Rating:</b> @(string.Format("{0:0.0}", (double)item.Votes.Sum(x => x.Value) / (item.Votes.Count == 0 ? 1 : item.Votes.Count))) / 5 (@item.Votes.Count users voted)
-                </p>
-                <a href="@Url.Action("Details", "FileDetails", new { Id = @item.Id })">
-                    <img width="300" height="200" src="@Url.Action("ByIdThumbnail", "Base", new { Id = @item.Id })" />
-                </a>
-            </div>
-
-
+        <div class="col-md-4" style="margin-bottom:50px">
+            @{Html.RenderPartial("_FilePartial", item);}
+            <p>
+                <b>Rating:</b> @(string.Format("{0:0.0}", (double)item.Votes.Sum(x => x.Value) / (item.Votes.Count == 0 ? 1 : item.Votes.Count))) / 5 (@item.Votes.Count users voted)
+            </p>
+        </div>
     }
 }
 else

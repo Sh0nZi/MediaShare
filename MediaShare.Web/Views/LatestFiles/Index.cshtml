@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Latest Files";
+}
+
+<div class="table row well">
+    <h3 style="color:crimson">Latest Video files</h3>
+    <hr />
+    @{
+        Html.RenderAction("LatestVideo");
+    }
+
+</div>
+<div class="table row well">
+    <h3 style="color:crimson">Latest Audio files</h3>
+    <hr />
+    @{
+        Html.RenderAction("LatestAudio");
+    }
+
+</div>
+
+
+
+

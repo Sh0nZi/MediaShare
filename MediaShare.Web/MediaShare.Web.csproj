@@ -53,6 +53,12 @@
     <Reference Include="NReco.VideoConverter">
       <HintPath>..\packages\NReco.VideoConverter.1.0.4.0\lib\net20\NReco.VideoConverter.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -178,13 +184,17 @@
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Authorized\AuthorizedAreaRegistration.cs" />
+    <Compile Include="Areas\Authorized\Controllers\FavouritesController.cs" />
+    <Compile Include="Areas\Authorized\Controllers\UserFilesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Authorized\Controllers\AuthorizedController.cs" />
     <Compile Include="Areas\Authorized\Controllers\DetailsAuthorizedController.cs" />
     <Compile Include="Areas\Authorized\Controllers\UploadFileController.cs" />
+    <Compile Include="Controllers\AllFilesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FileDetailsController.cs" />
+    <Compile Include="Controllers\LatestFilesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,8 +210,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -212,6 +223,10 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Authorized\Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Authorized\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Authorized\Views\UserFiles\Index.cshtml" />
+    <Content Include="Areas\Authorized\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Authorized\Views\Favourites\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -258,10 +273,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\FileDetails\Details.cshtml" />
     <Content Include="Views\FileDetails\FileComments.cshtml" />
-    <Content Include="Views\Home\HomePartial.cshtml" />
     <Content Include="Areas\Authorized\Views\UploadFile\VideoIndex.cshtml" />
     <Content Include="Areas\Authorized\Views\UploadFile\AudioIndex.cshtml" />
     <Content Include="Views\FileDetails\FileVotes.cshtml" />
+    <Content Include="Views\Home\HomePartial.cshtml" />
+    <Content Include="Views\Shared\_FilePartial.cshtml" />
+    <Content Include="Views\LatestFiles\Index.cshtml" />
+    <Content Include="Views\LatestFiles\LatestPartial.cshtml" />
+    <Content Include="Views\AllFiles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,7 +289,6 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Authorized\Models\" />
     <Folder Include="Areas\Authorized\Views\Comments\" />
-    <Folder Include="Areas\Authorized\Views\Shared\" />
     <Folder Include="Areas\Authorized\Views\Votes\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

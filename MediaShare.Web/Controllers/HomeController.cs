@@ -24,23 +24,23 @@ namespace MediaShare.Web.Controllers
         
         public ActionResult GetTopVideo()
         {
-            var topAudio = this.MediaFiles
+            var topVideo = this.MediaFiles
                                .Where(f => f.Type == MediaType.Video)
                                .OrderByDescending(f => f.Votes.Sum(v => v.Value) / f.Votes.Count)
                                .ThenBy(f => f.Votes.Count)
                                .Take(ShowTopNumber)
                                .ToList();
-            return PartialView("HomePartial", topAudio);
+            return PartialView("HomePartial", topVideo);
         }
 
         public ActionResult GetTopAudio()
         {
-            var topVideo = this.MediaFiles
+            var topAudio = this.MediaFiles
                                .Where(f => f.Type == MediaType.Audio)
                                .OrderByDescending(f => f.Votes.Sum(v => v.Value) / f.Votes.Count)
                                .ThenBy(f => f.Votes.Count).Take(ShowTopNumber)
                                .ToList();
-            return PartialView("HomePartial", topVideo);
+            return PartialView("HomePartial", topAudio);
         }
     }
 }

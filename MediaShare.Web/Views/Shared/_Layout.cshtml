@@ -7,10 +7,10 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
 
-        <meta name="description" content="The description of my page" />
+        <meta name="description" content="Media files sharing" />
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,11 +22,19 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("All Media", "action", "controller")</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                Media <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Latest Media", "Index", "LatestFiles")</li>
+                                <li>@Html.ActionLink("All Media", "Index", "AllFiles")</li>
+                            </ul>
+                        </li>
+                       
                         @if (Request.IsAuthenticated)
                         {
-                                                  
-                                                    
+                                                                                                     
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     Upload <b class="caret"></b>

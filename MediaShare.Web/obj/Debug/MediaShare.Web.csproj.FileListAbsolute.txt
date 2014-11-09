@@ -125,3 +125,7 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaSh
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.csprojResolveAssemblyReference.cache
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.pdb
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.Mvc.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.Mvc.xml

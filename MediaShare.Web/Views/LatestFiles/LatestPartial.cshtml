@@ -1,0 +1,25 @@
+﻿@using MediaShare.Models
+
+@model ICollection<MediaFile>
+
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <div class="col-md-4" style="margin-bottom:50px">
+            @{Html.RenderPartial("_FilePartial", item);}
+            <p>
+                <b>Date Created: </b>
+                <span class="latest-files-view-date">
+                    @item.DateCreated.ToString("d MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+                    at @item.DateCreated.ToString("hh:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+                </span>
+            </p>
+        </div>
+    }
+}
+else
+{
+    <h3 class="text-center">No Entries...</h3>
+}
+

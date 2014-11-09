@@ -1,5 +1,4 @@
-﻿
-@using System.Globalization;
+﻿@using System.Globalization;
 @using MediaShare.Web.Models;
 
 @model ICollection<CommentViewModel>
@@ -8,7 +7,7 @@
 
 @if (@Request.IsAuthenticated)
 {
-    <input id="show-pannel-btn" class="btn btn-success" type="button"  value="Add Comment" onclick="showCommentContainer()" />
+    <input id="show-pannel-btn" class="btn btn-success" type="button" value="Add Comment" onclick="showCommentContainer()" />
 }
 
 <div id="comment-message" class="alert alert-dismissable alert-success" style="display:none"> Comment posted successfully!</div>
@@ -29,11 +28,12 @@
 
 @foreach (var comment in Model)
 {
-    
+
 
     <div id="comment-body" class="well">
         <div>
-            <b>@comment.Author: </b>@comment.Content
+            <b>@Html.ActionLink(@comment.Author.UserName.Substring(0, comment.Author.UserName.IndexOf('@')), "Index", "UserFiles", new {area="Authorized", Id = comment.Author.Id }, new { }):&nbsp;
+            </b>@comment.Content
         </div>
         <p> <b>Posted on: </b>@comment.DateCreated.ToString("d MMM", CultureInfo.CreateSpecificCulture("en-US")) at @comment.DateCreated.ToString("hh:mm", CultureInfo.CreateSpecificCulture("en-US")) </p>
     </div>

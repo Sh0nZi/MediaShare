@@ -20,7 +20,7 @@ namespace MediaShare.Web.Models
                     Content = c.Content,
                     Id = c.Id,
                     DateCreated = c.DateCreated,
-                    Author = c.Author.UserName,
+                    Author = c.Author,
                 };
             }
         }
@@ -35,6 +35,8 @@ namespace MediaShare.Web.Models
         public DateTime DateCreated { get; set; }
 
         [Required]
-        public string Author { get; set; }
+        public ApplicationUser Author { get; set; }
+
+
     }
 }
