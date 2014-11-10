@@ -35,8 +35,7 @@ namespace MediaShare.Web.Areas.Authorized.Controllers
             }
 
             var videos = this.MediaFiles
-                               .Where(f => f.AuthorId == id).OrderByDescending(f => f.DateCreated)
-                               .ToList();
+                               .Where(f => f.AuthorId == id).OrderByDescending(f => f.DateCreated);
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View(videos.ToPagedList(pageNumber, pageSize));

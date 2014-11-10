@@ -76,5 +76,11 @@ namespace MediaShare.Web.Controllers
             var content = this.MediaFiles.FirstOrDefault(x => x.Id == id).Content;                     
             return File(content, "video/mp4");
         }
+
+        public void IncreaseCount(int id)
+        {
+            this.MediaFiles.FirstOrDefault(f=>f.Id==id).ViewsCount++;
+            this.Data.SaveChanges();
+        }
     }
 }

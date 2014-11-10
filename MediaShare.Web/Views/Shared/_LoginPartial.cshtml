@@ -13,8 +13,8 @@
                         Hello, @User.Identity.GetUserName()! <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Change Password", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" }) </li>
-                        <li>@Html.ActionLink("Your Files", "Index", "UserFiles", new { area = "Authorized", Id=this.User.Identity.GetUserId() }, new { })</li>
+                        <li>@Html.ActionLink("Change Password", "Manage", "Account", routeValues: null, htmlAttributes: new { area="",title = "Manage" }) </li>
+                        <li>@Html.ActionLink("Your Media", "Index", "UserFiles", new { area = "Authorized", Id=this.User.Identity.GetUserId() }, new { })</li>
                         <li>@Html.ActionLink("Favourites", "Index", "Favourites", new { area = "Authorized" }, new { })</li>
                     </ul>
                 </li>

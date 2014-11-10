@@ -9,7 +9,7 @@ namespace MediaShare.Web.Controllers
 {
     public class BaseController : Controller
     {
-        public IMediaShareData Data { get; private set; }
+        protected IMediaShareData Data { get; private set; }
 
         protected IQueryable<MediaFile> MediaFiles
         {

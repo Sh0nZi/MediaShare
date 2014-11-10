@@ -12,23 +12,12 @@
 <div class="table row well">
     <h3 style="color:crimson">@ViewBag.UserName uploads</h3>
     <hr />
-
-    @if (Model.Any())
-    {
-        foreach (var item in Model)
-        {
-            <div class="col-md-4" style="margin-bottom:50px">
-                @{Html.RenderPartial("_FilePartial", item);}
-            </div>
-        }
-        <div class="col-md-10">
-            @Html.PagedListPager(Model, page => Url.Action("Index", "UserFiles",
+    @{
+        Html.RenderPartial("_PagedFiles");
+    }
+    <div class="col-md-10">
+        @Html.PagedListPager(Model, page => Url.Action("Index", "UserFiles",
                 new { area = "Authorized", Id = this.User.Identity.GetUserId(), page }))
-            <span>Page</span> @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) <span>of</span> @Model.PageCount
-        </div>
-    }
-    else
-    {
-        <h3 class="text-center">No Entries...</h3>
-    }
+        <span>Page</span> @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) <span>of</span> @Model.PageCount
+    </div>
 </div>

@@ -44,6 +44,8 @@ namespace MediaShare.Models
 
         public byte[] Thumbnail { get; set; }
 
+        public int ViewsCount { get; set; }
+
         public virtual ApplicationUser Author { get; set; }
 
         public virtual ICollection<Comment> Comments

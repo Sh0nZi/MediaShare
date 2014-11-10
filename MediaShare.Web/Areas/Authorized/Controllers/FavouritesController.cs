@@ -20,8 +20,7 @@ namespace MediaShare.Web.Areas.Authorized.Controllers
         {
             var videos = this.Data.Users.Find(this.CurrentUser)
                             .Favourites
-                            .OrderByDescending(f => f.DateCreated)
-                            .ToList();
+                            .OrderByDescending(f => f.DateCreated);
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View(videos.ToPagedList(pageNumber, pageSize));

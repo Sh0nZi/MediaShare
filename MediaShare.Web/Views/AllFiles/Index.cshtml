@@ -1,7 +1,50 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@using System.Linq;
+@using MediaShare.Models
+@using Microsoft.AspNet.Identity;
+@using PagedList.Mvc
 
-<h2>Index</h2>
+@model PagedList.IPagedList<MediaFile>
+@{
+    ViewBag.Title = "All Media";
+    var items = new List<SelectListItem>();
+    items.Add(new SelectListItem() { Value = "", Text = "Both" });
+    items.Add(new SelectListItem() { Value = "Video", Text = "Video" });
+    items.Add(new SelectListItem() { Value = "Audio", Text = "Audio" });   
+    
+}
+<div class="table row well">
+    <h3 style="color:crimson">All Media files</h3>
+    <hr />
+    @using (Ajax.BeginForm("Index", "AllFiles", new AjaxOptions { HttpMethod="GET",InsertionMode=InsertionMode.Replace,UpdateTargetId="files-container"}))
+    {
+        <div class="row">
+            <div class="col-md-9">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { placeholder = "Search by title ", onkeyup = "$(this.form).submit();" })
+
+            </div>
+            <div class="col-md-1">
+                <b>Type:</b>
+            </div>
+            <div class="col-md-1">
+                @Html.DropDownList("Type", items, new { @style = "width:100px", onchange = "$(this.form).submit();" })
+            </div>
+        </div>
+        <div class="row text-center">
+            Sorting here
+        </div>
+            
+    } 
+    <hr />
+    <div id="files-container">
+        @{
+            Html.RenderPartial("_PagedFiles");
+        }
+        <div class="col-md-10">
+            @Html.PagedListPager(Model, page => Url.Action("Index", "AllFiles", new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions { UpdateTargetId = "files-container", HttpMethod = "GET" }))
+            <span>Page</span> @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) <span>of</span> @Model.PageCount
+        </div>
+    </div>
+   
+</div>
+
 

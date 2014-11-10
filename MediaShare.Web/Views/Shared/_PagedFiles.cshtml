@@ -1,0 +1,53 @@
+﻿@model PagedList.IPagedList<MediaShare.Models.MediaFile>
+@using PagedList.Mvc
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        var someClass="col-md-4";
+        if (ViewBag.Title == "All Media" || Request.IsAjaxRequest())
+        {
+            someClass = "col-md-6";
+        }
+
+        <div class=@someClass style="margin-bottom:50px">
+            @{Html.RenderPartial("_FilePartial", item);}
+            @if (ViewBag.Title == "All Media" || Request.IsAjaxRequest())
+            {
+                <div class="pull-right">
+                    <p>
+                        <b>Date Created: </b>
+                        <span class="latest-files-view-date">
+                            @item.DateCreated.ToString("d MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+                            at @item.DateCreated.ToString("hh:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+                        </span>
+                    </p>
+                    <p>
+                        <b>Created by:  @Html.ActionLink(@item.Author.UserName.Substring(0, item.Author.UserName.IndexOf('@')), "Index", "UserFiles", new { area = "Authorized", Id = item.Author.Id }, new { })</b>
+                    </p>
+                    <p>
+                        <b>Viewed: </b><span style="color:ButtonShadow">@item.ViewsCount time(s)</span>
+                    </p>
+                    <p>
+                        <b>Rating:</b> @(string.Format("{0:0.0}", (double)item.Votes.Sum(x => x.Value) / (item.Votes.Count == 0 ? 1 : item.Votes.Count))) / 5 (@item.Votes.Count users voted)
+                    </p>
+                    <p>
+                        <b>Type: </b><span style="color:ButtonShadow">@item.Type</span>
+                    </p>
+                </div>
+            }
+        </div>
+    }
+    if (Request.IsAjaxRequest())
+    {
+        <div class="col-md-10">
+            @Html.PagedListPager(Model, page => Url.Action("Index", "AllFiles", new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions { UpdateTargetId = "files-container", HttpMethod = "GET" }))
+            <span>Page</span> @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) <span>of</span> @Model.PageCount
+        </div>
+    }
+
+}
+else
+{
+    <h3 class="text-center">No Entries...</h3>
+}

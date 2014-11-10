@@ -21,6 +21,11 @@ textarea
 a:hover
 {
     opacity: 0.8;
+
+}
+a img:hover{
+    border:1px solid red;
+
 }
 .well
 {

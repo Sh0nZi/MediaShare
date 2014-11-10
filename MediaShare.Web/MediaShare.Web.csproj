@@ -225,7 +225,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Authorized\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Authorized\Views\UserFiles\Index.cshtml" />
-    <Content Include="Areas\Authorized\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Authorized\Views\Favourites\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -281,6 +280,7 @@
     <Content Include="Views\LatestFiles\Index.cshtml" />
     <Content Include="Views\LatestFiles\LatestPartial.cshtml" />
     <Content Include="Views\AllFiles\Index.cshtml" />
+    <Content Include="Views\Shared\_PagedFiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -289,6 +289,7 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Authorized\Models\" />
     <Folder Include="Areas\Authorized\Views\Comments\" />
+    <Folder Include="Areas\Authorized\Views\Shared\" />
     <Folder Include="Areas\Authorized\Views\Votes\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
