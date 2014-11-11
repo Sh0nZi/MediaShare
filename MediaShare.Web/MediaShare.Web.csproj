@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Ninject">
@@ -186,6 +192,7 @@
     <Compile Include="Areas\Authorized\AuthorizedAreaRegistration.cs" />
     <Compile Include="Areas\Authorized\Controllers\FavouritesController.cs" />
     <Compile Include="Areas\Authorized\Controllers\UserFilesController.cs" />
+    <Compile Include="Models\Files\MediaFileViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Authorized\Controllers\AuthorizedController.cs" />
     <Compile Include="Areas\Authorized\Controllers\DetailsAuthorizedController.cs" />
@@ -198,8 +205,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ThumbnailExtractor.cs" />
+    <Compile Include="Infrastructure\Helpers\IThumbnailExtractor.cs" />
+    <Compile Include="Infrastructure\Helpers\ThumbnailExtractor.cs" />
+    <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
+    <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
+    <Compile Include="Models\FilterViewModel.cs" />
     <Compile Include="Models\Users\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\Users\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\Users\ForgotPasswordViewModel.cs" />
@@ -281,6 +293,12 @@
     <Content Include="Views\LatestFiles\LatestPartial.cshtml" />
     <Content Include="Views\AllFiles\Index.cshtml" />
     <Content Include="Views\Shared\_PagedFiles.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TypeDropdown.cshtml" />
+    <Content Include="Views\AllFiles\FilterPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\OrderDropdown.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SortTypeDropdown.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\VoteValueDropdown.cshtml" />
+    <Content Include="Views\AllFiles\FileInfoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -292,6 +310,7 @@
     <Folder Include="Areas\Authorized\Views\Shared\" />
     <Folder Include="Areas\Authorized\Views\Votes\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -338,6 +357,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

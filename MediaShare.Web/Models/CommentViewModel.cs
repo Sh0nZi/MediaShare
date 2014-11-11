@@ -1,29 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using MediaShare.Models;
-using System.Linq.Expressions;
-
-namespace MediaShare.Web.Models
+﻿namespace MediaShare.Web.Models
 {
-    public class CommentViewModel
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+
+    using MediaShare.Models;
+    using MediaShare.Web.Infrastructure.Mapping;
+
+    public class CommentViewModel :IMapFrom<Comment>
     {
-    
-        public static Expression<Func<Comment, CommentViewModel>> FromComment
-        {
-            get
-            {
-                return c => new CommentViewModel
-                {
-                    Content = c.Content,
-                    Id = c.Id,
-                    DateCreated = c.DateCreated,
-                    Author = c.Author,
-                };
-            }
-        }
 
         public int Id { get; set; }
 
@@ -36,7 +21,5 @@ namespace MediaShare.Web.Models
 
         [Required]
         public ApplicationUser Author { get; set; }
-
-
     }
 }

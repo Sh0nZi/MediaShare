@@ -1,0 +1,24 @@
+﻿@using MediaShare.Web.Models
+@model FilterViewModel
+@using (Ajax.BeginForm("RenderFiles", "AllFiles", new AjaxOptions { HttpMethod = "GET",InsertionMode = InsertionMode.Replace, UpdateTargetId = "files-container" }))
+{
+    <div class="row">
+        <div class="col-md-3">
+            @Html.TextBox("SearchString", "", new { placeholder = "Search by title ", onkeyup = "$(this.form).submit();" })
+        </div>
+        <div class="col-md-3">
+            <b class="pull-left">Media Type:&nbsp;</b>
+            @Html.EditorFor(f=>f.Type,"TypeDropdown")
+        </div>
+        <div class="col-md-3">
+            <b class="pull-left">Order by:&nbsp;</b>
+            @Html.EditorFor(f => f.OrderBy, "OrderDropdown")
+        </div>
+        <div class="col-md-3">
+            <b class="pull-left">Asc/Desc:&nbsp;</b>
+            @Html.EditorFor(f => f.SortType, "SortTypeDropdown")
+        </div>
+    </div>
+
+}
+ 

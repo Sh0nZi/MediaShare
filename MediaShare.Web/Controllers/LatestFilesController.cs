@@ -1,41 +1,42 @@
-﻿using MediaShare.Data;
-using MediaShare.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace MediaShare.Web.Controllers
+﻿namespace MediaShare.Web.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using MediaShare.Data;
+    using MediaShare.Web.Models.Files;
+    using MediaShare.Models;
+
     public class LatestFilesController : BaseController
     {
         public LatestFilesController(IMediaShareData data) : base(data)
         {
-
         }
+
         // GET: LatestFiles
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult LatestVideo()
         {
-            var videoFiles = this.MediaFiles
-                .Where(f => f.Type == MediaType.Video)
-                .Take(6).OrderByDescending(f=>f.DateCreated)
-                .ToList();
-            return PartialView("LatestPartial",videoFiles);
+            var videoFiles = this.MediaFiles.Project().To<MediaFileViewModel>()
+                                 .Where(f => f.Type == MediaType.Video)
+                                 .Take(6).OrderByDescending(f => f.DateCreated)
+                                 .ToList();
+            return this.PartialView("LatestPartial", videoFiles);
         }
 
         public ActionResult LatestAudio()
         {
-            var audioFiles = this.MediaFiles
-                .Where(f => f.Type == MediaType.Audio)
-                .Take(6).OrderByDescending(f=>f.DateCreated)
-                .ToList();
-            return PartialView("LatestPartial",audioFiles);
+            var audioFiles = this.MediaFiles.Project().To<MediaFileViewModel>()
+                                 .Where(f => f.Type == MediaType.Audio)
+                                 .Take(6).OrderByDescending(f => f.DateCreated)
+                                 .ToList();
+            return this.PartialView("LatestPartial", audioFiles);
         }
     }
 }

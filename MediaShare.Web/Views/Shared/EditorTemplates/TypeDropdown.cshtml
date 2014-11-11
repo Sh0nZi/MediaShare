@@ -1,0 +1,11 @@
+﻿@model string
+
+@{
+
+    var items = new List<SelectListItem>();
+    items.Add(new SelectListItem() { Value = "Both", Text = "Both" });
+    items.Add(new SelectListItem() { Value = "Video", Text = "Video" });
+    items.Add(new SelectListItem() { Value = "Audio", Text = "Audio" });
+}
+
+@Html.DropDownList("", items, new { @style = "width:100px", onchange = "$(this.form).submit();" })

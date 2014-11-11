@@ -1,22 +1,22 @@
-﻿using NReco.VideoConverter;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-
-namespace MediaShare.Web.Helpers
+﻿namespace MediaShare.Web.Infrastructure.Helpers
 {
-    public static class ThumbnailExtractor
-    {
-        private static FFMpegConverter converter;
+    using System.IO;
+    using System.Linq;
+    using System.Web;
 
-        static ThumbnailExtractor()
+    using MediaShare.Web.Infrastructure.Helpers;
+    using NReco.VideoConverter;
+
+    public class ThumbnailExtractor : IThumbnailExtractor
+    {
+        private readonly FFMpegConverter converter;
+
+        public ThumbnailExtractor()
         {
             converter = new FFMpegConverter();
         }
 
-        internal static byte[] GetVideoThumbnail(byte[] content)
+        public byte[] GetVideoThumbnail(byte[] content)
         {
             string path = HttpRuntime.AppDomainAppPath + "\\MediaFiles\\sample.mp4";
             
@@ -24,13 +24,13 @@ namespace MediaShare.Web.Helpers
 
             using (MemoryStream stream = new MemoryStream())
             {
-                converter.GetVideoThumbnail(path, stream, 100);
+                this.converter.GetVideoThumbnail(path, stream, 100);
                 
                 return stream.ToArray();
             }
         }
         
-        internal static byte[] GetAudioThumbnail()
+        public byte[] GetAudioThumbnail()
         {
             string path = HttpRuntime.AppDomainAppPath + ".\\MediaFiles\\mp3.jpg";
             var content = System.IO.File.ReadAllBytes(path);

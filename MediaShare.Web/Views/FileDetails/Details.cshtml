@@ -1,16 +1,13 @@
-﻿@using MediaShare.Models;
+﻿@using MediaShare.Models
+@using MediaShare.Web.Models.Files;
 @using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Details";
-    var items = new List<SelectListItem>();
-    for (int i = 1; i < 6; i++)
-    {
-        items.Add(new SelectListItem() { Value = i.ToString(), Text = i.ToString() });
-    }
+
 }
 <div id="details-page" class="well">
-    @model MediaFile
+    @model MediaFileViewModel
     <h3 style="color:crimson">@Model.Title</h3>
 
     <p>
@@ -65,7 +62,8 @@
                 {
                     @Html.AntiForgeryToken()
                     <div>
-                        @Html.DropDownList("Value", items, new { @class = "form-control", @style = "width:80px" })
+                        @Html.Editor("Value","VoteValueDropdown")
+                        @*@Html.DropDownList("Value", items, new { @class = "form-control", @style = "width:80px" })*@
 
                         <input id="post-btn" class="btn btn-primary btn-sm" type="submit" value="Vote" />
                     </div>

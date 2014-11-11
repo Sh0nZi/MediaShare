@@ -1,14 +1,18 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
-using MediaShare.Data;
-using Microsoft.AspNet.Identity;
-using MediaShare.Models;
-
-namespace MediaShare.Web.Controllers
+﻿namespace MediaShare.Web.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using MediaShare.Data;
+    using MediaShare.Models;
+
     public class BaseController : Controller
     {
+        public BaseController(IMediaShareData data)
+        {
+            this.Data = data;
+        }
+        
         protected IMediaShareData Data { get; private set; }
 
         protected IQueryable<MediaFile> MediaFiles
@@ -19,11 +23,6 @@ namespace MediaShare.Web.Controllers
             }
         }
 
-        public BaseController(IMediaShareData data)
-        {
-            this.Data = data;
-        }
-        
         public ActionResult ByIdThumbnail(int id)
         {
             var file = this.Data.Files.All().FirstOrDefault(x => x.Id == id);
@@ -32,7 +31,7 @@ namespace MediaShare.Web.Controllers
             string contentType = "image/jpeg";
             content = file.Thumbnail;
             
-            return File(content, contentType);
+            return this.File(content, contentType);
         }
     }
 }

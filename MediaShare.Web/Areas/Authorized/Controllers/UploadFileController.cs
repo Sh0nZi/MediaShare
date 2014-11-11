@@ -2,17 +2,27 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 using MediaShare.Data;
 using MediaShare.Models;
-using MediaShare.Web.Helpers;
+using MediaShare.Web.Infrastructure.Helpers;
 
 namespace MediaShare.Web.Areas.Authorized.Controllers
 {
     public class UploadFileController : AuthorizedController
     {
-        public UploadFileController(IMediaShareData data) : base(data)
+        private const string ContentRequiredText = "Content is required";
+
+        private const string TooLargeFileText = "Your file is too large! Allowed size 50 mb";
+
+        private const string WrongFormatText = "Your file is in wrong format! Allowed format - ";
+
+        private const int MaxSize = 50000000;
+
+        private readonly IThumbnailExtractor thumbnailExtractor;
+
+        public UploadFileController(IMediaShareData data, IThumbnailExtractor thumbnailExtractor) : base(data)
         {
+            this.thumbnailExtractor = thumbnailExtractor;
         }
 
         // GET: UploadVideoFile
@@ -32,32 +42,21 @@ namespace MediaShare.Web.Areas.Authorized.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UploadVideo(MediaFile file, HttpPostedFileBase mediaFile)
         {
-            if (mediaFile == null)
+            if (!this.IsValid(mediaFile, "video/mp4"))
             {
-                this.ModelState.AddModelError("Content", "Content is required");
-                return this.View("VideoIndex", file);
-            }
-
-            if (mediaFile != null && mediaFile.ContentLength > 50000000)
-            {
-                this.ModelState.AddModelError("Size", "Your file is too large! Allowed size 50 mb");
-                return this.View("VideoIndex", file);
-            }
-            if (mediaFile != null && mediaFile.ContentType != "video/mp4")
-            {
-                this.ModelState.AddModelError("Type", "Your file is in wrong format! Allowed format - mp4");
                 return this.View("VideoIndex", file);
             }
 
             this.PopulateContent(file, mediaFile);
-            file.Thumbnail = ThumbnailExtractor.GetVideoThumbnail(file.Content);
+            file.Thumbnail = thumbnailExtractor.GetVideoThumbnail(file.Content);
             file.Type = MediaType.Video;
+
             //Entity Framework does not allow to store files larger than 50mb...
              
             this.Data.Files.Add(file);
             this.Data.SaveChanges();
             this.TempData["Success"] = "Video successfully added!";
-            return this.RedirectToAction("Index", "Home",new {area=""});
+            return this.RedirectToAction("Index", "Home", new { area = "" });
         }
         
         // Post: Audio
@@ -65,32 +64,20 @@ namespace MediaShare.Web.Areas.Authorized.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UploadAudio(MediaFile file, HttpPostedFileBase mediaFile)
         {
-            if (mediaFile == null)
+            if (!this.IsValid(mediaFile, "audio/mp3"))
             {
-                this.ModelState.AddModelError("Content", "Content is required");
-                return this.View("AudioIndex", file);
-            }
-
-            if (mediaFile.ContentLength > 50000000)
-            {
-                this.ModelState.AddModelError("Size", "Your file is too large! Allowed size 50 mb");
-                return this.View("AudioIndex", file);
-            }
-            if (mediaFile.ContentType != "audio/mp3")
-            {
-                this.ModelState.AddModelError("Type", "Your file is in wrong format! Allowed format - mp3");
                 return this.View("AudioIndex", file);
             }
 
             this.PopulateContent(file, mediaFile);
             file.Type = MediaType.Audio;
-            file.Thumbnail = ThumbnailExtractor.GetAudioThumbnail();
+            file.Thumbnail = thumbnailExtractor.GetAudioThumbnail();
             
             this.Data.Files.Add(file);
             this.Data.SaveChanges();
             
             this.TempData["Success"] = "Audio successfully added!";
-            return this.RedirectToAction("Index", "Home", new {area=""} );
+            return this.RedirectToAction("Index", "Home", new { area = "" });
         }
                 
         private void PopulateContent(MediaFile file, HttpPostedFileBase mediaFile)
@@ -99,6 +86,26 @@ namespace MediaShare.Web.Areas.Authorized.Controllers
             mediaFile.InputStream.Read(file.Content, 0, mediaFile.ContentLength);
             file.DateCreated = DateTime.Now;
             file.AuthorId = this.CurrentUser;
+        }
+
+        private bool IsValid(HttpPostedFileBase mediaFile, string contentType)
+        {
+            if (mediaFile == null)
+            {
+                this.ModelState.AddModelError("Content", ContentRequiredText);
+                return false;
+            }
+            if (mediaFile != null && mediaFile.ContentLength > MaxSize)
+            {
+                this.ModelState.AddModelError("Size", TooLargeFileText);
+                return false;
+            }
+            if (mediaFile != null && mediaFile.ContentType != contentType)
+            {
+                this.ModelState.AddModelError("Type", WrongFormatText + contentType);
+                return false;
+            }
+            return true;
         }
     }
 }

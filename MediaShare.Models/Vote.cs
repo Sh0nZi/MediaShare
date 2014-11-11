@@ -13,6 +13,7 @@ namespace MediaShare.Models
         public int Id { get; set; }
 
         [Range(1, 5)]
+        [UIHint("VoteValueDropdown")]
         public int Value { get; set; }
 
         [Required]

@@ -1,46 +1,46 @@
-﻿using MediaShare.Data;
-using MediaShare.Models;
-using MediaShare.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace MediaShare.Web.Controllers
+﻿namespace MediaShare.Web.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using MediaShare.Web.Models.Files;
+    using MediaShare.Data;
+    using MediaShare.Models;
+
     public class HomeController : BaseController
     {
         private const int ShowTopNumber = 6;
+
         public HomeController(IMediaShareData data) : base(data)
         {
         }
 
         public ActionResult Index()
         {
-
-            return View();
+            return this.View();
         }
         
         public ActionResult GetTopVideo()
         {
-            var topVideo = this.MediaFiles
+            var topVideo = this.MediaFiles.Project().To<MediaFileViewModel>()
                                .Where(f => f.Type == MediaType.Video)
-                               .OrderByDescending(f => f.Votes.Sum(v => v.Value) / f.Votes.Count)
+                               .OrderByDescending(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count)
                                .ThenBy(f => f.Votes.Count)
                                .Take(ShowTopNumber)
                                .ToList();
-            return PartialView("HomePartial", topVideo);
+            return this.PartialView("HomePartial", topVideo);
         }
 
         public ActionResult GetTopAudio()
         {
-            var topAudio = this.MediaFiles
+            var topAudio = this.MediaFiles.Project().To<MediaFileViewModel>()
                                .Where(f => f.Type == MediaType.Audio)
-                               .OrderByDescending(f => f.Votes.Sum(v => v.Value) / f.Votes.Count)
+                               .OrderByDescending(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count)
                                .ThenBy(f => f.Votes.Count).Take(ShowTopNumber)
                                .ToList();
-            return PartialView("HomePartial", topAudio);
+            return this.PartialView("HomePartial", topAudio);
         }
     }
 }

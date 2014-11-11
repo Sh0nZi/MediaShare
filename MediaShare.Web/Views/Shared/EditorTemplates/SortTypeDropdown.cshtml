@@ -1,0 +1,10 @@
+﻿@model string
+
+@{
+
+    var items = new List<SelectListItem>();
+    items.Add(new SelectListItem() { Value = "Descending", Text = "Descending" });
+    items.Add(new SelectListItem() { Value = "Ascending", Text = "Ascending" });
+}
+
+@Html.DropDownList("", items, new { @style = "width:100px", onchange = "$(this.form).submit();" })

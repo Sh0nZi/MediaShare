@@ -2,12 +2,11 @@
     ViewBag.Title = "User files";
 }
 
-@using System.Linq;
-@using MediaShare.Models
+@using MediaShare.Web.Models.Files;
 @using Microsoft.AspNet.Identity;
 @using PagedList.Mvc
 
-@model PagedList.IPagedList<MediaFile>
+@model PagedList.IPagedList<MediaFileViewModel>
 
 <div class="table row well">
     <h3 style="color:crimson">@ViewBag.UserName uploads</h3>
@@ -17,7 +16,6 @@
     }
     <div class="col-md-10">
         @Html.PagedListPager(Model, page => Url.Action("Index", "UserFiles",
-                new { area = "Authorized", Id = this.User.Identity.GetUserId(), page }))
-        <span>Page</span> @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) <span>of</span> @Model.PageCount
+                         new { area = "Authorized", Id = this.User.Identity.GetUserId(), page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)        
     </div>
 </div>

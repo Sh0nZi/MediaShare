@@ -57,10 +57,12 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\M
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET Web Forms\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.pdb
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\AutoMapper.Net4.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\MediaShare.Web.dll.config
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\MediaShare.Web.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\MediaShare.Web.pdb
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Antlr3.Runtime.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\AutoMapper.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\EntityFramework.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\EntityFramework.SqlServer.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\MediaShare.Data.dll
@@ -84,6 +86,8 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaSh
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Ninject.Web.Mvc.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\NReco.VideoConverter.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Owin.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.Mvc.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\System.Web.Helpers.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\System.Web.Mvc.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\System.Web.Optimization.dll
@@ -95,10 +99,13 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaSh
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\WebGrease.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\MediaShare.Data.pdb
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\MediaShare.Models.pdb
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\AutoMapper.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Ninject.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Ninject.Web.Common.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Ninject.Web.Mvc.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\NReco.VideoConverter.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.Mvc.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\System.Web.Helpers.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\System.Web.Mvc.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\System.Web.Optimization.xml
@@ -125,7 +132,3 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaSh
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.csprojResolveAssemblyReference.cache
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.pdb
-C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.dll
-C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.Mvc.dll
-C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.xml
-C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\PagedList.Mvc.xml

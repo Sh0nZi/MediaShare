@@ -1,0 +1,11 @@
+﻿@using MediaShare.Models;
+
+@model Vote
+@{
+    var items = new List<SelectListItem>();
+    for (int i = 1; i < 6; i++)
+    {
+        items.Add(new SelectListItem() { Value = i.ToString(), Text = i.ToString() });
+    }
+}
+@Html.DropDownList("", items,new { @class = "form-control", @style = "width:80px" } )
