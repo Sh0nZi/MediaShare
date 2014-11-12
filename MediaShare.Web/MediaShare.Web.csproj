@@ -45,8 +45,18 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.1.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -131,9 +141,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -192,6 +199,8 @@
     <Compile Include="Areas\Authorized\AuthorizedAreaRegistration.cs" />
     <Compile Include="Areas\Authorized\Controllers\FavouritesController.cs" />
     <Compile Include="Areas\Authorized\Controllers\UserFilesController.cs" />
+    <Compile Include="Models\Files\AdvancedMediaFileViewModel.cs" />
+    <Compile Include="Models\Files\BasicMediaFileViewModel.cs" />
     <Compile Include="Models\Files\MediaFileViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Authorized\Controllers\AuthorizedController.cs" />
@@ -242,12 +251,18 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.0.0.debug.js" />
+    <Content Include="Scripts\knockout-2.0.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -299,6 +314,13 @@
     <Content Include="Views\Shared\EditorTemplates\SortTypeDropdown.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\VoteValueDropdown.cshtml" />
     <Content Include="Views\AllFiles\FileInfoPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\CustomDate.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DisplayRate.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DisplayAuthor.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DisplayViewsCount.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DisplayMediaType.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DisplayAsyncPager.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DisplaySyncPager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -310,7 +332,6 @@
     <Folder Include="Areas\Authorized\Views\Shared\" />
     <Folder Include="Areas\Authorized\Views\Votes\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

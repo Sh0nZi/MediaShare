@@ -1,0 +1,7 @@
+﻿@using MediaShare.Models;
+
+@model ApplicationUser
+
+<p>
+    <b>Created by:  @Html.ActionLink(@Model.UserName.Substring(0, Model.UserName.IndexOf('@')), "Index", "UserFiles", new { area = "Authorized", Id = Model.Id }, new { })</b>
+</p>

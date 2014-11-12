@@ -22,7 +22,7 @@
         // GET: AllFiles
         public ActionResult Index()
         {
-            var videos = this.MediaFiles.Project().To<MediaFileViewModel>();
+            var videos = this.MediaFiles.Project().To<AdvancedMediaFileViewModel>();
             videos = videos.OrderByDescending(f => f.DateCreated);
             return this.View(videos.ToPagedList(1, PageSize));
         }
@@ -30,7 +30,7 @@
         [HttpGet]
         public ActionResult RenderFiles(int? page, FilterViewModel filter)
         {
-            var files = this.MediaFiles.Project().To<MediaFileViewModel>();
+            var files = this.MediaFiles.Project().To<AdvancedMediaFileViewModel>();
 
             string filterType = filter.Type;
             string searchString = filter.SearchString;
@@ -48,7 +48,7 @@
             return this.PartialView("_PagedFiles", files.ToPagedList(page ?? 1, PageSize));
         }
 
-        private IQueryable<MediaFileViewModel> Filter(IQueryable<MediaFileViewModel> files, string searchString, string filterType)
+        private IQueryable<AdvancedMediaFileViewModel> Filter(IQueryable<AdvancedMediaFileViewModel> files, string searchString, string filterType)
         {
              if (!string.IsNullOrEmpty(searchString))
             {
@@ -71,7 +71,7 @@
 
         }
 
-        private IQueryable<MediaFileViewModel> Sort(IQueryable<MediaFileViewModel> files, string orderBy, string sortType)
+        private IQueryable<AdvancedMediaFileViewModel> Sort(IQueryable<AdvancedMediaFileViewModel> files, string orderBy, string sortType)
         {
             
             if (orderBy == "Views")

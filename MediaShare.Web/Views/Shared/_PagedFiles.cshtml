@@ -1,14 +1,12 @@
 ﻿@using MediaShare.Web.Models.Files
 @using PagedList.Mvc
-@model PagedList.IPagedList<MediaFileViewModel>
+@model PagedList.IPagedList<BasicMediaFileViewModel>
 
 @if (Model.Any())
 {
     if (Request.IsAjaxRequest())
-    { 
-        <div class="col-md-10">
-            @Html.PagedListPager(Model, page => Url.Action("RenderFiles", "AllFiles", new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions.OnlyShowFivePagesAtATime, new AjaxOptions { UpdateTargetId = "files-container", HttpMethod = "GET" }))
-        </div>
+    {
+        @Html.DisplayFor(m => Model, "DisplayAsyncPager", new { action = "RenderFiles", controller = "AllFiles" })
     }
     foreach (var item in Model)
     {
@@ -28,9 +26,7 @@
     }
     if (Request.IsAjaxRequest())
     {
-        <div class="col-md-10">
-            @Html.PagedListPager(Model, page => Url.Action("RenderFiles", "AllFiles", new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions.OnlyShowFivePagesAtATime, new AjaxOptions { UpdateTargetId = "files-container", HttpMethod = "GET" }))
-        </div>
+        @Html.DisplayFor(m => Model, "DisplayAsyncPager", new { action = "RenderFiles", controller = "AllFiles" })
     }
 
 }

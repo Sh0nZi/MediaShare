@@ -1,0 +1,12 @@
+﻿@using MediaShare.Web.Models.Files;
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<BasicMediaFileViewModel>
+@{
+    string action=ViewData["action"].ToString();
+    string controller = ViewData["controller"].ToString();
+}  
+
+<div class="col-md-10">
+    @Html.PagedListPager(Model, page => Url.Action(action, controller, new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions.OnlyShowFivePagesAtATime, new AjaxOptions { UpdateTargetId = "files-container", HttpMethod = "GET" }))
+</div>

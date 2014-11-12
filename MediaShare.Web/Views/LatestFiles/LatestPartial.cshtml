@@ -1,6 +1,6 @@
 ﻿@using MediaShare.Web.Models.Files
 
-@model ICollection<MediaFileViewModel>
+@model ICollection<BasicMediaFileViewModel>
 
 @if (Model.Any())
 {
@@ -8,13 +8,7 @@
     {
         <div class="col-md-4" style="margin-bottom:50px">
             @{Html.RenderPartial("_FilePartial", item);}
-            <p>
-                <b>Date Created: </b>
-                <span class="latest-files-view-date">
-                    @item.DateCreated.ToString("d MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
-                    at @item.DateCreated.ToString("hh:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
-                </span>
-            </p>
+            @Html.DisplayFor(d => item.DateCreated, "CustomDate")
         </div>
     }
 }

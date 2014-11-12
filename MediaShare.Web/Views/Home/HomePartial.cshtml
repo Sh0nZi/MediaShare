@@ -1,6 +1,6 @@
 ﻿@using MediaShare.Web.Models.Files
 
-@model ICollection<MediaFileViewModel>
+@model ICollection<BasicMediaFileViewModel>
 
 @if (Model.Any())
 {
@@ -8,9 +8,7 @@
     {
         <div class="col-md-4" style="margin-bottom:50px">
             @{Html.RenderPartial("_FilePartial", item);}
-            <p>
-                <b>Rating:</b> @(string.Format("{0:0.0}", (double)item.Votes.Sum(x => x.Value) / (item.Votes.Count == 0 ? 1 : item.Votes.Count))) / 5 (@item.Votes.Count users voted)
-            </p>
+            @Html.DisplayFor(d => item.Votes, "DisplayRate")
         </div>
     }
 }

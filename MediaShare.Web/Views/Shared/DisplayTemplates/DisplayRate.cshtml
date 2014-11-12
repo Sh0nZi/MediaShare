@@ -1,0 +1,6 @@
+﻿@using MediaShare.Models;
+
+@model ICollection<Vote>
+<p>
+    <b>Rating:</b> @(string.Format("{0:0.0}", (double)Model.Sum(x => x.Value) / (Model.Count == 0 ? 1 : Model.Count))) / 5 (@Model.Count users voted)
+</p>

@@ -8,6 +8,8 @@
     [Authorize]
     public abstract class AuthorizedController : BaseController
     {
+        protected const int PageSize = 1;
+
         public AuthorizedController(IMediaShareData data) : base(data)
         {
         }

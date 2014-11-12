@@ -1,24 +1,10 @@
 ﻿@using MediaShare.Web.Models.Files
-@model MediaFileViewModel
+@model AdvancedMediaFileViewModel
 
 <div class="pull-right">
-    <p>
-        <b>Date Created: </b>
-        <span class="latest-files-view-date">
-            @Model.DateCreated.ToString("d MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
-            at @Model.DateCreated.ToString("hh:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
-        </span>
-    </p>
-    <p>
-        <b>Created by:  @Html.ActionLink(@Model.Author.UserName.Substring(0, Model.Author.UserName.IndexOf('@')), "Index", "UserFiles", new { area = "Authorized", Id = Model.Author.Id }, new { })</b>
-    </p>
-    <p>
-        <b>Viewed: </b><span style="color:ButtonShadow">@Model.ViewsCount time(s)</span>
-    </p>
-    <p>
-        <b>Rating:</b> @(string.Format("{0:0.0}", (double)Model.Votes.Sum(x => x.Value) / (Model.Votes.Count == 0 ? 1 : Model.Votes.Count))) / 5 (@Model.Votes.Count users voted)
-    </p>
-    <p>
-        <b>Type: </b><span style="color:ButtonShadow">@Model.Type</span>
-    </p>
+    @Html.DisplayFor(f =>f .DateCreated,"CustomDate")
+    @Html.DisplayFor(f => f.Author, "DisplayAuthor")
+    @Html.DisplayFor(f=>f.ViewsCount,"DisplayViewsCount")
+    @Html.DisplayFor(f =>f .Votes,"DisplayRate")
+    @Html.DisplayFor(f=>f.Type,"DisplayMediaType")
 </div>

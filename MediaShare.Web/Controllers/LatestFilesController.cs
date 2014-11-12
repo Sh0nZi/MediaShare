@@ -23,7 +23,7 @@
 
         public ActionResult LatestVideo()
         {
-            var videoFiles = this.MediaFiles.Project().To<MediaFileViewModel>()
+            var videoFiles = this.MediaFiles.Project().To<BasicMediaFileViewModel>()
                                  .Where(f => f.Type == MediaType.Video)
                                  .Take(6).OrderByDescending(f => f.DateCreated)
                                  .ToList();
@@ -32,7 +32,7 @@
 
         public ActionResult LatestAudio()
         {
-            var audioFiles = this.MediaFiles.Project().To<MediaFileViewModel>()
+            var audioFiles = this.MediaFiles.Project().To<BasicMediaFileViewModel>()
                                  .Where(f => f.Type == MediaType.Audio)
                                  .Take(6).OrderByDescending(f => f.DateCreated)
                                  .ToList();

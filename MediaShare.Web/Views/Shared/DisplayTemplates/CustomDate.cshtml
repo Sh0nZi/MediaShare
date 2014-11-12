@@ -1,0 +1,10 @@
+﻿@model DateTime
+
+
+<p>
+    <b>Date Created: </b>
+    <span class="latest-files-view-date">
+        @Model.ToString("d MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+        at @Model.ToString("hh:mm", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))
+    </span>
+</p>

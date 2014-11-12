@@ -4,19 +4,19 @@
 
 @using MediaShare.Web.Models.Files;
 @using Microsoft.AspNet.Identity;
-@using PagedList.Mvc
 
-@model PagedList.IPagedList<MediaFileViewModel>
+@model PagedList.IPagedList<BasicMediaFileViewModel>
 
 <div class="table row well">
     <h3 style="color:crimson">Favourites</h3>
     <hr />
 
-    @{
-        Html.RenderPartial("_PagedFiles");
-    }
-    <div class="col-md-10">
-        @Html.PagedListPager(Model, page => Url.Action("Index", "Favourites",
-                         new { area = "Authorized", Id = this.User.Identity.GetUserId(), page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
-    </div>
+    @Html.DisplayFor(m => Model, "DisplaySyncPager", new { action = "Index", controller = "Favourites", area = "Authorized", Id = this.User.Identity.GetUserId() })
+
+    <div id="files-container" class="container">
+        @{ Html.RenderPartial("_PagedFiles"); }
+    </div>  
+
+    @Html.DisplayFor(m => Model, "DisplaySyncPager", new { action = "Index", controller = "Favourites", area = "Authorized", Id = this.User.Identity.GetUserId() })
+
 </div>

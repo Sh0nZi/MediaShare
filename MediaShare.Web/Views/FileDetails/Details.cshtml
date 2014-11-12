@@ -10,12 +10,8 @@
     @model MediaFileViewModel
     <h3 style="color:crimson">@Model.Title</h3>
 
-    <p>
-        <b>Created on: </b> @Model.DateCreated
-    </p>
-    <p>
-        <b>Created by:  @Html.ActionLink(@Model.Author.UserName.Substring(0, Model.Author.UserName.IndexOf('@')), "Index", "UserFiles", new { area = "Authorized", Id = Model.Author.Id }, new { })</b>
-    </p>
+    @Html.DisplayFor(d => d.DateCreated, "CustomDate")
+    @Html.DisplayFor(d => d.Author, "DisplayAuthor")
 
     @if (Model.Type == MediaType.Video)
     {

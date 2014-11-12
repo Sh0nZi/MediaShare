@@ -24,7 +24,7 @@
         
         public ActionResult GetTopVideo()
         {
-            var topVideo = this.MediaFiles.Project().To<MediaFileViewModel>()
+            var topVideo = this.MediaFiles.Project().To<BasicMediaFileViewModel>()
                                .Where(f => f.Type == MediaType.Video)
                                .OrderByDescending(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count)
                                .ThenBy(f => f.Votes.Count)
@@ -35,7 +35,7 @@
 
         public ActionResult GetTopAudio()
         {
-            var topAudio = this.MediaFiles.Project().To<MediaFileViewModel>()
+            var topAudio = this.MediaFiles.Project().To<BasicMediaFileViewModel>()
                                .Where(f => f.Type == MediaType.Audio)
                                .OrderByDescending(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count)
                                .ThenBy(f => f.Votes.Count).Take(ShowTopNumber)
