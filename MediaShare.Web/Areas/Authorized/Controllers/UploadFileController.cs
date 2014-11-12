@@ -1,13 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using MediaShare.Data;
-using MediaShare.Models;
-using MediaShare.Web.Infrastructure.Helpers;
-
-namespace MediaShare.Web.Areas.Authorized.Controllers
+﻿namespace MediaShare.Web.Areas.Authorized.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using MediaShare.Data;
+    using MediaShare.Models;
+    using MediaShare.Web.Infrastructure.Helpers;
+
     public class UploadFileController : AuthorizedController
     {
         private const string ContentRequiredText = "Content is required";
@@ -50,11 +51,11 @@ namespace MediaShare.Web.Areas.Authorized.Controllers
             this.PopulateContent(file, mediaFile);
             file.Thumbnail = thumbnailExtractor.GetVideoThumbnail(file.Content);
             file.Type = MediaType.Video;
-
             //Entity Framework does not allow to store files larger than 50mb...
              
             this.Data.Files.Add(file);
             this.Data.SaveChanges();
+
             this.TempData["Success"] = "Video successfully added!";
             return this.RedirectToAction("Index", "Home", new { area = "" });
         }

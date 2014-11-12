@@ -23,7 +23,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Search", "Index", "AllFiles", new { area = "" }, new { })</li>
-                        <li>@Html.ActionLink("Latest", "Index", "LatestFiles")</li>
+                        <li>@Html.ActionLink("Latest", "Index", "LatestFiles", new { area = "" }, new { })</li>
                                                                              
                         @if (Request.IsAuthenticated)
                         {

@@ -69,7 +69,7 @@ namespace MediaShare.Data
                 {
                     return this.context.SaveChanges();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     
                 }

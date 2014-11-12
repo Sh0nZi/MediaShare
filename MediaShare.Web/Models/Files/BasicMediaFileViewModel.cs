@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using MediaShare.Models;
-using MediaShare.Web.Infrastructure.Mapping;
-
-namespace MediaShare.Web.Models.Files
+﻿namespace MediaShare.Web.Models.Files
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using MediaShare.Models;
+    using MediaShare.Web.Infrastructure.Mapping;
+
     public class BasicMediaFileViewModel : IMapFrom<MediaFile>
     {
         [Key]

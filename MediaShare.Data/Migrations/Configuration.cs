@@ -12,6 +12,8 @@ namespace MediaShare.Data.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
+
+            //TO DO: Set to false
             this.AutomaticMigrationDataLossAllowed = true;
             ContextKey = "MediaShare.Data.MediaShareContext";
         }

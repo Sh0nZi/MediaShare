@@ -1,8 +1,6 @@
 ﻿namespace MediaShare.Web.Areas.Authorized.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
 
     using PagedList;

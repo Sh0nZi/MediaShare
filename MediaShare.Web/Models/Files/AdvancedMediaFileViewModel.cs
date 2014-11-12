@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MediaShare.Web.Infrastructure.Mapping;
-using MediaShare.Models;
-
-namespace MediaShare.Web.Models.Files
+﻿namespace MediaShare.Web.Models.Files
 {
+    using MediaShare.Web.Infrastructure.Mapping;
+    using MediaShare.Models;
+
     public class AdvancedMediaFileViewModel : BasicMediaFileViewModel, IMapFrom<MediaFile>
     {
         public int ViewsCount { get; set; }

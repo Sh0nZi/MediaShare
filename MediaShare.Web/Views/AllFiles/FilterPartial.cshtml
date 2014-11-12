@@ -1,5 +1,6 @@
 ﻿@using MediaShare.Web.Models
 @model FilterViewModel
+
 @using (Ajax.BeginForm("RenderFiles", "AllFiles", new AjaxOptions { HttpMethod = "GET",InsertionMode = InsertionMode.Replace, UpdateTargetId = "files-container" }))
 {
     <div class="row">

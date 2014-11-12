@@ -70,6 +70,8 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaSh
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.Owin.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.Owin.Security.Cookies.dll
@@ -100,6 +102,9 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaSh
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\MediaShare.Data.pdb
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\MediaShare.Models.pdb
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\AutoMapper.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Newtonsoft.Json.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Ninject.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Ninject.Web.Common.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Ninject.Web.Mvc.xml
@@ -114,7 +119,6 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaSh
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\System.Web.WebPages.Deployment.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\System.Web.WebPages.Razor.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Antlr3.Runtime.pdb
-C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Newtonsoft.Json.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\EntityFramework.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\EntityFramework.SqlServer.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.Identity.Core.xml
@@ -132,7 +136,3 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaSh
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.csprojResolveAssemblyReference.cache
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\obj\Debug\MediaShare.Web.pdb
-C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.SignalR.Core.dll
-C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
-C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.SignalR.Core.xml
-C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
