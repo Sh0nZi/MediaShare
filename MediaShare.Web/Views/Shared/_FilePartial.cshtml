@@ -2,13 +2,7 @@
 
 @model BasicMediaFileViewModel
 
+@Html.DisplayFor(f => f.Title, "DisplayMediaTitle", new { id=@Model.Id})
+@Html.DisplayFor(f=>f.Id,"DisplayThumbnail")
 
-<h4 style="height:50px; font-weight:bold">
-    <a href="@Url.Action("Details", "FileDetails", new {area="", Id = @Model.Id })">
-        @Model.Title
-    </a>
-</h4>
-<a href="@Url.Action("Details", "FileDetails", new { area = "", Id = @Model.Id })">
-    <img width="300" height="200" src="@Url.Action("ByIdThumbnail", "Base", new { area = "", Id = @Model.Id })" />
-</a>
 

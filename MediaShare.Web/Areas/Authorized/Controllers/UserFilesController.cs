@@ -8,6 +8,7 @@
 
     using MediaShare.Data;
     using MediaShare.Web.Models.Files;
+    using MediaShare.Common;
 
     public class UserFilesController : AuthorizedController
     {
@@ -23,14 +24,13 @@
             {
                 return RedirectToAction("Index", "Home", new { area = "" });
             }
-            var userName = this.Data.Users.Find(id).UserName;
-            if (id == this.CurrentUser)
+            if (id == this.GetCurrentUser().Id)
             {
                 ViewBag.UserName = "Your";
             }
             else
             {
-                ViewBag.UserName = userName.Substring(0, userName.IndexOf('@')) + " 's";
+                ViewBag.UserName = this.GetCurrentUser(id).Email.ExtractUsernameFromMail() + " 's";
             }
 
             var videos = this.MediaFiles.Project().To<BasicMediaFileViewModel>()

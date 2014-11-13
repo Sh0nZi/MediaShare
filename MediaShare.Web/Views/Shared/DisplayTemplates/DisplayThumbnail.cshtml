@@ -1,0 +1,5 @@
+﻿@model int
+
+<a href="@Url.Action("Details", "FileDetails", new { area = "", Id = @Model })">
+    <img width="300" height="200" src="@Url.Action("ByIdThumbnail", "Base", new { area = "", Id = @Model })" />
+</a>

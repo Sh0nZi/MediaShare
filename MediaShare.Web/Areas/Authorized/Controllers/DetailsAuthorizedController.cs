@@ -3,9 +3,10 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
-
+    using AutoMapper.QueryableExtensions;
     using MediaShare.Data;
     using MediaShare.Models;
+    using MediaShare.Web.Areas.Authorized.Models;
 
     public class DetailsAuthorizedController : AuthorizedController
     {
@@ -19,13 +20,13 @@
         public ActionResult Vote(Vote vote, int id)
         {
             var file = this.MediaFiles.FirstOrDefault(f => f.Id == id);
-            if (!file.Votes.Any(v => v.AuthorId == this.CurrentUser) &&
-                file.AuthorId != this.CurrentUser)
+            if (!file.Votes.Any(v => v.AuthorId == this.GetCurrentUser().Id) &&
+                file.AuthorId != this.GetCurrentUser().Id)
             {
                 file.Votes.Add(new Vote
                 {
                     Value = vote.Value,
-                    AuthorId = this.CurrentUser
+                    AuthorId = this.GetCurrentUser().Id
                 });
                 this.Data.SaveChanges();         
             }
@@ -39,7 +40,7 @@
         public ActionResult Post(Comment comment, int id)
         {
             comment.DateCreated = DateTime.Now;
-            comment.AuthorId = this.CurrentUser;
+            comment.AuthorId = this.GetCurrentUser().Id;
 
             var file = this.MediaFiles.FirstOrDefault(f => f.Id == id);
             file.Comments.Add(comment);
@@ -53,15 +54,17 @@
         [AcceptVerbs(HttpVerbs.Post)]
         public void AddFavourites(int id)
         {
-            var currentUser = this.Data.Users.All().FirstOrDefault(u => u.Id == this.CurrentUser);
             var file = this.MediaFiles.FirstOrDefault(f => f.Id == id);
 
-            if (file.AuthorId == currentUser.Id)
+            if (file.AuthorId == this.GetCurrentUser().Id || this.GetCurrentUser().Favourites.Any(f => f.Id == id))
             {
                 return;
             }
 
-            currentUser.Favourites.Add(file);           
+            var userId = this.GetCurrentUser().Id.ToString();
+            var user = this.Data.Users.Find(userId);
+            user.Favourites.Add(file);   
+        
             this.Data.SaveChanges();
         }
 
@@ -69,15 +72,16 @@
         [AcceptVerbs(HttpVerbs.Post)]
         public void RemoveFavourites(int id)
         {
-            var currentUser = this.Data.Users.All().FirstOrDefault(u => u.Id == this.CurrentUser);
             var file = this.MediaFiles.FirstOrDefault(f => f.Id == id);
-
-            if (file.AuthorId == currentUser.Id)
+            if (file.AuthorId == this.GetCurrentUser().Id)
             {
                 return;
             }
 
-            currentUser.Favourites.Remove(file);            
+            var userId = this.GetCurrentUser().Id.ToString();
+            var user = this.Data.Users.Find(userId);
+            user.Favourites.Remove(file); 
+           
             this.Data.SaveChanges();
         }
     }

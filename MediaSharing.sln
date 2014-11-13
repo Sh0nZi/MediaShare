@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaShare.Data", "MediaSha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaShare.Models", "MediaShare.Models\MediaShare.Models.csproj", "{29D039AD-7FFB-4CB1-85D8-BB6FCCF817DB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{AE5CFBB1-8B52-4315-8A77-112C802606BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaShare.Common", "MediaShare.Common\MediaShare.Common.csproj", "{FF353F92-25B2-410A-A6D7-9D9E1F564699}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{29D039AD-7FFB-4CB1-85D8-BB6FCCF817DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29D039AD-7FFB-4CB1-85D8-BB6FCCF817DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29D039AD-7FFB-4CB1-85D8-BB6FCCF817DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF353F92-25B2-410A-A6D7-9D9E1F564699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF353F92-25B2-410A-A6D7-9D9E1F564699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF353F92-25B2-410A-A6D7-9D9E1F564699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF353F92-25B2-410A-A6D7-9D9E1F564699}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +56,6 @@ Global
 		{9273C490-AC11-4F23-81AD-55CD3E39063C} = {72787190-DC4F-4918-991C-8D7D7CA3D461}
 		{A7FB999E-F27B-4208-9B36-4EC002F1665D} = {F6493EC9-F96D-498A-9E1D-1B03D1B7C622}
 		{29D039AD-7FFB-4CB1-85D8-BB6FCCF817DB} = {F6493EC9-F96D-498A-9E1D-1B03D1B7C622}
+		{FF353F92-25B2-410A-A6D7-9D9E1F564699} = {AE5CFBB1-8B52-4315-8A77-112C802606BD}
 	EndGlobalSection
 EndGlobal

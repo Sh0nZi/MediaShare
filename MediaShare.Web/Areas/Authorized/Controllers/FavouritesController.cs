@@ -19,7 +19,7 @@
         // GET: Authorized/Favourites
         public ActionResult Index(int? page)
         {
-            var videos = this.Data.Users.Find(this.CurrentUser)
+            var videos = this.GetCurrentUser()
                             .Favourites.AsQueryable().Project().To<BasicMediaFileViewModel>()
                             .OrderByDescending(f => f.DateCreated);
             int pageNumber = (page ?? 1);

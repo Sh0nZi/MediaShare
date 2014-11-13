@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MediaShare.Data.Repositories
+﻿namespace MediaShare.Data.Repositories
 {
     using System.Data.Entity;
     using System.Linq;

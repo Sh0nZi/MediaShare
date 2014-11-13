@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace MediaShare.Data
 {
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
-    using System.Data.Entity.Validation;
+
     using MediaShare.Data.Repositories;
     using MediaShare.Models;
 
     public class MediaShareData : IMediaShareData
     {
-        private readonly DbContext context;
+        private readonly IMediaShareContext context;
 
         private readonly IDictionary<Type, object> repositories;
 
@@ -23,7 +19,7 @@ namespace MediaShare.Data
         {
         }
         
-        public MediaShareData(DbContext context)
+        public MediaShareData(IMediaShareContext context)
         {
             this.context = context;
             this.repositories = new Dictionary<Type, object>();
@@ -53,12 +49,22 @@ namespace MediaShare.Data
             }
         }
 
+
         public IRepository<Comment> Comments
         {
             get
             {
                 return this.GetRepository<Comment>();
             }
+        }
+
+        public IMediaShareContext Context
+        {
+            get
+            {
+                 return this.context;
+            }
+           
         }
 
         public int SaveChanges()

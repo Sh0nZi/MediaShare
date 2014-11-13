@@ -78,7 +78,7 @@
             return this.File(content, "video/mp4");
         }
 
-        public void IncreaseCount(int id)
+        public void IncreaseViewCount(int id)
         {
             this.MediaFiles.FirstOrDefault(f => f.Id == id).ViewsCount++;
             this.Data.SaveChanges();

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Web;
 
-    using MediaShare.Web.Infrastructure.Helpers;
     using NReco.VideoConverter;
 
     public class ThumbnailExtractor : IThumbnailExtractor

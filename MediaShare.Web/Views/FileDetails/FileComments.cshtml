@@ -35,6 +35,6 @@
             <b>@Html.ActionLink(@comment.Author.UserName.Substring(0, comment.Author.UserName.IndexOf('@')), "Index", "UserFiles", new {area="Authorized", Id = comment.Author.Id }, new { }):&nbsp;
             </b>@comment.Content
         </div>
-        <p> <b>Posted on: </b>@comment.DateCreated.ToString("d MMM", CultureInfo.CreateSpecificCulture("en-US")) at @comment.DateCreated.ToString("hh:mm", CultureInfo.CreateSpecificCulture("en-US")) </p>
+        <p> <b>Posted on: </b>@comment.DateCreated.ToString("d MMM yyyy", CultureInfo.CreateSpecificCulture("en-US")) at @comment.DateCreated.ToString("hh:mm", CultureInfo.CreateSpecificCulture("en-US")) </p>
     </div>
 }

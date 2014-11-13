@@ -8,7 +8,8 @@
 }
 <div id="details-page" class="well">
     @model MediaFileViewModel
-    <h3 style="color:crimson">@Model.Title</h3>
+     
+    @Html.DisplayFor(f=>f.Title,"DisplayPageHeader")
 
     @Html.DisplayFor(d => d.DateCreated, "CustomDate")
     @Html.DisplayFor(d => d.Author, "DisplayAuthor")
@@ -21,7 +22,7 @@
     }
     else
     {
-        <img src="~/MediaFiles/mp3.jpg" height="200" width="300" />
+        @Html.DisplayFor(f=>f.Id,"DisplayThumbnail")
         <audio controls style="display:block" onplay="increaseViewCount()">
             <source src="@Url.Action("AudioContentById", "FileDetails", new { Id = Model.Id })" type="audio/mp3" />
         </audio>
@@ -30,20 +31,17 @@
     {
         if (!ViewBag.IsFavourited)
         {
-            <div>
-                @Ajax.ActionLink("Add to favourites", "AddFavourites", "DetailsAuthorized", new { area = "Authorized", Id = @Model.Id }, new AjaxOptions { OnSuccess = "hideAddFavBtn", HttpMethod = "Post" }, new { @class = "btn btn-info btn-sm", id = "add-fav-btn" })
-                @Ajax.ActionLink("Remove from favourites", "RemoveFavourites", "DetailsAuthorized", new { area = "Authorized", Id = @Model.Id }, new AjaxOptions { OnComplete = "hideRemFavBtn", HttpMethod = "Post" }, new { @class = "btn btn-warning btn-sm", id = "rem-fav-btn", style = "display:none" })
-            </div>
+            @Html.DisplayFor(f => f.Id, "DisplayFavButtons", new { add="",rem="display:none"})
+
         }
         else
         {
-            <div>
-                @Ajax.ActionLink("Add to favourites", "AddFavourites", "DetailsAuthorized", new { area = "Authorized", Id = @Model.Id }, new AjaxOptions { OnSuccess = "hideAddFavBtn", HttpMethod = "Post" }, new { @class = "btn btn-info btn-sm", id = "add-fav-btn", style = "display:none" })
-                @Ajax.ActionLink("Remove from favourites", "RemoveFavourites", "DetailsAuthorized", new { area = "Authorized", Id = @Model.Id }, new AjaxOptions { OnComplete = "hideRemFavBtn", HttpMethod = "Post" }, new { @class = "btn btn-warning btn-sm", id = "rem-fav-btn" })
-            </div>
+            @Html.DisplayFor(f => f.Id, "DisplayFavButtons", new { add = "display:none", rem = "" })
+
         }
     }
-    <div><b>Viewed: </b><span style="color:ButtonShadow">@Model.ViewsCount time(s)</span></div>
+    @Html.DisplayFor(f=>f.ViewsCount,"DisplayViewsCount")
+
     <div style="margin-bottom:50px">
         <div id="container-for-votes">
             @{
@@ -59,7 +57,6 @@
                     @Html.AntiForgeryToken()
                     <div>
                         @Html.Editor("Value","VoteValueDropdown")
-                        @*@Html.DropDownList("Value", items, new { @class = "form-control", @style = "width:80px" })*@
 
                         <input id="post-btn" class="btn btn-primary btn-sm" type="submit" value="Vote" />
                     </div>
@@ -97,34 +94,11 @@
 
 </div>
 @section scripts{
+    <script src="~/Scripts/file-details.js"></script>
     <script>
-        $('#comment-container').hide();
-        function showCommentContainer() {
-            $('#comment-container').show();
-            $('#show-pannel-btn').hide();
-        }
-        function hideCommentContainer(e) {
-            $('#comment-container').hide();
-            $('#show-pannel-btn').show();
-        }
-        function pesho() {
-            $('#comment-message').show();
-            setInterval(function () {
-                $('#comment-message').fadeOut(2000);
-            }, 2000)
-        }
-
-        function hideAddFavBtn() {
-            $('#add-fav-btn').hide();
-            $('#rem-fav-btn').show();
-        }
-        function hideRemFavBtn() {
-            $('#add-fav-btn').show();
-            $('#rem-fav-btn').hide();
-        }
         function increaseViewCount() {
             @{
-                Html.RenderAction("IncreaseCount", new { Id = @Model.Id });
+                Html.RenderAction("IncreaseViewCount", new { Id = @Model.Id });
             }
         }
     </script>

@@ -1,0 +1,7 @@
+﻿@model int
+
+
+<div>
+    @Ajax.ActionLink("Add to favourites", "AddFavourites", "DetailsAuthorized", new { area = "Authorized", Id = @Model }, new AjaxOptions { OnSuccess = "hideAddFavBtn", HttpMethod = "Post" }, new { @class = "btn btn-info btn-sm", id = "add-fav-btn", style = ViewData["add"] })
+    @Ajax.ActionLink("Remove from favourites", "RemoveFavourites", "DetailsAuthorized", new { area = "Authorized", Id = @Model }, new AjaxOptions { OnComplete = "hideRemFavBtn", HttpMethod = "Post" }, new { @class = "btn btn-warning btn-sm", id = "rem-fav-btn", style=ViewData["rem"] })
+</div>

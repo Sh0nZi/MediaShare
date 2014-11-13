@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using MediaShare.Common;
+
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -6,7 +8,7 @@
         <title>@ViewBag.Title </title>
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
-
+        @RenderSection("styles", required: false)
         <meta name="description" content="Media files sharing" />
     </head>
     <body>
@@ -24,10 +26,9 @@
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Search", "Index", "AllFiles", new { area = "" }, new { })</li>
                         <li>@Html.ActionLink("Latest", "Index", "LatestFiles", new { area = "" }, new { })</li>
-                                                                             
+
                         @if (Request.IsAuthenticated)
                         {
-                                                                                          
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     Upload <b class="caret"></b>
@@ -37,9 +38,22 @@
                                     <li>@Html.ActionLink("Upload Song", "AudioIndex", "UploadFile", new { area = "Authorized" }, new { })</li>
                                 </ul>
                             </li>
-
-
                         }
+                        
+                        @if (User.IsInRole(GlobalConstants.Admin))
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Administration <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Files", "Index", "FilesAdministration", new { area = "Admin" }, new { })</li>
+                                    <li>@Html.ActionLink("Comments", "Index", "CommentsAdministration", new { area = "Admin" }, new { })</li>
+                                    <li>@Html.ActionLink("Users", "Index", "UsersAdministration", new { area = "Admin" }, new { })</li>
+                                </ul>
+                            </li>
+                        }
+
                     </ul>
 
                     @Html.Partial("_LoginPartial")
@@ -53,21 +67,10 @@
                 <p>&copy; @DateTime.Now.Year - MediaShare</p>
             </footer>
         </div>
-
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/jqueryval")
         @RenderSection("scripts", required: false)
-
-        @section scripts{
-            <script>
-                $(document).ready(function () {
-                    setInterval(function () {
-                        $('#success-message').fadeOut(2000);
-                    }, 2000)
-                });
-            </script>
-        }
     </body>
 </html>
     

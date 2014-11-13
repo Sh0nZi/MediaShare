@@ -86,7 +86,7 @@
             file.Content = new byte[mediaFile.ContentLength];              
             mediaFile.InputStream.Read(file.Content, 0, mediaFile.ContentLength);
             file.DateCreated = DateTime.Now;
-            file.AuthorId = this.CurrentUser;
+            file.AuthorId = this.GetCurrentUser().Id;
         }
 
         private bool IsValid(HttpPostedFileBase mediaFile, string contentType)

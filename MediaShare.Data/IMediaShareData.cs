@@ -1,13 +1,9 @@
-﻿using MediaShare.Data.Repositories;
-using MediaShare.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MediaShare.Data
+﻿namespace MediaShare.Data
 {
+    using System.Data.Entity;
+    using MediaShare.Data.Repositories;
+    using MediaShare.Models;
+
     public interface IMediaShareData
     {
         IRepository<ApplicationUser> Users { get; }
@@ -17,6 +13,8 @@ namespace MediaShare.Data
         IRepository<MediaFile> Files { get; }
 
         IRepository<Comment> Comments { get; }
+
+        IMediaShareContext Context { get; }
         
         int SaveChanges();
     }

@@ -23,5 +23,6 @@ C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaSh
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Models\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Models\obj\Debug\MediaShare.Models.csprojResolveAssemblyReference.cache
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Models\obj\Debug\MediaShare.Models.dll
 C:\Users\ShOnZi\Desktop\TelerikAcademy\ASP.NET MVC\Homework\MediaSharing\MediaShare.Models\obj\Debug\MediaShare.Models.pdb

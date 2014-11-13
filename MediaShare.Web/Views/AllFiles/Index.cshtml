@@ -14,11 +14,9 @@
   
     <hr />
     <div id="files-container" class="container" style="padding-right:50px">
-        @Html.DisplayFor(m => Model, "DisplayAsyncPager", new { action = "RenderFiles", controller = "AllFiles" })
         @{
             Html.RenderPartial("_PagedFiles");
         }
-        @Html.DisplayFor(m => Model, "DisplayAsyncPager", new { action = "RenderFiles", controller = "AllFiles" })
     </div>
    
 </div>

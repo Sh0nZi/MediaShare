@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMediaShareContext.cs" />
     <Compile Include="IMediaShareData.cs" />
     <Compile Include="MediaShareContext.cs" />
     <Compile Include="MediaShareData.cs" />
@@ -66,6 +67,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MediaShare.Common\MediaShare.Common.csproj">
+      <Project>{ff353f92-25b2-410a-a6d7-9d9e1f564699}</Project>
+      <Name>MediaShare.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MediaShare.Models\MediaShare.Models.csproj">
       <Project>{29d039ad-7ffb-4cb1-85d8-bb6fccf817db}</Project>
       <Name>MediaShare.Models</Name>
