@@ -3,5 +3,5 @@
 @model UserViewModel
 
 <p>
-    <b>Created by:  @Html.ActionLink(@Model.Email.ExtractUsernameFromMail(), "Index", "UserFiles", new { area = "Authorized", Id = Model.Id }, new { })</b>
+    <b>Created by:  @Html.ActionLink(@Model.Email.ExtractUsernameFromMail(), "Files", "UserFiles", new { area = "Authorized", Id = Model.Id }, new { })</b>
 </p>

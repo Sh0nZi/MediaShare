@@ -1,7 +1,42 @@
-﻿
+﻿@using Kendo.Mvc.UI;
+@using MediaShare.Web.Areas.Admin.Models;
+
 @{
     ViewBag.Title = "Users Administration";
+    const string ControllerName = "UsersAdministration";
 }
 
-<h2>@ViewBag.Title</h2>
-
+<h3 style="color:crimson">@ViewBag.Title</h3>
+@(Html.Kendo()
+      .Grid<UserAdminViewModel>()
+      .Name("grid")
+      .Columns(cols =>
+      {
+          cols.Bound(u => u.Id);
+          cols.Bound(u => u.Email).ClientTemplate(
+                                                  "<a href='" +
+                                                  Url.Action("Files", "UserFiles", new { area = "Authorized" }) +
+                                                  "/#= Id #'" +
+                                                  ">#= Email #</a>");
+          cols.Bound(u => u.FilesUploaded);
+          cols.Bound(u => u.CommentsPosted);
+          cols.Bound(u => u.IsBanned);
+          cols.Command(com => com.Edit().Text("Ban/Unban"));
+      })
+      .ColumnMenu()
+      .Pageable(page => page.Refresh(true))
+      .Sortable()
+      .Filterable()
+      .Editable(edit => edit.Mode(GridEditMode.PopUp))
+      .DataSource(data => data
+                              .Ajax()
+                              .Model(m => m.Id(adv => adv.Id))
+                              .Model(model =>
+                              {
+                                  model.Field(m => m.Id).Editable(false);
+                                  model.Field(m => m.FilesUploaded).Editable(false);
+                                  model.Field(m => m.CommentsPosted).Editable(false);
+                                  model.Field(m => m.Email).Editable(false);
+                              })
+                              .Read(read => read.Action("Read", ControllerName))
+                              .Update(d => d.Action("Ban", ControllerName))))

@@ -63,7 +63,7 @@ namespace MediaShare.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IMediaShareData>().To<MediaShareData>();
-            kernel.Bind<IThumbnailExtractor>().To<ThumbnailExtractor>();
+            kernel.Bind<IMediaHelper>().To<MediaHelper>();
         }        
     }
 }

@@ -28,11 +28,6 @@
 
         public IDbSet<MediaFile> Files { get; set; }
 
-        public DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
-        {
-            return this.DbContext.Entry(entity);
-        }
-
         public static MediaShareContext Create()
         {
             return new MediaShareContext();

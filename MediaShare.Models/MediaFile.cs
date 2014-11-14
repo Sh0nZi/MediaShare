@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace MediaShare.Models
@@ -11,13 +12,10 @@ namespace MediaShare.Models
 
         private ICollection<Vote> votes;
 
-        private ICollection<ApplicationUser> favouritedBy;
-
         public MediaFile()
         {
             this.comments = new HashSet<Comment>();
             this.votes = new HashSet<Vote>();
-            this.favouritedBy = new HashSet<ApplicationUser>();
         }
 
         [Key]
@@ -39,14 +37,19 @@ namespace MediaShare.Models
         [Required]
         public DateTime DateCreated { get; set; }
         
-        [Required]
+        [ForeignKey("Author")]
         public string AuthorId { get; set; }
 
+        public virtual ApplicationUser Author { get; set; }
+        
         public byte[] Thumbnail { get; set; }
 
         public int ViewsCount { get; set; }
 
-        public virtual ApplicationUser Author { get; set; }
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+       
+        public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<Comment> Comments
         {
@@ -69,18 +72,6 @@ namespace MediaShare.Models
             set
             {
                 this.votes = value;
-            }
-        }
-
-        public virtual ICollection<ApplicationUser> FavouritedBy
-        {
-            get
-            {
-                return this.favouritedBy;
-            }
-            set
-            {
-                this.favouritedBy = value;
             }
         }
     }

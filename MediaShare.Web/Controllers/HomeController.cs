@@ -2,9 +2,7 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-
     using AutoMapper.QueryableExtensions;
-
     using MediaShare.Web.Models.Files;
     using MediaShare.Data;
     using MediaShare.Models;
@@ -16,7 +14,7 @@
         public HomeController(IMediaShareData data) : base(data)
         {
         }
-
+             
         public ActionResult Index()
         {
             return this.View();

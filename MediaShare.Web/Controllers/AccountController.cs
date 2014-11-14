@@ -81,14 +81,22 @@
             if (this.ModelState.IsValid)
             {
                 var user = await this.UserManager.FindAsync(model.Email, model.Password);
-                if (user != null)
+                if (user != null && !user.IsBanned)
                 {
+
                     await this.SignInAsync(user, model.RememberMe);
                     return this.RedirectToLocal(returnUrl);
                 }
                 else
                 {
-                    this.ModelState.AddModelError("", "Invalid username or password.");
+                    if (user == null)
+                    {
+                        this.ModelState.AddModelError("", "Invalid username or password.");
+                    }
+                    if (user.IsBanned)
+                    {
+                         this.ModelState.AddModelError("", "You have been banned.");
+                    }
                 }
             }
 

@@ -18,7 +18,7 @@
         }
 
         // GET: Authorized/UserFiles
-        public ActionResult Index(string id, int? page)
+        public ActionResult Files(string id, int? page)
         {
             if (id == null)
             {

@@ -7,6 +7,7 @@ using Kendo.Mvc.UI;
 using MediaShare.Data;
 using AutoMapper;
 using System.Data.Entity;
+using MediaShare.Web.Areas.Admin.Models;
 
 namespace MediaShare.Web.Areas.Admin.Controllers
 {
@@ -20,7 +21,6 @@ namespace MediaShare.Web.Areas.Admin.Controllers
 
         protected abstract T GetById<T>(object id) where T : class;
 
-        [HttpPost]
         public ActionResult Read([DataSourceRequest]
                                  DataSourceRequest request)
         {
@@ -28,25 +28,22 @@ namespace MediaShare.Web.Areas.Admin.Controllers
                 this.GetData()
                     .ToDataSourceResult(request);
 
-            return this.Json(ads);
+            return this.Json(ads, JsonRequestBehavior.AllowGet);
         }
 
         [NonAction]
-        protected virtual void Delete<TModel, TViewModel>(TViewModel model, object id)
-            where TModel: class
-             where TViewModel : class
+        public virtual void Delete<TModel, TViewModel>(TViewModel model, object id)
+            where TModel : class
+            where TViewModel : class
         {
             if (model != null && ModelState.IsValid)
             {
                 var dbModel = this.GetById<TModel>(id);
+                Mapper.Map<TViewModel, TModel>(model, dbModel);
                 var entry = this.Data.Context.Entry(dbModel);
                 entry.State = EntityState.Deleted;
                 this.Data.SaveChanges();
-                Mapper.Map<TViewModel, TModel>(model, dbModel);
-                
-                this.Data.SaveChanges();
             }
-           
         }
 
         protected JsonResult GridOperation<T>(T model, [DataSourceRequest]

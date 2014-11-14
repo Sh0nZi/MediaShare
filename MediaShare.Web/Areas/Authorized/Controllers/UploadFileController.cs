@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
-
     using MediaShare.Data;
     using MediaShare.Models;
     using MediaShare.Web.Infrastructure.Helpers;
@@ -19,9 +18,9 @@
 
         private const int MaxSize = 50000000;
 
-        private readonly IThumbnailExtractor thumbnailExtractor;
+        private readonly IMediaHelper thumbnailExtractor;
 
-        public UploadFileController(IMediaShareData data, IThumbnailExtractor thumbnailExtractor) : base(data)
+        public UploadFileController(IMediaShareData data, IMediaHelper thumbnailExtractor) : base(data)
         {
             this.thumbnailExtractor = thumbnailExtractor;
         }
@@ -43,7 +42,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult UploadVideo(MediaFile file, HttpPostedFileBase mediaFile)
         {
-            if (!this.IsValid(mediaFile, "video/mp4"))
+            if (!this.IsValid(mediaFile, "video/mp4") && !this.IsValid(mediaFile, "video/webm"))
             {
                 return this.View("VideoIndex", file);
             }
@@ -82,9 +81,10 @@
         }
                 
         private void PopulateContent(MediaFile file, HttpPostedFileBase mediaFile)
-        {
-            file.Content = new byte[mediaFile.ContentLength];              
-            mediaFile.InputStream.Read(file.Content, 0, mediaFile.ContentLength);
+        { 
+            file.Content= new byte[mediaFile.ContentLength]; 
+            mediaFile.InputStream.Read( file.Content, 0, mediaFile.ContentLength);
+           
             file.DateCreated = DateTime.Now;
             file.AuthorId = this.GetCurrentUser().Id;
         }

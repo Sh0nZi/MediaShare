@@ -1,13 +1,14 @@
 ﻿namespace MediaShare.Web.Areas.Admin.Controllers
 {
-    using System;
     using System.Web.Mvc;
-    using MediaShare.Data;
     using System.Collections;
-    using Kendo.Mvc.UI;
-    using MediaShare.Models;
-    using MediaShare.Web.Models.Files;
+
     using AutoMapper.QueryableExtensions;
+    using Kendo.Mvc.UI;
+
+    using MediaShare.Models;
+    using MediaShare.Data;
+    using MediaShare.Web.Areas.Admin.Models;
 
     public class FilesAdministrationController : KendoGridAdministrationController
     {
@@ -28,18 +29,14 @@
 
         protected override IEnumerable GetData()
         {
-            return this.MediaFiles.Project().To<AdvancedMediaFileViewModel>();
+            return this.MediaFiles.Project().To<FileAdminViewModel>();
         }
-
 
         [HttpPost]
         public ActionResult Delete([DataSourceRequest]
-                                   DataSourceRequest request, AdvancedMediaFileViewModel model)
+                                   DataSourceRequest request, FileAdminViewModel model)
         {
-            if (model != null && ModelState.IsValid)
-            {
-                base.Delete<MediaFile, AdvancedMediaFileViewModel>(model, model.Id);
-            }
+            base.Delete<MediaFile, FileAdminViewModel>(model, model.Id);
 
             return this.GridOperation(model, request);
         }

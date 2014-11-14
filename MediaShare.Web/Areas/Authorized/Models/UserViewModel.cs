@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
-using MediaShare.Web.Infrastructure.Mapping;
-using MediaShare.Models;
-using MediaShare.Common;
-
-namespace MediaShare.Web.Areas.Authorized.Models
+﻿namespace MediaShare.Web.Areas.Authorized.Models
 {
+    using System.Collections.Generic;
+
+    using MediaShare.Models;
+    using MediaShare.Web.Infrastructure.Mapping;
+
     public class UserViewModel : IMapFrom<ApplicationUser>
     {
         public string Id { get; set; }
@@ -16,6 +12,5 @@ namespace MediaShare.Web.Areas.Authorized.Models
         public string Email { get; set; }
 
         public ICollection<MediaFile> Favourites { get; set; }
-      
     }
 }

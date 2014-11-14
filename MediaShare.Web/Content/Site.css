@@ -60,13 +60,18 @@ a img:hover{
 pre
 {
     background-color: #f1f0e9;
+    border-radius:10px;
 }
 .validation-summary-errors
 {
     border: 1px solid red;   
     color: #e24343;
-    background-color: #ee7d7d;
+    background-color: #efb2b2;
     border-radius:10px;
+    padding:20px;
+}
+.validation-summary-errors ul{
+    list-style-type:none;
 }
 .field-validation-error{
     color:red;

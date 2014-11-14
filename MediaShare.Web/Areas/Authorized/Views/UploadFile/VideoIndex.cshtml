@@ -1,4 +1,5 @@
 ﻿@using MediaShare.Models;
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -20,17 +21,19 @@
                 @Html.TextArea("Description", null, 4, 70, null)
             </p>
             <p>
-    
+        
                 <label for="Content">Content:</label><span style="font-size:12px">*allowed formats - mp4 max. size 50 mb</span>
                 <input type="file" name="mediaFile" />
                 @Html.ValidationMessageFor(m => m.Content)
                 @Html.ValidationMessage("Size")
                 @Html.ValidationMessage("Type")
-        
+    
             </p>
     
             <input id="upload-btn" class="btn btn-success" type="submit" value="Upload" />
     
+            <p style="color:orangered">NOTE: If the video does not start in Chrome, you should <a href="http://video.online-convert.com/convert-to-webm">convert it</a> to <span style="text-decoration:underline">webm</span> format. Sorry for the inconvinience.</p>
+            
     }
 </div>
 

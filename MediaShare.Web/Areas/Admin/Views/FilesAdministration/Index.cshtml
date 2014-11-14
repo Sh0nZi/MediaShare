@@ -1,33 +1,40 @@
 ﻿@using Kendo.Mvc.UI;
-@using MediaShare.Web.Models.Files;
+@using MediaShare.Web.Areas.Admin.Models;
 
 @{
     ViewBag.Title = "Files Administration";
     const string ControllerName = "FilesAdministration";
 }
 
-<h3>@ViewBag.Title</h3>
+<h3 style="color:crimson">@ViewBag.Title</h3>
 @(Html.Kendo()
-    .Grid<AdvancedMediaFileViewModel>()
-    .Name("grid")
-    .Columns(cols =>
-    {
-        cols.Bound(pr => pr.Id);
-        cols.Bound(pr => pr.Title);
-        cols.Bound(pr => pr.Type);
-        cols.Bound(pr => pr.DateCreated);
-        cols.Bound(pr => pr.Author.Email);
-        cols.Command(com => com.Destroy()).Title("Delete");
-    })
-    .ColumnMenu()
-    .Pageable(page => page.Refresh(true))
-    .Sortable()
-    .Filterable()
-    .DataSource(data =>
-        data
-            .Ajax()
-            .Model(m => m.Id(adv => adv.Id))
-            .Read(read => read.Action("Read", ControllerName))
-            .Destroy(destroy => destroy.Action("Delete", ControllerName))
-            ))
+      .Grid<FileAdminViewModel>()
+      .Name("grid")
+      .Columns(cols =>
+      {
+          cols.Bound(f => f.Id);
+          cols.Bound(f => f.Title).ClientTemplate(
+            "<a href='" +
+            Url.Action("Details", "FileDetails", new {area="" }) +
+            "/#= Id #'" +
+            ">#= Title #</a>");
+          cols.Bound(f => f.Type);
+          cols.Bound(f => f.DateCreated);
+          cols.Bound(f => f.AuthorName).ClientTemplate(
+            "<a href='" +
+            Url.Action("Files", "UserFiles", new { area = "Authorized"}) +
+            "/#= AuthorId #'" +
+            ">#= AuthorName #</a>"); 
+          
+          cols.Command(com => com.Destroy()).Title("Delete");
+      })
+      .ColumnMenu()
+      .Pageable(page => page.Refresh(true))
+      .Sortable()
+      .Filterable()
+      .DataSource(data => data
+                              .Ajax()
+                              .Model(m => m.Id(adv => adv.Id))
+                              .Read(read => read.Action("Read", ControllerName))
+                              .Destroy(destroy => destroy.Action("Delete", ControllerName))))
 

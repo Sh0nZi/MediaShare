@@ -2,19 +2,19 @@
 
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
             @Html.AntiForgeryToken()
 
             <ul class="nav navbar-nav navbar-right">
-    
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         Hello, @User.Identity.GetUserName()! <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Change Password", "Manage", "Account", routeValues: null, htmlAttributes: new { area="",title = "Manage" }) </li>
-                        <li>@Html.ActionLink("Your Media", "Index", "UserFiles", new { area = "Authorized", Id=this.User.Identity.GetUserId() }, new { })</li>
+                        <li>@Html.ActionLink("Change Password", "Manage", "Account", routeValues: null, htmlAttributes: new { area = "", title = "Manage" }) </li>
+                        <li>@Html.ActionLink("Your Media", "Index", "UserFiles", new { area = "Authorized", Id = this.User.Identity.GetUserId() }, new { })</li>
                         <li>@Html.ActionLink("Favourites", "Index", "Favourites", new { area = "Authorized" }, new { })</li>
                     </ul>
                 </li>

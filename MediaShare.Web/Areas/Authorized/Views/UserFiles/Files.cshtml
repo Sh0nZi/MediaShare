@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "User files";
+}
+
+@using MediaShare.Web.Models.Files;
+@using Microsoft.AspNet.Identity;
+
+@model PagedList.IPagedList<BasicMediaFileViewModel>
+
+<div class="table row well">
+    <h3 style="color:crimson">@ViewBag.UserName uploads</h3>
+    <hr />
+
+    @Html.DisplayFor(m => Model, "DisplaySyncPager", new { action = "Index", controller = "UserFiles", area = "Authorized", Id = this.User.Identity.GetUserId() })
+
+    <div id="files-container" class="container">
+        @{ Html.RenderPartial("_PagedFiles"); }
+    </div>
+
+    @Html.DisplayFor(m => Model, "DisplaySyncPager", new { action = "Index", controller = "UserFiles", area = "Authorized", Id = this.User.Identity.GetUserId() })
+
+</div>

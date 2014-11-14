@@ -11,9 +11,7 @@ namespace MediaShare.Common
         public static string ExtractUsernameFromMail(this string text)
         {
             text = text.Substring(0, text.IndexOf("@"));
-            var stringBuilder = new StringBuilder();
-            stringBuilder.Append(text[0].ToString().ToUpper());
-            stringBuilder.Append(text.Substring(1));
+            var stringBuilder = new StringBuilder(text);            
             return stringBuilder.ToString();
         }
     }

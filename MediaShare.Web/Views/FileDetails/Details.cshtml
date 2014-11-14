@@ -16,8 +16,10 @@
 
     @if (Model.Type == MediaType.Video)
     {
-        <video width="650" height="500" controls onplay="increaseViewCount()">
+        <video width="650" height="500" controls  onplay="increaseViewCount()">
             <source src="@Url.Action("VideoContentById", "FileDetails", new { Id = Model.Id })" type="video/mp4" />
+            <source src="@Url.Action("VideoContentByIdWebM", "FileDetails", new { Id = Model.Id })" type="video/webm" />
+           
         </video>
     }
     else
@@ -96,11 +98,17 @@
 @section scripts{
     <script src="~/Scripts/file-details.js"></script>
     <script>
+        var isChrome = !!window.chrome;
+        if (window.chrome)
+            $("[type=video\\\/mp4]").each(function () {
+                $(this).replaceWith($('<video width="650" height="500" onplay="increaseViewCount()"><source src="@Url.Action("VideoContentByIdWebM", "FileDetails", new { Id = Model.Id })" type="video/webm"></video>'));
+            });
+
         function increaseViewCount() {
             @{
                 Html.RenderAction("IncreaseViewCount", new { Id = @Model.Id });
             }
         }
-    </script>
+</script>
 }
 

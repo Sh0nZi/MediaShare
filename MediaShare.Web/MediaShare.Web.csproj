@@ -205,6 +205,8 @@
     <Compile Include="Areas\Admin\Controllers\FilesAdministrationController.cs" />
     <Compile Include="Areas\Admin\Controllers\KendoGridAdministrationController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersAdministrationController.cs" />
+    <Compile Include="Areas\Admin\Models\FileAdminViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\UserAdminViewModel.cs" />
     <Compile Include="Areas\Authorized\AuthorizedAreaRegistration.cs" />
     <Compile Include="Areas\Authorized\Controllers\FavouritesController.cs" />
     <Compile Include="Areas\Authorized\Controllers\UserFilesController.cs" />
@@ -224,8 +226,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Helpers\IThumbnailExtractor.cs" />
-    <Compile Include="Infrastructure\Helpers\ThumbnailExtractor.cs" />
+    <Compile Include="Infrastructure\Helpers\IMediaHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\MediaHelper.cs" />
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
@@ -471,7 +473,7 @@
     <Content Include="Areas\Authorized\Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Authorized\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Authorized\Views\UserFiles\Index.cshtml" />
+    <Content Include="Areas\Authorized\Views\UserFiles\Files.cshtml" />
     <Content Include="Areas\Authorized\Views\Favourites\Index.cshtml" />
     <Content Include="Content\kendo\HighContrast\Thumbs.db" />
     <Content Include="Content\kendo\images\kendoui.ttf" />
@@ -1157,7 +1159,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Admin\" />
     <Folder Include="Areas\Authorized\Views\Comments\" />
     <Folder Include="Areas\Authorized\Views\Shared\" />

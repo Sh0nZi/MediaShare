@@ -2,9 +2,7 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-
     using AutoMapper.QueryableExtensions;
-
     using MediaShare.Data;
     using MediaShare.Web.Models.Files;
     using MediaShare.Models;
@@ -25,7 +23,8 @@
         {
             var videoFiles = this.MediaFiles.Project().To<BasicMediaFileViewModel>()
                                  .Where(f => f.Type == MediaType.Video)
-                                 .Take(6).OrderByDescending(f => f.DateCreated)
+                                 .OrderByDescending(f => f.DateCreated)
+                                 .Take(6)
                                  .ToList();
             return this.PartialView("LatestPartial", videoFiles);
         }
@@ -34,7 +33,8 @@
         {
             var audioFiles = this.MediaFiles.Project().To<BasicMediaFileViewModel>()
                                  .Where(f => f.Type == MediaType.Audio)
-                                 .Take(6).OrderByDescending(f => f.DateCreated)
+                                 .OrderByDescending(f => f.DateCreated)
+                                 .Take(6)
                                  .ToList();
             return this.PartialView("LatestPartial", audioFiles);
         }
