@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MediaShare.Common
+﻿namespace MediaShare.Common
 {
+    using System;
+    using System.Text;
+
     public static class StringExtensions
     {
         public static string ExtractUsernameFromMail(this string email)
