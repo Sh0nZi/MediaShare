@@ -1,15 +1,15 @@
-﻿using System.Threading.Tasks;
-using MediaShare.Data;
-using MediaShare.Models;
-using MediaShare.Web;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
-
-
-namespace MediaShare.Web.App_Start
+﻿namespace MediaShare.Web.App_Start
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin;
+
+    using MediaShare.Data;
+    using MediaShare.Models;
+
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class SmsService : IIdentityMessageService
     {

@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace MediaShare.Web.Areas.Authorized
+﻿namespace MediaShare.Web.Areas.Authorized
 {
+    using System.Web.Mvc;
+
     public class AuthorizedAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
@@ -17,8 +17,7 @@ namespace MediaShare.Web.Areas.Authorized
             context.MapRoute(
                 "Authorized_default",
                 "Authorized/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+                new { action = "Index", id = UrlParameter.Optional });
         }
     }
 }

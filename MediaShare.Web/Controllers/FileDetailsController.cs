@@ -2,26 +2,27 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-
     using Microsoft.AspNet.Identity;
     using AutoMapper.QueryableExtensions;
-
     using MediaShare.Data;
     using MediaShare.Web.Models;
     using MediaShare.Web.Models.Files;
     using MediaShare.Web.Infrastructure.Helpers;
+    using System.Security.Principal;
 
     public class FileDetailsController : BaseController
     {
-        public FileDetailsController(IMediaShareData data) : base(data)
-        {
+        private IIdentity identity;
 
+        public FileDetailsController(IMediaShareData data, IIdentity identity) : base(data)
+        {
+            this.identity = identity;
         }
 
         // GET: MediaFileDetails
         public ActionResult Details(int? id)
         {
-            var currentUser = this.User.Identity.GetUserId();
+            var currentUser = identity.GetUserId();
             if (currentUser != null)
             {
                 this.ViewBag.IsFavourited = this.Data.Users.Find(currentUser).Favourites.Any(f => f.Id == id);
@@ -60,8 +61,8 @@
 
         public ActionResult FileComments(int id)
         {
-            var comments = this.MediaFiles.FirstOrDefault(f => f.Id == id).Comments
-                               .OrderByDescending(c => c.DateCreated).AsQueryable()
+            var comments = this.MediaFiles.Project().To<MediaFileViewModel>()
+                               .FirstOrDefault(f => f.Id == id).Comments.AsQueryable()
                                .Project().To<CommentViewModel>().ToList();
             return this.PartialView(comments);
         }

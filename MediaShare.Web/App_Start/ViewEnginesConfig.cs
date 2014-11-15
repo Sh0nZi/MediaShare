@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace MediaShare.Web.App_Start
+﻿namespace MediaShare.Web.App_Start
 {
+    using System.Web.Mvc;
+
     public static class ViewEnginesConfig
     {
         public static void RegisterEngines()

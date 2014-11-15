@@ -5,11 +5,12 @@
     using MediaShare.Common;
     using MediaShare.Data;
     using MediaShare.Web.Areas.Authorized.Controllers;
+    using System.Security.Principal;
 
     [Authorize(Roles = GlobalConstants.Admin)]
     public class AdminController : AuthorizedController
     {
-        public AdminController(IMediaShareData data) : base(data)
+        public AdminController(IMediaShareData data, IIdentity identity) : base(data, identity)
         {
         }
     }

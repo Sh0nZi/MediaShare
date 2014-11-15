@@ -8,11 +8,12 @@
 
     using MediaShare.Data;
     using MediaShare.Web.Models.Files;
+    using System.Security.Principal;
 
     public class FavouritesController : AuthorizedController
     {
-        public FavouritesController(IMediaShareData data)
-            : base(data)
+        public FavouritesController(IMediaShareData data, IIdentity identity)
+            : base(data, identity)
         {
 
         }

@@ -26,10 +26,9 @@
         public ActionResult ByIdThumbnail(int id)
         {
             var file = this.MediaFiles.FirstOrDefault(x => x.Id == id);
-            var content = file.Content;
 
             string contentType = "image/jpeg";
-            content = file.Thumbnail;
+            var content = file.Thumbnail;
             
             return this.File(content, contentType);
         }

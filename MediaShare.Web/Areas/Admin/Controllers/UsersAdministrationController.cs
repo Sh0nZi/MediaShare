@@ -1,6 +1,7 @@
 ﻿namespace MediaShare.Web.Areas.Admin.Controllers
 {
     using System;
+    using System.Linq;
     using System.Collections;
     using System.Data.Entity;
     using System.Web.Mvc;
@@ -10,10 +11,11 @@
     using MediaShare.Models;
     using MediaShare.Web.Areas.Admin.Models;
     using AutoMapper;
+    using System.Security.Principal;
 
     public class UsersAdministrationController : KendoGridAdministrationController
     {
-        public UsersAdministrationController(IMediaShareData data) : base(data)
+        public UsersAdministrationController(IMediaShareData data, IIdentity identity) : base(data,identity)
         {
         }
 
@@ -30,7 +32,7 @@
 
         protected override IEnumerable GetData()
         {
-            return this.Data.Users.All().Project().To<UserAdminViewModel>();
+            return this.Data.Users.All().Where(u => u.Email != "Admin@admin.com").Project().To<UserAdminViewModel>();
         }
 
         [HttpPost]

@@ -7,6 +7,7 @@
     using MediaShare.Data;
     using MediaShare.Models;
     using MediaShare.Web.Infrastructure.Helpers;
+using System.Security.Principal;
 
     public class UploadFileController : AuthorizedController
     {
@@ -20,7 +21,7 @@
 
         private readonly IMediaHelper thumbnailExtractor;
 
-        public UploadFileController(IMediaShareData data, IMediaHelper thumbnailExtractor) : base(data)
+        public UploadFileController(IMediaShareData data, IMediaHelper thumbnailExtractor, IIdentity identity) : base(data,identity)
         {
             this.thumbnailExtractor = thumbnailExtractor;
         }

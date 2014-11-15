@@ -11,6 +11,7 @@ namespace MediaShare.Web.Areas.Admin.Models
 {
     public class FileAdminViewModel : IMapFrom<MediaFile>, IHaveCustomMappings
     {
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
 
         public string Title { get; set; }

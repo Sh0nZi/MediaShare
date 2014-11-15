@@ -8,10 +8,14 @@ namespace MediaShare.Common
 {
     public static class StringExtensions
     {
-        public static string ExtractUsernameFromMail(this string text)
+        public static string ExtractUsernameFromMail(this string email)
         {
-            text = text.Substring(0, text.IndexOf("@"));
-            var stringBuilder = new StringBuilder(text);            
+            if (!email.Contains("@"))
+            {
+                throw new ArgumentException("E-mail must contain '@' symbol","email");
+            }
+            email = email.Substring(0, email.IndexOf("@"));
+            var stringBuilder = new StringBuilder(email);            
             return stringBuilder.ToString();
         }
     }

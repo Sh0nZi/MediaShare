@@ -8,12 +8,13 @@ using MediaShare.Data;
 using AutoMapper;
 using System.Data.Entity;
 using MediaShare.Web.Areas.Admin.Models;
+using System.Security.Principal;
 
 namespace MediaShare.Web.Areas.Admin.Controllers
 {
     public abstract class KendoGridAdministrationController : AdminController
     {
-        public KendoGridAdministrationController(IMediaShareData data) : base(data)
+        public KendoGridAdministrationController(IMediaShareData data, IIdentity identity) : base(data,identity)
         {
         }
 

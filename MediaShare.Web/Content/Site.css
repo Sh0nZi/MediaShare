@@ -2,6 +2,7 @@
 {
     padding-top: 50px;
     padding-bottom: 20px;
+       
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,11 +22,10 @@ textarea
 a:hover
 {
     opacity: 0.8;
-
 }
-a img:hover{
-    border:1px solid red;
-
+a img:hover
+{
+    border: 1px solid red;
 }
 .well
 {
@@ -47,7 +47,8 @@ a img:hover{
     color: ButtonShadow
 }
 
-#comment-body p{
+#comment-body p
+{
     font-size: 12px;
     color: ButtonShadow
 }
@@ -60,32 +61,48 @@ a img:hover{
 pre
 {
     background-color: #f1f0e9;
-    border-radius:10px;
+    border-radius: 10px;
 }
 .validation-summary-errors
 {
-    border: 1px solid red;   
+    border: 1px solid red; 
     color: #e24343;
     background-color: #efb2b2;
-    border-radius:10px;
-    padding:20px;
+    border-radius: 10px;
+    padding: 20px;
 }
-.validation-summary-errors ul{
-    list-style-type:none;
+.validation-summary-errors ul
+{
+    list-style-type: none;
 }
-.field-validation-error{
-    color:red;
+.field-validation-error
+{
+    color: red;
 }
 
-h2{
-    color:crimson;
-    margin-bottom:25px;
+h2
+{
+    color: crimson;
+    margin-bottom: 25px;
 }
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu
+{
     display: block;
 }
 
-h4 a:hover, b a:hover{
-    text-decoration:none;
-    color:red;
+h4 a:hover, b a:hover
+{
+    text-decoration: none;
+    color: red;
 }
+.navbar-brand
+{
+    font-family:'Comic Sans MS', cursive;
+    font-size:20px;
+    
+}
+.navbar-nav {
+    font-family: 'Comic Sans MS', cursive;    
+}
+
+

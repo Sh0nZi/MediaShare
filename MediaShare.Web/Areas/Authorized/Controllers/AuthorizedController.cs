@@ -7,19 +7,23 @@
     using MediaShare.Web.Controllers;
     using MediaShare.Data;
     using MediaShare.Web.Areas.Authorized.Models;
+using System.Security.Principal;
     
     [Authorize]
     public abstract class AuthorizedController : BaseController
     {
         protected const int PageSize = 3;
 
-        public AuthorizedController(IMediaShareData data) : base(data)
+        private IIdentity identity;
+
+        public AuthorizedController(IMediaShareData data, IIdentity identity) : base(data)
         {
+            this.identity = identity;
         }
 
         protected UserViewModel GetCurrentUser(string id = null)
         {
-            var userId=string.IsNullOrEmpty(id)?this.User.Identity.GetUserId():id;
+            var userId=string.IsNullOrEmpty(id)?identity.GetUserId():id;
             return this.Data.Users
                        .All().Project().To<UserViewModel>().AsQueryable()
                        .FirstOrDefault(u => u.Id == userId);            

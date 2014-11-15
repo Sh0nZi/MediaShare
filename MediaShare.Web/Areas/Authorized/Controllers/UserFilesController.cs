@@ -9,11 +9,12 @@
     using MediaShare.Data;
     using MediaShare.Web.Models.Files;
     using MediaShare.Common;
+using System.Security.Principal;
 
     public class UserFilesController : AuthorizedController
     {
-        public UserFilesController(IMediaShareData data)
-            : base(data)
+        public UserFilesController(IMediaShareData data, IIdentity identity)
+            : base(data,identity)
         {
         }
 

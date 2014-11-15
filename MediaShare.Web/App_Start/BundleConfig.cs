@@ -1,9 +1,7 @@
-﻿using System;
-using System.Web;
-using System.Web.Optimization;
-
-namespace MediaShare.Web.App_Start
+﻿namespace MediaShare.Web.App_Start
 {
+    using System.Web.Optimization;
+
     public class BundleConfig
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
@@ -46,11 +44,10 @@ namespace MediaShare.Web.App_Start
  
         private static void RegisterContentBundles(BundleCollection bundles)
         {
-            
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
-                        "~/Content/kendo/kendo.common.min.css",
-                        "~/Content/kendo/kendo.common-bootstrap.min.css",
-                        "~/Content/kendo/kendo.silver.min.css"));
+                "~/Content/kendo/kendo.common.min.css",
+                "~/Content/kendo/kendo.common-bootstrap.min.css",
+                "~/Content/kendo/kendo.silver.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",

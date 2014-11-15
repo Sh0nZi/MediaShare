@@ -9,10 +9,11 @@
     using MediaShare.Models;
     using MediaShare.Data;
     using MediaShare.Web.Areas.Admin.Models;
+    using System.Security.Principal;
 
     public class FilesAdministrationController : KendoGridAdministrationController
     {
-        public FilesAdministrationController(IMediaShareData data) : base(data)
+        public FilesAdministrationController(IMediaShareData data, IIdentity identity) : base(data,identity)
         {
         }
 

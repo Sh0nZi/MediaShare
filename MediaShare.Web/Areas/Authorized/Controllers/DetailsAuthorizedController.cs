@@ -7,10 +7,11 @@
     using MediaShare.Data;
     using MediaShare.Models;
     using MediaShare.Web.Areas.Authorized.Models;
+using System.Security.Principal;
 
     public class DetailsAuthorizedController : AuthorizedController
     {
-        public DetailsAuthorizedController(IMediaShareData data) : base(data)
+        public DetailsAuthorizedController(IMediaShareData data, IIdentity identity) : base(data,identity)
         {
         }
          

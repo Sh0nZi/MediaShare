@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace MediaShare.Web.App_Start
+﻿namespace MediaShare.Web.App_Start
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
@@ -16,8 +12,7 @@ namespace MediaShare.Web.App_Start
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new {area="", controller = "Home", action = "Index", id = UrlParameter.Optional });
-
+                defaults: new { area = "", controller = "Home", action = "Index", id = UrlParameter.Optional });
         }
     }
 }

@@ -1,16 +1,16 @@
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MediaShare.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MediaShare.Web.App_Start.NinjectWebCommon), "Stop")]
-
 namespace MediaShare.Web.App_Start
 {
     using System;
     using System.Web;
-
-    using MediaShare.Web.Infrastructure.Helpers;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
+    using System.Security.Principal;
+
     using MediaShare.Data;
+    using MediaShare.Web.Infrastructure.Helpers;
 
     public static class NinjectWebCommon 
     {
@@ -64,6 +64,7 @@ namespace MediaShare.Web.App_Start
         {
             kernel.Bind<IMediaShareData>().To<MediaShareData>();
             kernel.Bind<IMediaHelper>().To<MediaHelper>();
-        }        
+            kernel.Bind<IIdentity>().ToMethod(c => HttpContext.Current.User.Identity);
+        }
     }
 }

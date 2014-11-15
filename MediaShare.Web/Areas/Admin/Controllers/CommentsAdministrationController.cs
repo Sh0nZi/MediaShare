@@ -7,10 +7,11 @@
     using MediaShare.Web.Models;
     using Kendo.Mvc.UI;
     using MediaShare.Models;
+    using System.Security.Principal;
 
     public class CommentsAdministrationController : KendoGridAdministrationController
     {
-        public CommentsAdministrationController(IMediaShareData data) : base(data)
+        public CommentsAdministrationController(IMediaShareData data, IIdentity identity) : base(data,identity)
         {
         }
 
