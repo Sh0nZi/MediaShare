@@ -5,8 +5,9 @@ using MediaShare.Web.App_Start;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace MediaShare.Web.App_Start
+namespace MediaShare.Web
 {
+    using MediaShare.Web.App_Start;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;

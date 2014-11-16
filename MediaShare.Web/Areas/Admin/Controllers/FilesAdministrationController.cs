@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using System.Collections;
+    using System.Security.Principal;
 
     using AutoMapper.QueryableExtensions;
     using Kendo.Mvc.UI;
@@ -9,7 +10,6 @@
     using MediaShare.Models;
     using MediaShare.Data;
     using MediaShare.Web.Areas.Admin.Models;
-    using System.Security.Principal;
 
     public class FilesAdministrationController : KendoGridAdministrationController
     {

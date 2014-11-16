@@ -73,7 +73,7 @@
     <pre>@Model.Description</pre>
 
     <div style="margin-left:30px" id="comment-container">
-        @using (Ajax.BeginForm("Post", "DetailsAuthorized", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-comments", InsertionMode = InsertionMode.Replace, OnComplete = "hideCommentContainer", OnSuccess = "pesho" }, new { @class = "form-horizontal", role = "form" }))
+        @using (Ajax.BeginForm("PostComment", "DetailsAuthorized", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-comments", InsertionMode = InsertionMode.Replace, OnComplete = "hideCommentContainer", OnSuccess = "pesho" }, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
 

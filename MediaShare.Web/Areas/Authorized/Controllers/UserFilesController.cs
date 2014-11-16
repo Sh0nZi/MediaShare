@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Web.Mvc;
+    using System.Security.Principal;
 
     using PagedList;
     using AutoMapper.QueryableExtensions;
@@ -9,12 +10,10 @@
     using MediaShare.Data;
     using MediaShare.Web.Models.Files;
     using MediaShare.Common;
-using System.Security.Principal;
 
     public class UserFilesController : AuthorizedController
     {
-        public UserFilesController(IMediaShareData data, IIdentity identity)
-            : base(data,identity)
+        public UserFilesController(IMediaShareData data, IIdentity identity) : base(data,identity)
         {
         }
 

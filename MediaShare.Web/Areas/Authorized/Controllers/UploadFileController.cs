@@ -4,11 +4,16 @@
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using System.Security.Principal;
+
+    using AutoMapper;
+
     using MediaShare.Data;
     using MediaShare.Models;
     using MediaShare.Web.Infrastructure.Helpers;
-using System.Security.Principal;
-
+    using MediaShare.Web.Models.Files;
+    
+    [ValidateInput(false)]
     public class UploadFileController : AuthorizedController
     {
         private const string ContentRequiredText = "Content is required";
@@ -41,19 +46,18 @@ using System.Security.Principal;
         // Post: Video
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken]
-        public ActionResult UploadVideo(MediaFile file, HttpPostedFileBase mediaFile)
+        public ActionResult UploadVideo(MediaFileViewModel file, HttpPostedFileBase mediaFile)
         {
             if (!this.IsValid(mediaFile, "video/mp4") && !this.IsValid(mediaFile, "video/webm"))
             {
                 return this.View("VideoIndex", file);
             }
-
-            this.PopulateContent(file, mediaFile);
-            file.Thumbnail = thumbnailExtractor.GetVideoThumbnail(file.Content);
-            file.Type = MediaType.Video;
-            //Entity Framework does not allow to store files larger than 50mb...
+            var dbFile = Mapper.Map<MediaFile>(file);
+            this.PopulateContent(dbFile, mediaFile);
+            dbFile.Thumbnail = thumbnailExtractor.GetVideoThumbnail(dbFile.Content);
+            dbFile.Type = MediaType.Video;
              
-            this.Data.Files.Add(file);
+            this.Data.Files.Add(dbFile);
             this.Data.SaveChanges();
 
             this.TempData["Success"] = "Video successfully added!";
@@ -63,18 +67,18 @@ using System.Security.Principal;
         // Post: Audio
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken]
-        public ActionResult UploadAudio(MediaFile file, HttpPostedFileBase mediaFile)
+        public ActionResult UploadAudio(MediaFileViewModel file, HttpPostedFileBase mediaFile)
         {
-            if (!this.IsValid(mediaFile, "audio/mp3"))
+            if (!this.IsValid(mediaFile, "audio/mp3") && !this.IsValid(mediaFile, "audio/mpeg"))
             {
                 return this.View("AudioIndex", file);
             }
-
-            this.PopulateContent(file, mediaFile);
-            file.Type = MediaType.Audio;
-            file.Thumbnail = thumbnailExtractor.GetAudioThumbnail();
+            var dbFile = Mapper.Map<MediaFile>(file);
+            this.PopulateContent(dbFile, mediaFile);
+            dbFile.Type = MediaType.Audio;
+            dbFile.Thumbnail = thumbnailExtractor.GetAudioThumbnail();
             
-            this.Data.Files.Add(file);
+            this.Data.Files.Add(dbFile);
             this.Data.SaveChanges();
             
             this.TempData["Success"] = "Audio successfully added!";
@@ -83,8 +87,8 @@ using System.Security.Principal;
                 
         private void PopulateContent(MediaFile file, HttpPostedFileBase mediaFile)
         { 
-            file.Content= new byte[mediaFile.ContentLength]; 
-            mediaFile.InputStream.Read( file.Content, 0, mediaFile.ContentLength);
+            file.Content = new byte[mediaFile.ContentLength]; 
+            mediaFile.InputStream.Read(file.Content, 0, mediaFile.ContentLength);
            
             file.DateCreated = DateTime.Now;
             file.AuthorId = this.GetCurrentUser().Id;

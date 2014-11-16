@@ -1,18 +1,19 @@
 ﻿namespace MediaShare.Web.Controllers
 {
     using System.Linq;
-    using System.Web.Mvc;
+    using System.Security.Principal;
+    using System.Web.Mvc;  
     using Microsoft.AspNet.Identity;
+
     using AutoMapper.QueryableExtensions;
+
     using MediaShare.Data;
     using MediaShare.Web.Models;
     using MediaShare.Web.Models.Files;
-    using MediaShare.Web.Infrastructure.Helpers;
-    using System.Security.Principal;
 
     public class FileDetailsController : BaseController
     {
-        private IIdentity identity;
+        private readonly IIdentity identity;
 
         public FileDetailsController(IMediaShareData data, IIdentity identity) : base(data)
         {
@@ -22,7 +23,7 @@
         // GET: MediaFileDetails
         public ActionResult Details(int? id)
         {
-            var currentUser = identity.GetUserId();
+            var currentUser = this.identity.GetUserId();
             if (currentUser != null)
             {
                 this.ViewBag.IsFavourited = this.Data.Users.Find(currentUser).Favourites.Any(f => f.Id == id);
@@ -63,7 +64,8 @@
         {
             var comments = this.MediaFiles.Project().To<MediaFileViewModel>()
                                .FirstOrDefault(f => f.Id == id).Comments.AsQueryable()
-                               .Project().To<CommentViewModel>().ToList();
+                               .Project().To<CommentViewModel>().OrderByDescending(c => c.DateCreated)
+                               .ToList();
             return this.PartialView(comments);
         }
 

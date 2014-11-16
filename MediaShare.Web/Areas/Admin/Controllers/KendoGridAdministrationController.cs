@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
-using System.Web.Mvc;
-using Kendo.Mvc.Extensions;
-using Kendo.Mvc.UI;
-using MediaShare.Data;
-using AutoMapper;
-using System.Data.Entity;
-using MediaShare.Web.Areas.Admin.Models;
-using System.Security.Principal;
-
-namespace MediaShare.Web.Areas.Admin.Controllers
+﻿namespace MediaShare.Web.Areas.Admin.Controllers
 {
+    using System;
+    using System.Collections;
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Data.Entity;
+    using System.Security.Principal;
+
+    using AutoMapper;
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+
+    using MediaShare.Data;
+
     public abstract class KendoGridAdministrationController : AdminController
     {
         public KendoGridAdministrationController(IMediaShareData data, IIdentity identity) : base(data,identity)

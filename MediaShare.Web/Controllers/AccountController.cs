@@ -93,7 +93,7 @@
                     {
                         this.ModelState.AddModelError("", "Invalid username or password.");
                     }
-                    if (user.IsBanned)
+                    else if(user.IsBanned)
                     {
                          this.ModelState.AddModelError("", "You have been banned.");
                     }

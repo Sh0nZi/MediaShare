@@ -5,13 +5,15 @@
     using System.Collections;
     using System.Data.Entity;
     using System.Web.Mvc;
+    using System.Security.Principal;
+
+    using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Kendo.Mvc.UI;
+
     using MediaShare.Data;
     using MediaShare.Models;
     using MediaShare.Web.Areas.Admin.Models;
-    using AutoMapper;
-    using System.Security.Principal;
 
     public class UsersAdministrationController : KendoGridAdministrationController
     {

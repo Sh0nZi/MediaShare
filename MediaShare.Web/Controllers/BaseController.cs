@@ -6,6 +6,7 @@
     using MediaShare.Data;
     using MediaShare.Models;
 
+    [HandleError]
     public class BaseController : Controller
     {
         public BaseController(IMediaShareData data)

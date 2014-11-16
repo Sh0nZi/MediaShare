@@ -1,21 +1,22 @@
-﻿@using MediaShare.Models;
+﻿@using MediaShare.Web.Models.Files;
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model MediaFile
+@model MediaFileViewModel
 <div class="well">
-    <h2>Upload Audio</h2>
+    <h3>Upload Song</h3>
     @using (Html.BeginForm("UploadAudio", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
     {
             @Html.AntiForgeryToken()
 
-            <label for="Title">Title</label>
+            <label for="Title"><b>Title: </b></label>
 
             @Html.EditorFor(f => f.Title)
             @Html.ValidationMessageFor(m => m.Title)
 
             <p>
-                <label for="Description">Description</label>
+                <label for="Description"><b>Description: </b></label>
 
                 @Html.TextArea("Description", null, 4, 70, null)
             </p>

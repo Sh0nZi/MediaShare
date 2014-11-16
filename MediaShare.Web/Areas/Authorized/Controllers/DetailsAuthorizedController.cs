@@ -2,13 +2,16 @@
 {
     using System;
     using System.Linq;
-    using System.Web.Mvc;
-    using AutoMapper.QueryableExtensions;
+    using System.Web.Mvc; 
+    using System.Security.Principal;
+
+    using AutoMapper;
+
     using MediaShare.Data;
     using MediaShare.Models;
-    using MediaShare.Web.Areas.Authorized.Models;
-using System.Security.Principal;
+    using MediaShare.Web.Models;
 
+    [ValidateInput(false)]
     public class DetailsAuthorizedController : AuthorizedController
     {
         public DetailsAuthorizedController(IMediaShareData data, IIdentity identity) : base(data,identity)
@@ -38,13 +41,14 @@ using System.Security.Principal;
         // POST: Comment       
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken]
-        public ActionResult Post(Comment comment, int id)
+        public ActionResult PostComment(CommentViewModel comment, int id)
         {
-            comment.DateCreated = DateTime.Now;
-            comment.AuthorId = this.GetCurrentUser().Id;
+            var dbComment = Mapper.Map<Comment>(comment);
+            dbComment.DateCreated = DateTime.Now;
+            dbComment.AuthorId = this.GetCurrentUser().Id;
 
             var file = this.MediaFiles.FirstOrDefault(f => f.Id == id);
-            file.Comments.Add(comment);
+            file.Comments.Add(dbComment);
 
             this.Data.SaveChanges();
             

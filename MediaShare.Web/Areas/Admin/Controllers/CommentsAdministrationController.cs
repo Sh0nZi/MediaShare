@@ -2,12 +2,14 @@
 {
     using System.Collections;
     using System.Web.Mvc;
+    using System.Security.Principal;
+
     using AutoMapper.QueryableExtensions;
+
     using MediaShare.Data;
     using MediaShare.Web.Models;
     using Kendo.Mvc.UI;
     using MediaShare.Models;
-    using System.Security.Principal;
 
     public class CommentsAdministrationController : KendoGridAdministrationController
     {

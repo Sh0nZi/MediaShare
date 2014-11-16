@@ -1,11 +1,11 @@
-﻿@using MediaShare.Models;
+﻿@using MediaShare.Web.Models.Files;
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model MediaFile
+@model MediaFileViewModel
 <div class="well">
-    <h2>Upload Video</h2>
+    <h3>Upload Video</h3>
     @using (Html.BeginForm("UploadVideo", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
     {
             @Html.AntiForgeryToken()

@@ -8,7 +8,7 @@
 @model PagedList.IPagedList<BasicMediaFileViewModel>
 
 <div class="table row well">
-    <h3 style="color:crimson">@ViewBag.UserName uploads</h3>
+    <h3>@ViewBag.UserName uploads</h3>
     <hr />
 
     @Html.DisplayFor(m => Model, "DisplaySyncPager", new { action = "Index", controller = "UserFiles", area = "Authorized", Id = this.User.Identity.GetUserId() })

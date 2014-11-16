@@ -8,7 +8,7 @@
 @model PagedList.IPagedList<BasicMediaFileViewModel>
 
 <div class="table row well">
-    <h3 style="color:crimson">Favourites</h3>
+    <h3>Favourites</h3>
     <hr />
 
     @Html.DisplayFor(m => Model, "DisplaySyncPager", new { action = "Index", controller = "Favourites", area = "Authorized", Id = this.User.Identity.GetUserId() })

@@ -2,12 +2,14 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Microsoft.AspNet.Identity;
+    using System.Security.Principal;
+    using Microsoft.AspNet.Identity;   
+
     using AutoMapper.QueryableExtensions;
+
     using MediaShare.Web.Controllers;
     using MediaShare.Data;
     using MediaShare.Web.Areas.Authorized.Models;
-using System.Security.Principal;
     
     [Authorize]
     public abstract class AuthorizedController : BaseController
@@ -23,7 +25,7 @@ using System.Security.Principal;
 
         protected UserViewModel GetCurrentUser(string id = null)
         {
-            var userId=string.IsNullOrEmpty(id)?identity.GetUserId():id;
+            var userId = string.IsNullOrEmpty(id) ? identity.GetUserId() : id;
             return this.Data.Users
                        .All().Project().To<UserViewModel>().AsQueryable()
                        .FirstOrDefault(u => u.Id == userId);            

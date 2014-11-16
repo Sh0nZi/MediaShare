@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
+
     using MediaShare.Web.Models.Files;
     using MediaShare.Data;
     using MediaShare.Models;
@@ -39,6 +40,11 @@
                                .ThenBy(f => f.Votes.Count).Take(ShowTopNumber)
                                .ToList();
             return this.PartialView("HomePartial", topAudio);
+        }
+
+        public ActionResult Error()
+        {
+            return View();
         }
     }
 }
