@@ -1,7 +1,6 @@
 ﻿namespace MediaShare.Web.Tests.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Security.Principal;
     using System.Web.Mvc;
@@ -13,7 +12,6 @@
     using MediaShare.Models;
     using MediaShare.Web.Controllers;
     using MediaShare.Web.Infrastructure.Mapping;
-    using MediaShare.Web.Models;
     using MediaShare.Web.Models.Files;
 
     [TestClass]

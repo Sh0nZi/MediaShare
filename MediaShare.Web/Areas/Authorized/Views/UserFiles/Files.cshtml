@@ -11,12 +11,12 @@
     <h3>@ViewBag.UserName uploads</h3>
     <hr />
 
-    @Html.DisplayFor(m => Model, "DisplaySyncPager", new { action = "Index", controller = "UserFiles", area = "Authorized", Id = this.User.Identity.GetUserId() })
+    @Html.DisplayFor(m => Model, "DisplaySyncPager", new { action = "Files", controller = "UserFiles", area = "Authorized", Id = this.User.Identity.GetUserId() })
 
     <div id="files-container" class="container">
         @{ Html.RenderPartial("_PagedFiles"); }
     </div>
 
-    @Html.DisplayFor(m => Model, "DisplaySyncPager", new { action = "Index", controller = "UserFiles", area = "Authorized", Id = this.User.Identity.GetUserId() })
+    @Html.DisplayFor(m => Model, "DisplaySyncPager", new { action = "Files", controller = "UserFiles", area = "Authorized", Id = this.User.Identity.GetUserId() })
 
 </div>

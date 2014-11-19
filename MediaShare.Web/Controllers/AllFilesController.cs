@@ -13,7 +13,7 @@
 
     public class AllFilesController : BaseController
     {
-        private const int PageSize = 4;
+        private const int PageSize = 5;
 
         public AllFilesController(IMediaShareData data) : base(data)
         {
