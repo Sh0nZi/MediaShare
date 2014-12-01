@@ -27,7 +27,7 @@
             </p>
             <p>
 
-                <label for="Content">Content:</label><span style="font-size:12px">*allowed formats - mp3</span>
+                <label for="Content">Content:</label><span style="font-size:12px">*allowed formats - mp3, max.size - 10mb</span>
                 <input type="file" name="mediaFile" />
                 @Html.ValidationMessageFor(m => m.Content)
                 @Html.ValidationMessage("Size")
