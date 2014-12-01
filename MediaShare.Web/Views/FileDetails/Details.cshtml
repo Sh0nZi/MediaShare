@@ -1,13 +1,13 @@
 ﻿@using MediaShare.Models
 @using MediaShare.Web.Models.Files;
 @using Microsoft.AspNet.Identity;
-
+@model MediaFileViewModel
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = @Model.Title;
 
 }
 <div id="details-page" class="well">
-    @model MediaFileViewModel
+  
      
     @Html.DisplayFor(f => f.Title, "DisplayPageHeader")
 

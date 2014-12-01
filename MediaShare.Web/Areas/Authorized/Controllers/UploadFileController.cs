@@ -20,7 +20,7 @@
 
         private const string WrongFormatText = "Your file is in wrong format! Allowed format - ";
 
-        private const int MaxSize = 50000000;
+        private const int MaxSize = 500000000;
 
         private readonly IMediaHelper thumbnailExtractor;
 
@@ -41,7 +41,7 @@
             return this.View();
         }
 
-        //// Post: Video
+        // Post: Video
         //[AcceptVerbs(HttpVerbs.Post)]
         //[ValidateAntiForgeryToken]
         //public ActionResult UploadVideo(MediaFileViewModel file, HttpPostedFileBase mediaFile)
