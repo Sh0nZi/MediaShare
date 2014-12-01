@@ -6,42 +6,43 @@
 @model MediaFileViewModel
 <div class="well">
     <h3>Upload Video</h3>
-    @using (Html.BeginForm("UploadVideo", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+    @*@using (Html.BeginForm("UploadVideo", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
     {
-            @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-            <label for="Title">Title</label>
+    <label for="Title">Title</label>
 
-            @Html.EditorFor(f => f.Title)
-            @Html.ValidationMessageFor(m => m.Title)
+    @Html.EditorFor(f => f.Title)
+    @Html.ValidationMessageFor(m => m.Title)
 
-            <p>
-                <label for="Description">Description</label>
+    <p>
+    <label for="Description">Description</label>
 
-                @Html.TextArea("Description", null, 4, 70, null)
-            </p>
-            <p>
+    @Html.TextArea("Description", null, 4, 70, null)
+    </p>
+    <p>
 
-                <label for="Content">Content:</label><span style="font-size:12px">*allowed formats - mp4, max.size - 10mb</span>
-                <input type="file" name="mediaFile" />
-                @Html.ValidationMessageFor(m => m.Content)
-                @Html.ValidationMessage("Size")
-                @Html.ValidationMessage("Type")
+    <label for="Content">Content:</label><span style="font-size:12px">*allowed formats - mp4, max.size - 10mb</span>
+    <input type="file" name="mediaFile" />
+    @Html.ValidationMessageFor(m => m.Content)
+    @Html.ValidationMessage("Size")
+    @Html.ValidationMessage("Type")
 
-            </p>
+    </p>
 
-            <input id="upload-btn" class="btn btn-success" type="submit" value="Upload" />
-            <div id="loader">
-                <span style="color:red">File uploading please wait...</span>
-                <img src="~/MediaFiles/red loader.gif" width="50" height="50"  alt="Alternate Text" />
+    <input id="upload-btn" class="btn btn-success" type="submit" value="Upload" />
+    <div id="loader">
+    <span style="color:red">File uploading please wait...</span>
+    <img src="~/MediaFiles/red loader.gif" width="50" height="50"  alt="Alternate Text" />
 
-            </div>
-            <p style="color:orangered">
-                NOTE: If the video does not start in Chrome, you should
-                <a href="http://video.online-convert.com/convert-to-webm">convert it</a> to <span style="text-decoration:underline">webm</span> format. Sorry for the inconvinience.
-            </p>
-            
-    }
+    </div>
+    <p style="color:orangered">
+    NOTE: If the video does not start in Chrome, you should
+    <a href="http://video.online-convert.com/convert-to-webm">convert it</a> to <span style="text-decoration:underline">webm</span> format. Sorry for the inconvinience.
+    </p>
+    
+    }*@
+    <h3 class="text-center" style="color:red"> Video upload is disabled for security reasons...</h3>
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
