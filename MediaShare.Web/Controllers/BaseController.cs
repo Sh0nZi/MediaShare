@@ -6,7 +6,7 @@
     using MediaShare.Models;
     using MediaShare.Web.Infrastructure.Helpers;
 
-    [HandleError]
+    //[HandleError]
     public class BaseController : Controller
     {
         public BaseController(IMediaShareData data)
