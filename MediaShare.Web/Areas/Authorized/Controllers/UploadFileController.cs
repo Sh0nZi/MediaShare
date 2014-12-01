@@ -5,9 +5,7 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Security.Principal;
-
     using AutoMapper;
-
     using MediaShare.Data;
     using MediaShare.Models;
     using MediaShare.Web.Infrastructure.Helpers;
@@ -54,7 +52,6 @@
             }
             var dbFile = Mapper.Map<MediaFile>(file);
             this.PopulateContent(dbFile, mediaFile);
-            dbFile.Thumbnail = thumbnailExtractor.GetVideoThumbnail(dbFile.Content);
             dbFile.Type = MediaType.Video;
              
             this.Data.Files.Add(dbFile);
@@ -76,7 +73,6 @@
             var dbFile = Mapper.Map<MediaFile>(file);
             this.PopulateContent(dbFile, mediaFile);
             dbFile.Type = MediaType.Audio;
-            dbFile.Thumbnail = thumbnailExtractor.GetAudioThumbnail();
             
             this.Data.Files.Add(dbFile);
             this.Data.SaveChanges();
@@ -87,9 +83,30 @@
                 
         private void PopulateContent(MediaFile file, HttpPostedFileBase mediaFile)
         { 
-            file.Content = new byte[mediaFile.ContentLength]; 
-            mediaFile.InputStream.Read(file.Content, 0, mediaFile.ContentLength);
-           
+            var fileName = RandomStringGenerator.GenerateString();
+            if (mediaFile.ContentType == "audio/mp3" || mediaFile.ContentType == "audio/mpeg")
+            {
+                fileName += ".mp3";
+            }
+            else
+            {
+                fileName += ".mp4";
+            }
+            var fileContent = new byte[mediaFile.ContentLength]; 
+
+            mediaFile.InputStream.Read(fileContent, 0, mediaFile.ContentLength);
+            DropboxHandler.UploadFile(fileContent, fileName);  
+
+            if (mediaFile.ContentType == "audio/mp3" || mediaFile.ContentType == "audio/mpeg")
+            {
+                fileContent = null;
+            }
+
+            var fileThumbnail = thumbnailExtractor.GetThumbnail(fileContent);                    
+            DropboxHandler.UploadFile(fileThumbnail, fileName + "thumb.jpeg");
+
+            file.Content = fileName;
+            file.Thumbnail = fileName + "thumb.jpeg";
             file.DateCreated = DateTime.Now;
             file.AuthorId = this.GetCurrentUser().Id;
         }

@@ -18,7 +18,19 @@
             converter = new FFMpegConverter();
         }
 
-        public byte[] GetVideoThumbnail(byte[] content)
+        public byte[] GetThumbnail(byte[] content = null)
+        {
+            if (content != null)
+            {
+                return this.GetVideoThumbnail(content);
+            }
+            else
+            {
+                return GetAudioThumbnail();
+            }
+        }
+
+        private byte[] GetVideoThumbnail(byte[] content)
         {
             string path = HttpRuntime.AppDomainAppPath + TempFirecotry + "sample.mp4";
             
@@ -32,7 +44,7 @@
             }
         }
         
-        public byte[] GetAudioThumbnail()
+        private byte[] GetAudioThumbnail()
         {
             string path = HttpRuntime.AppDomainAppPath + "." + TempFirecotry + "mp3.jpg";
             var content = File.ReadAllBytes(path);

@@ -9,40 +9,42 @@
 <div id="details-page" class="well">
     @model MediaFileViewModel
      
-    @Html.DisplayFor(f=>f.Title,"DisplayPageHeader")
+    @Html.DisplayFor(f => f.Title, "DisplayPageHeader")
 
     @Html.DisplayFor(d => d.DateCreated, "CustomDate")
     @Html.DisplayFor(d => d.Author, "DisplayAuthor")
 
     @if (Model.Type == MediaType.Video)
     {
-        <video width="650" height="500" controls  onplay="increaseViewCount()">
-            <source src="@Url.Action("VideoContentById", "FileDetails", new { Id = Model.Id })" type="video/mp4" />
-            <source src="@Url.Action("VideoContentByIdWebM", "FileDetails", new { Id = Model.Id })" type="video/webm" />
-           
-        </video>
+            <video width="650" height="500" controls  onplay="increaseViewCount()">
+                <source src="@ViewBag.MediaLink" type="video/mp4" />
+                <source src="@ViewBag.MediaLink" type="video/webm" />
+
+            </video>
     }
     else
     {
-        @Html.DisplayFor(f=>f.Id,"DisplayThumbnail")
-        <audio controls style="display:block" onplay="increaseViewCount()">
-            <source src="@Url.Action("AudioContentById", "FileDetails", new { Id = Model.Id })" type="audio/mp3" />
-        </audio>
+       
+            @Html.DisplayFor(f => f.Id, "DisplayThumbnail")
+            <audio controls style="display:block" onplay="increaseViewCount()">
+                <source src=@ViewBag.MediaLink type="video/mp4" />
+            </audio>
+        
     }
     @if (Request.IsAuthenticated && !ViewBag.IsYours)
     {
         if (!ViewBag.IsFavourited)
         {
-            @Html.DisplayFor(f => f.Id, "DisplayFavButtons", new { add="",rem="display:none"})
+                    @Html.DisplayFor(f => f.Id, "DisplayFavButtons", new { add = "", rem = "display:none" })
 
         }
         else
         {
-            @Html.DisplayFor(f => f.Id, "DisplayFavButtons", new { add = "display:none", rem = "" })
+                    @Html.DisplayFor(f => f.Id, "DisplayFavButtons", new { add = "display:none", rem = "" })
 
         }
     }
-    @Html.DisplayFor(f=>f.ViewsCount,"DisplayViewsCount")
+    @Html.DisplayFor(f => f.ViewsCount, "DisplayViewsCount")
 
     <div style="margin-bottom:50px">
         <div id="container-for-votes">
@@ -56,12 +58,12 @@
             {
                 using (Ajax.BeginForm("Vote", "DetailsAuthorized", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-votes", InsertionMode = InsertionMode.Replace }, new { @class = "form-horizontal", role = "form" }))
                 {
-                    @Html.AntiForgeryToken()
-                    <div>
-                        @Html.Editor("Value","VoteValueDropdown")
+                                    @Html.AntiForgeryToken()
+                                    <div>
+                                        @Html.Editor("Value", "VoteValueDropdown")
 
-                        <input id="post-btn" class="btn btn-primary btn-sm" type="submit" value="Vote" />
-                    </div>
+                                        <input id="post-btn" class="btn btn-primary btn-sm" type="submit" value="Vote" />
+                                    </div>
                 }
             }
         </div>
@@ -75,16 +77,16 @@
     <div style="margin-left:30px" id="comment-container">
         @using (Ajax.BeginForm("PostComment", "DetailsAuthorized", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-comments", InsertionMode = InsertionMode.Replace, OnComplete = "hideCommentContainer", OnSuccess = "pesho" }, new { @class = "form-horizontal", role = "form" }))
         {
-            @Html.AntiForgeryToken()
+                    @Html.AntiForgeryToken()
 
-            <div class="form-group">
-                @Html.TextArea("Content", "", 3, 70, new { @class = "form-control" })
-                @Html.ValidationMessage("Content")
-            </div>
-            <div class="form-group">
-                <input id="post-btn" class="btn btn-success" type="submit" value="Post" />
-                <input class="btn btn-error" type="button" value="Cancel" onclick="hideCommentContainer()" />
-            </div>
+                    <div class="form-group">
+                        @Html.TextArea("Content", "", 3, 70, new { @class = "form-control" })
+                        @Html.ValidationMessage("Content")
+                    </div>
+                    <div class="form-group">
+                        <input id="post-btn" class="btn btn-success" type="submit" value="Post" />
+                        <input class="btn btn-error" type="button" value="Cancel" onclick="hideCommentContainer()" />
+                    </div>
         }
     </div>
 
@@ -98,17 +100,17 @@
 @section scripts{
     <script src="~/Scripts/file-details.js"></script>
     <script>
-        var isChrome = !!window.chrome;
+        @*var isChrome = !!window.chrome;
         if (window.chrome)
-            $("[type=video\\\/mp4]").each(function () {
-                $(this).replaceWith($('<video width="650" height="500" onplay="increaseViewCount()"><source src="@Url.Action("VideoContentByIdWebM", "FileDetails", new { Id = Model.Id })" type="video/webm"></video>'));
-            });
+        $("[type=video\\\/mp4]").each(function () {
+        $(this).replaceWith($('<video width="650" height="500" onplay="increaseViewCount()"><source src="@Url.Action("VideoContentByIdWebM", "FileDetails", new { Id = Model.Id })" type="video/webm"></video>'));
+        });*@
 
         function increaseViewCount() {
             @{
                 Html.RenderAction("IncreaseViewCount", new { Id = @Model.Id });
             }
         }
-</script>
+    </script>
 }
 

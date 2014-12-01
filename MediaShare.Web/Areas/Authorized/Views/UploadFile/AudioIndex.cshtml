@@ -3,6 +3,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @model MediaFileViewModel
 <div class="well">
     <h3>Upload Song</h3>
@@ -10,28 +11,46 @@
     {
             @Html.AntiForgeryToken()
 
-            <label for="Title"><b>Title: </b></label>
+            <label for="Title">
+                <b>Title: </b>
+            </label>
 
             @Html.EditorFor(f => f.Title)
             @Html.ValidationMessageFor(m => m.Title)
 
             <p>
-                <label for="Description"><b>Description: </b></label>
+                <label for="Description">
+                    <b>Description: </b>
+                </label>
 
                 @Html.TextArea("Description", null, 4, 70, null)
             </p>
             <p>
 
-                <label for="Content">Content:</label><span style="font-size:12px">*allowed formats - mp3 max. size 50 mb</span>
+                <label for="Content">Content:</label><span style="font-size:12px">*allowed formats - mp3</span>
                 <input type="file" name="mediaFile" />
                 @Html.ValidationMessageFor(m => m.Content)
                 @Html.ValidationMessage("Size")
                 @Html.ValidationMessage("Type")
-                
+
             </p>
 
             <input id="upload-btn" class="btn btn-success" type="submit" value="Upload" />
+            <div id="loader">
+                <span style="color:red">File uploading please wait...</span>
+                <img src="~/MediaFiles/red loader.gif" width="50" height="50" alt="Alternate Text" />
+            </div>
 
     }
-</div>
 
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#loader").hide();
+        $("#upload-btn").click(function () {
+            $("#upload-btn").hide();
+            $("#loader").show();
+        })
+    });   
+</script>

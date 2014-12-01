@@ -2,9 +2,9 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-
     using MediaShare.Data;
     using MediaShare.Models;
+    using MediaShare.Web.Infrastructure.Helpers;
 
     [HandleError]
     public class BaseController : Controller
@@ -29,7 +29,7 @@
             var file = this.MediaFiles.FirstOrDefault(x => x.Id == id);
 
             string contentType = "image/jpeg";
-            var content = file.Thumbnail;
+            var content = DropboxHandler.GetFile(file.Thumbnail);
             
             return this.File(content, contentType);
         }

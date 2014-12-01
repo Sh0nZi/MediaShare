@@ -2,9 +2,8 @@
 {
     public interface IMediaHelper
     {
-        byte[] GetVideoThumbnail(byte[] content);
+        byte[] GetThumbnail(byte[] content=null);
 
-        byte[] GetAudioThumbnail();
 
 
     }

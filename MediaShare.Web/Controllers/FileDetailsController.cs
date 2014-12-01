@@ -2,14 +2,16 @@
 {
     using System.Linq;
     using System.Security.Principal;
-    using System.Web.Mvc;  
+    using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
-
     using AutoMapper.QueryableExtensions;
-
     using MediaShare.Data;
     using MediaShare.Web.Models;
     using MediaShare.Web.Models.Files;
+    using MediaShare.Web.Infrastructure.Helpers;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System;
 
     public class FileDetailsController : BaseController
     {
@@ -39,6 +41,11 @@
             }
             var file = this.MediaFiles.Project().To<MediaFileViewModel>()
                            .FirstOrDefault(f => f.Id == id);
+            
+         
+            //var contentArr = DropboxHandler.GetFile(content);
+            var link = DropboxHandler.GetUrl(file.Content);
+            ViewBag.MediaLink = link;
 
             if (file.AuthorId == currentUser)
             {
@@ -67,27 +74,6 @@
                                .Project().To<CommentViewModel>().OrderByDescending(c => c.DateCreated)
                                .ToList();
             return this.PartialView(comments);
-        }
-
-        public ActionResult AudioContentById(int id)
-        {
-            var content = this.MediaFiles.Project().To<MediaFileViewModel>()
-                              .FirstOrDefault(x => x.Id == id).Content;           
-            return this.File(content, "audio/mp3");
-        }
-
-        public ActionResult VideoContentById(int id)
-        {
-            var content = this.MediaFiles.Project().To<MediaFileViewModel>().
-            FirstOrDefault(x => x.Id == id).Content;                     
-            return this.File(content, "video/mp4");
-        }
-
-        public ActionResult VideoContentByIdWebM(int id)
-        {
-            var content = this.MediaFiles.Project().To<MediaFileViewModel>().
-            FirstOrDefault(x => x.Id == id).Content;
-            return this.File(content, "video/webm");
         }
 
         public void IncreaseViewCount(int id)

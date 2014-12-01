@@ -29,7 +29,7 @@
                     Title = "Pesho",
                     Type = MediaType.Video,
                     DateCreated = new DateTime(2012,12,20),
-                    Thumbnail = new byte[] { 100, 200, 30, 58, 60, 99 }
+                    Thumbnail = ""
                 }
             };
 
