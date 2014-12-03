@@ -10,9 +10,9 @@ using System.Web.Mvc;
 
 namespace MediaShare.Web.Controllers
 {
-    public class ThumbnailController : AuthorizedController
+    public class ThumbnailController : BaseController
     {
-        public ThumbnailController(IMediaShareData data, IIdentity identity) : base(data,identity)
+        public ThumbnailController(IMediaShareData data) : base(data)
         {
         }
         
