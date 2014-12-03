@@ -6,7 +6,7 @@
 @model MediaFileViewModel
 <div class="well">
     <h3>Upload Video</h3>
-    @using (Html.BeginForm("UploadVideo", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+    @*@using (Html.BeginForm("UploadVideo", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
     {
     @Html.AntiForgeryToken()
 
@@ -41,8 +41,8 @@
     <a href="http://video.online-convert.com/convert-to-webm">convert it</a> to <span style="text-decoration:underline">webm</span> format. Sorry for the inconvinience.
     </p>
     
-    }
-    @*<h3 class="text-center" style="color:red"> Video upload is disabled for security reasons...</h3>*@
+    }*@
+    <h3 class="text-center" style="color:red"> Video upload is disabled for security reasons...</h3>
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
