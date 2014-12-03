@@ -16,7 +16,7 @@
     {
         protected const int PageSize = 3;
 
-        private IIdentity identity;
+        private readonly IIdentity identity;
 
         public AuthorizedController(IMediaShareData data, IIdentity identity) : base(data)
         {

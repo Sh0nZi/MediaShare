@@ -1,4 +1,6 @@
-﻿using MediaShare.Data;
+﻿using System.Security.Principal;
+using MediaShare.Data;
+using MediaShare.Web.Areas.Authorized.Controllers;
 using MediaShare.Web.Infrastructure.Helpers;
 using System;
 using System.Collections.Generic;
@@ -8,12 +10,12 @@ using System.Web.Mvc;
 
 namespace MediaShare.Web.Controllers
 {
-    public class ThumbnailController : BaseController
+    public class ThumbnailController : AuthorizedController
     {
-        public ThumbnailController(IMediaShareData data) : base(data)
+        public ThumbnailController(IMediaShareData data, IIdentity identity) : base(data,identity)
         {
         }
-
+        
         // GET: Thumbnail
         public ActionResult Index(int id)
         {

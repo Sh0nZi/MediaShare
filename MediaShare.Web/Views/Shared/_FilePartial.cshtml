@@ -4,7 +4,7 @@
 
 @Html.DisplayFor(f => f.Title, "DisplayMediaTitle", new { id = @Model.Id })
 @{
-    Html.RenderAction("Index", "Thumbnail", new { id = @Model.Id });
+    Html.RenderAction("Index", "Thumbnail", new { id = @Model.Id, area = "" });
 }
 
 
