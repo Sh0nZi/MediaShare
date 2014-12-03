@@ -42,25 +42,25 @@
         }
 
         // Post: Video
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult UploadVideo(MediaFileViewModel file, HttpPostedFileBase mediaFile)
-        //{
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateAntiForgeryToken]
+        public ActionResult UploadVideo(MediaFileViewModel file, HttpPostedFileBase mediaFile)
+        {
 
-        //    if (!this.IsValid(mediaFile, "video/mp4") && !this.IsValid(mediaFile, "video/webm"))
-        //    {
-        //        return this.View("VideoIndex", file);
-        //    }
-        //    var dbFile = Mapper.Map<MediaFile>(file);
-        //    this.PopulateContent(dbFile, mediaFile);
-        //    dbFile.Type = MediaType.Video;
+            if (!this.IsValid(mediaFile, "video/mp4") && !this.IsValid(mediaFile, "video/webm"))
+            {
+                return this.View("VideoIndex", file);
+            }
+            var dbFile = Mapper.Map<MediaFile>(file);
+            this.PopulateContent(dbFile, mediaFile);
+            dbFile.Type = MediaType.Video;
              
-        //    this.Data.Files.Add(dbFile);
-        //    this.Data.SaveChanges();
+            this.Data.Files.Add(dbFile);
+            this.Data.SaveChanges();
 
-        //    this.TempData["Success"] = "Video successfully added!";
-        //    return this.RedirectToAction("Index", "Home", new { area = "" });
-        //}
+            this.TempData["Success"] = "Video successfully added!";
+            return this.RedirectToAction("Index", "Home", new { area = "" });
+        }
         
         // Post: Audio
         [AcceptVerbs(HttpVerbs.Post)]

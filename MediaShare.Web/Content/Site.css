@@ -2,7 +2,9 @@
 {
     padding-top: 50px;
     padding-bottom: 20px;
-       
+    background-image: url("image.jpg");
+    background-repeat: round;
+    background-attachment: fixed; 
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -19,10 +21,7 @@ textarea
 {
     max-width: 280px;
 }
-a:hover
-{
-    opacity: 0.8;
-}
+
 a img:hover
 {
     border: 1px solid red;
@@ -84,7 +83,7 @@ h3
 {
     color: crimson;
     margin-bottom: 25px; 
-    font-family:'Comic Sans MS', cursive;
+    font-family: 'Comic Sans MS', cursive;
 }
 .dropdown:hover .dropdown-menu
 {
@@ -98,16 +97,35 @@ h4 a:hover, b a:hover
 }
 .navbar-brand
 {
-    font-family:'Comic Sans MS', cursive;
-    font-size:20px;
-    
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 20px;
 }
-.navbar-nav {
-    font-family: 'Comic Sans MS', cursive;    
+.navbar-nav
+{
+    font-family: 'Comic Sans MS', cursive; 
 }
-h4{
-    font-family:'Tempus Sans ITC';
-    font-size:22px;
+h4
+{
+    font-family: 'Tempus Sans ITC';
+    font-size: 22px;
 }
-
-
+footer
+{
+    color: antiquewhite;
+}
+.navbar-default
+{
+    opacity: 0.8;
+}
+.well
+{ 
+    background-color: rgba(255, 255, 255, 0.2);
+    color: whitesmoke;
+}
+.pagination
+{
+    color: whitesmoke;
+}
+input, select, textarea{
+    color:black;
+}

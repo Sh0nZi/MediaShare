@@ -2,5 +2,5 @@
 
 @model ICollection<Vote>
 <p>
-    <b>Rating: </b><span style="color:ButtonShadow">@(string.Format("{0:0.0}", (double)Model.Sum(x => x.Value) / (Model.Count == 0 ? 1 : Model.Count))) / 5 (@Model.Count user(s) voted)</span> 
+    <b >Rating: </b><span style="color:ButtonShadow">@(string.Format("{0:0.0}", (double)Model.Sum(x => x.Value) / (Model.Count == 0 ? 1 : Model.Count))) / 5 (@Model.Count user(s) voted)</span> 
 </p>

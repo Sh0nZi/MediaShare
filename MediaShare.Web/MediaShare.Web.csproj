@@ -254,6 +254,7 @@
     <Compile Include="Areas\Authorized\Controllers\FavouritesController.cs" />
     <Compile Include="Areas\Authorized\Controllers\UserFilesController.cs" />
     <Compile Include="Areas\Authorized\Models\UserViewModel.cs" />
+    <Compile Include="Controllers\ThumbnailController.cs" />
     <Compile Include="Infrastructure\Helpers\DropboxHandler.cs" />
     <Compile Include="Infrastructure\Helpers\RandomStringGenerator.cs" />
     <Compile Include="Models\Files\AdvancedMediaFileViewModel.cs" />
@@ -1087,7 +1088,7 @@
     <Content Include="Views\Shared\DisplayTemplates\DisplayAsyncPager.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplaySyncPager.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayMediaTitle.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\DisplayThumbnail.cshtml" />
+    <Content Include="Views\Thumbnail\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayPageHeader.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayFavButtons.cshtml" />
     <Content Include="Scripts\kendo\jquery.min.map" />

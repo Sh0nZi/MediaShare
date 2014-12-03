@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-
-namespace MediaShare.Web.Infrastructure.Helpers
+﻿namespace MediaShare.Web.Infrastructure.Helpers
 {
+    using System;
+    using System.Text;
+
     public class RandomStringGenerator
     {
-        private  const string Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        private const string Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
         private static readonly Random rand = new Random();
 

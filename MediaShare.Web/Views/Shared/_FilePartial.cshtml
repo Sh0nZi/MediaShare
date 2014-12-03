@@ -2,7 +2,9 @@
 
 @model BasicMediaFileViewModel
 
-@Html.DisplayFor(f => f.Title, "DisplayMediaTitle", new { id=@Model.Id})
-@Html.DisplayFor(f=>f.Id,"DisplayThumbnail")
+@Html.DisplayFor(f => f.Title, "DisplayMediaTitle", new { id = @Model.Id })
+@{
+    Html.RenderAction("Index", "Thumbnail", new { id = @Model.Id });
+}
 
 

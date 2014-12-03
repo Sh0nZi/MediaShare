@@ -4,7 +4,5 @@
     {
         byte[] GetThumbnail(byte[] content=null);
 
-
-
     }
 }

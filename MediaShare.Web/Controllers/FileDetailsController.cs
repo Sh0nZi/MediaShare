@@ -43,9 +43,8 @@
                            .FirstOrDefault(f => f.Id == id);
             
          
-            //var contentArr = DropboxHandler.GetFile(content);
-            var link = DropboxHandler.GetUrl(file.Content);
-            ViewBag.MediaLink = link;
+            ViewBag.MediaLink = DropboxHandler.GetUrl(file.Content);
+           
 
             if (file.AuthorId == currentUser)
             {

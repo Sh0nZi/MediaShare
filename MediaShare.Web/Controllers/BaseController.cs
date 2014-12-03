@@ -6,7 +6,7 @@
     using MediaShare.Models;
     using MediaShare.Web.Infrastructure.Helpers;
 
-    [HandleError]
+    //[HandleError]
     public class BaseController : Controller
     {
         public BaseController(IMediaShareData data)
@@ -22,16 +22,6 @@
             {
                 return this.Data.Files.All();
             }
-        }
-
-        public ActionResult ByIdThumbnail(int id)
-        {
-            var file = this.MediaFiles.FirstOrDefault(x => x.Id == id);
-
-            string contentType = "image/jpeg";
-            var content = DropboxHandler.GetFile(file.Thumbnail);
-            
-            return this.File(content, contentType);
         }
     }
 }
