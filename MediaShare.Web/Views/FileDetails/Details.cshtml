@@ -1,19 +1,19 @@
 ﻿@using MediaShare.Models
 @using MediaShare.Web.Models.Files;
 @using Microsoft.AspNet.Identity;
+
 @model MediaFileViewModel
 @{
     ViewBag.Title = @Model.Title;
 
 }
 <div id="details-page" class="well">
-  
-     
+
     @Html.DisplayFor(f => f.Title, "DisplayPageHeader")
 
     @Html.DisplayFor(d => d.DateCreated, "CustomDate")
     @Html.DisplayFor(d => d.Author, "DisplayAuthor")
-
+    
     @if (Model.Type == MediaType.Video)
     {
             <video width="650" height="500" controls  onplay="increaseViewCount()">
@@ -24,34 +24,34 @@
     }
     else
     {
-       
-            @Html.DisplayFor(f => f.Id, "DisplayThumbnail")
-            <audio controls style="display:block" onplay="increaseViewCount()">
-                <source src=@ViewBag.MediaLink type="video/mp4" />
-            </audio>
+        Html.RenderAction("Index", "Thumbnail", new { id = @Model.Id });
         
+        <audio controls style="display:block" onplay="increaseViewCount()">
+            <source src=@ViewBag.MediaLink type="video/mp4" />
+        </audio>
+    
     }
     @if (Request.IsAuthenticated && !ViewBag.IsYours)
     {
         if (!ViewBag.IsFavourited)
         {
                     @Html.DisplayFor(f => f.Id, "DisplayFavButtons", new { add = "", rem = "display:none" })
-
+    
         }
         else
         {
                     @Html.DisplayFor(f => f.Id, "DisplayFavButtons", new { add = "display:none", rem = "" })
-
+    
         }
     }
     @Html.DisplayFor(f => f.ViewsCount, "DisplayViewsCount")
-
+    
     <div style="margin-bottom:50px">
         <div id="container-for-votes">
             @{
                 Html.RenderAction("FileVotes", "FileDetails", new { Id = Model.Id });
             }
-
+            
             @if (Request.IsAuthenticated &&
                 !Model.Votes.Any(v => v.AuthorId == User.Identity.GetUserId()) &&
                 Model.AuthorId != User.Identity.GetUserId())
@@ -61,24 +61,24 @@
                                     @Html.AntiForgeryToken()
                                     <div>
                                         @Html.Editor("Value", "VoteValueDropdown")
-
+                
                                         <input id="post-btn" class="btn btn-primary btn-sm" type="submit" value="Vote" />
                                     </div>
                 }
             }
         </div>
     </div>
-
+    
     <p>
         <b>Description:</b>
     </p>
     <pre>@Model.Description</pre>
-
+    
     <div style="margin-left:30px" id="comment-container">
         @using (Ajax.BeginForm("PostComment", "DetailsAuthorized", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-comments", InsertionMode = InsertionMode.Replace, OnComplete = "hideCommentContainer", OnSuccess = "pesho" }, new { @class = "form-horizontal", role = "form" }))
         {
                     @Html.AntiForgeryToken()
-
+        
                     <div class="form-group">
                         @Html.TextArea("Content", "", 3, 70, new { @class = "form-control" })
                         @Html.ValidationMessage("Content")
@@ -89,13 +89,13 @@
                     </div>
         }
     </div>
-
+    
     <div id="container-for-comments">
         @{
             Html.RenderAction("FileComments", "FileDetails", new { Id = Model.Id });
         }
     </div>
-
+    
 </div>
 @section scripts{
     <script src="~/Scripts/file-details.js"></script>
@@ -105,7 +105,7 @@
         $("[type=video\\\/mp4]").each(function () {
         $(this).replaceWith($('<video width="650" height="500" onplay="increaseViewCount()"><source src="@Url.Action("VideoContentByIdWebM", "FileDetails", new { Id = Model.Id })" type="video/webm"></video>'));
         });*@
-
+        
         function increaseViewCount() {
             @{
                 Html.RenderAction("IncreaseViewCount", new { Id = @Model.Id });
