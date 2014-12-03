@@ -2,8 +2,7 @@
 {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-image: url("image.jpg");
-    background-repeat: round;
+    background-image: url(image.jpg);
     background-attachment: fixed; 
 }
 
