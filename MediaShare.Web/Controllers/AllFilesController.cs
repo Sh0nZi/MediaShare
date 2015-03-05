@@ -1,5 +1,6 @@
 ﻿namespace MediaShare.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -17,20 +18,33 @@
 
         public AllFilesController(IMediaShareData data) : base(data)
         {
+
+        }
+
+        protected IEnumerable<AdvancedMediaFileViewModel> AllFiles
+        {
+            get
+            {
+                if (this.Session["AllFiles"] == null)
+                {
+                    this.Session["AllFiles"] =  this.MediaFiles.Project().To<AdvancedMediaFileViewModel>().ToList();
+                }
+                return this.Session["AllFiles"] as IEnumerable<AdvancedMediaFileViewModel>;
+            }
         }
 
         // GET: AllFiles
         public ActionResult Index()
         {
-            var videos = this.MediaFiles.Project().To<AdvancedMediaFileViewModel>();
-            videos = videos.OrderByDescending(f => f.DateCreated);
+            
+            var videos = this.AllFiles.OrderByDescending(f => f.DateCreated);
             return this.View(videos.ToPagedList(1, PageSize));
         }
 
         [HttpGet]
         public ActionResult RenderFiles(int? page, FilterViewModel filter)
         {
-            var files = this.MediaFiles.Project().To<AdvancedMediaFileViewModel>();
+            var files = AllFiles;
 
             string filterType = filter.Type;
             string searchString = filter.SearchString;
@@ -48,7 +62,7 @@
             return this.PartialView("_PagedFiles", files.ToPagedList(page ?? 1, PageSize));
         }
 
-        private IQueryable<AdvancedMediaFileViewModel> Filter(IQueryable<AdvancedMediaFileViewModel> files, string searchString, string filterType)
+        private IEnumerable<AdvancedMediaFileViewModel> Filter(IEnumerable<AdvancedMediaFileViewModel> files, string searchString, string filterType)
         {
              if (!string.IsNullOrEmpty(searchString))
             {
@@ -71,7 +85,7 @@
 
         }
 
-        private IQueryable<AdvancedMediaFileViewModel> Sort(IQueryable<AdvancedMediaFileViewModel> files, string orderBy, string sortType)
+        private IEnumerable<AdvancedMediaFileViewModel> Sort(IEnumerable<AdvancedMediaFileViewModel> files, string orderBy, string sortType)
         {
             
             if (orderBy == "Views")

@@ -1,6 +1,8 @@
-﻿@{
+﻿@using MediaShare.Web.Models.Files
+@{
     ViewBag.Title = "Home Page";
 }
+@model IEnumerable<BasicMediaFileViewModel>
 <div>
     @if (TempData["Success"] != null)
     {
@@ -11,7 +13,7 @@
         <h3>Top Rated Video clips</h3>
         <hr />
         @{
-            Html.RenderAction("GetTopVideo");
+            Html.RenderPartial("HomePartial", @Model.Where(f => f.Type == MediaShare.Models.MediaType.Video).ToList());
         }
         
     </div>
@@ -19,7 +21,7 @@
         <h3>Top Rated Songs</h3>
         <hr />
         @{
-            Html.RenderAction("GetTopAudio");
+            Html.RenderPartial("HomePartial", @Model.Where(f => f.Type == MediaShare.Models.MediaType.Audio).ToList());
         }
         
     </div>

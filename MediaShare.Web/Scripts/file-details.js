@@ -1,11 +1,11 @@
 ﻿
 $('#comment-container').hide();
 function showCommentContainer() {
-    $('#comment-container').show();
+    $('#comment-container').fadeIn();
     $('#show-pannel-btn').hide();
 }
 function hideCommentContainer(e) {
-    $('#comment-container').hide();
+    $('#comment-container').fadeOut();
     $('#show-pannel-btn').show();
 }
 function pesho() {

@@ -6,6 +6,11 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@ViewBag.Title </title>
+        <meta property="og:image" content="@ViewBag.ThumbLink" />
+        <meta property="og:video" content="@ViewBag.MediaLink" />
+        <meta property="og:video:height" content="640" />
+        <meta property="og:video:width" content="385" />
+        <meta property="og:video:type" content="application/x-shockwave-flash" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         @RenderSection("styles", required: false)

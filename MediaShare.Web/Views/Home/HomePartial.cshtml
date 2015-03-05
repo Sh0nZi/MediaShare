@@ -4,7 +4,9 @@
 
 @if (Model.Any())
 {
-    foreach (var item in Model)
+    foreach (var item in Model
+        .OrderByDescending(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count)
+        .Take(6))
     {
         <div class="col-md-4" style="margin-bottom:50px">
             @{Html.RenderPartial("_FilePartial", item);}

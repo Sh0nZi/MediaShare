@@ -10,6 +10,7 @@
     using MediaShare.Models;
     using MediaShare.Web.Infrastructure.Helpers;
     using MediaShare.Web.Models.Files;
+    using System.Drawing;
     
     [ValidateInput(false)]
     public class UploadFileController : AuthorizedController
@@ -42,25 +43,25 @@
         }
 
         //// Post: Video
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult UploadVideo(MediaFileViewModel file, HttpPostedFileBase mediaFile)
-        //{
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateAntiForgeryToken]
+        public ActionResult UploadVideo(MediaFileViewModel file, HttpPostedFileBase mediaFile)
+        {
 
-        //    if (!this.IsValid(mediaFile, "video/mp4") && !this.IsValid(mediaFile, "video/webm"))
-        //    {
-        //        return this.View("VideoIndex", file);
-        //    }
-        //    var dbFile = Mapper.Map<MediaFile>(file);
-        //    this.PopulateContent(dbFile, mediaFile);
-        //    dbFile.Type = MediaType.Video;
+            if (!this.IsValid(mediaFile, "video/mp4") && !this.IsValid(mediaFile, "video/webm"))
+            {
+                return this.View("VideoIndex", file);
+            }
+            var dbFile = Mapper.Map<MediaFile>(file);
+            this.PopulateContent(dbFile, mediaFile);
+            dbFile.Type = MediaType.Video;
              
-        //    this.Data.Files.Add(dbFile);
-        //    this.Data.SaveChanges();
+            this.Data.Files.Add(dbFile);
+            this.Data.SaveChanges();
 
-        //    this.TempData["Success"] = "Video successfully added!";
-        //    return this.RedirectToAction("Index", "Home", new { area = "" });
-        //}
+            this.TempData["Success"] = "Video successfully added!";
+            return this.RedirectToAction("Index", "Home", new { area = "" });
+        }
         
         // Post: Audio
         [AcceptVerbs(HttpVerbs.Post)]
@@ -105,6 +106,10 @@
 
             var fileThumbnail = thumbnailExtractor.GetThumbnail(fileContent);                    
             DropboxHandler.UploadFile(fileThumbnail, fileName + "thumb.jpeg");
+            //var fileUrl = @"C:\Users\ShOnZi\Dropbox\Apps\MediaSharing\" + fileName + "thumb.jpeg";
+            //var image = Image.FromFile(fileUrl);
+            //var thumb = image.GetThumbnailImage(250, 150, ()=>false, IntPtr.Zero);
+            //thumb.Save(fileUrl);
 
             file.Content = fileName;
             file.Thumbnail = fileName + "thumb.jpeg";
@@ -130,6 +135,30 @@
                 return false;
             }
             return true;
+        }
+
+        private static Size GetThumbnailSize(Image original)
+        {
+            // Maximum size of any dimension.
+            const int maxPixels = 200;
+
+            // Width and height.
+            int originalWidth = original.Width;
+            int originalHeight = original.Height;
+
+            // Compute best factor to scale entire image based on larger dimension.
+            double factor;
+            if (originalWidth > originalHeight)
+            {
+                factor = (double)maxPixels / originalWidth;
+            }
+            else
+            {
+                factor = (double)maxPixels / originalHeight;
+            }
+
+            // Return thumbnail size.
+            return new Size((int)(originalWidth * factor), (int)(originalHeight * factor));
         }
     }
 }

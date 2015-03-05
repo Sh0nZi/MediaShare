@@ -44,8 +44,7 @@
             
          
             ViewBag.MediaLink = DropboxHandler.GetUrl(file.Content);
-           
-
+            ViewBag.ThumbLink = DropboxHandler.GetUrl(file.Thumbnail);
             if (file.AuthorId == currentUser)
             {
                 this.ViewBag.IsYours = true;
