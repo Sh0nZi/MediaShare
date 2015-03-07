@@ -51,7 +51,6 @@
             string orderBy = filter.OrderBy;
             string sortType = filter.SortType;
 
-            this.SaveToSession("search", ref searchString);
             this.SaveToSession("type", ref filterType);
             this.SaveToSession("orderBy", ref orderBy);
             this.SaveToSession("sortType", ref sortType);
@@ -64,7 +63,7 @@
 
         private IEnumerable<AdvancedMediaFileViewModel> Filter(IEnumerable<AdvancedMediaFileViewModel> files, string searchString, string filterType)
         {
-             if (!string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 files = files.Where(s => s.Title.ToUpper().Contains(searchString.ToUpper()));
             }

@@ -1,12 +1,12 @@
 ﻿
 $('#comment-container').hide();
 function showCommentContainer() {
-    $('#comment-container').fadeIn();
-    $('#show-pannel-btn').hide();
+    $('#comment-container').show('slow');
+    $('#show-pannel-btn').hide('slow');
 }
 function hideCommentContainer(e) {
-    $('#comment-container').fadeOut();
-    $('#show-pannel-btn').show();
+    $('#comment-container').hide('slow');
+    $('#show-pannel-btn').show('slow');
 }
 function pesho() {
     $('#comment-message').show();

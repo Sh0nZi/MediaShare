@@ -1,10 +1,11 @@
 ﻿@using MediaShare.Web.Models.Files
-
-@model ICollection<BasicMediaFileViewModel>
+@model IEnumerable<BasicMediaFileViewModel>
 
 @if (Model.Any())
 {
-    foreach (var item in Model)
+    foreach (var item in Model.OrderByDescending(f => f.DateCreated)
+                                 .Take(6)
+                                 .ToList())
     {
         <div class="col-md-4" style="margin-bottom:50px">
             @{Html.RenderPartial("_FilePartial", item);}

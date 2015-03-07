@@ -18,27 +18,8 @@
         // GET: LatestFiles
         public ActionResult Index()
         {
-            return this.View();
-        }
-
-        public ActionResult LatestVideo()
-        {
-            var videoFiles = this.MediaFiles.Project().To<BasicMediaFileViewModel>()
-                                 .Where(f => f.Type == MediaType.Video)
-                                 .OrderByDescending(f => f.DateCreated)
-                                 .Take(6)
-                                 .ToList();
-            return this.PartialView("LatestPartial", videoFiles);
-        }
-
-        public ActionResult LatestAudio()
-        {
-            var audioFiles = this.MediaFiles.Project().To<BasicMediaFileViewModel>()
-                                 .Where(f => f.Type == MediaType.Audio)
-                                 .OrderByDescending(f => f.DateCreated)
-                                 .Take(6)
-                                 .ToList();
-            return this.PartialView("LatestPartial", audioFiles);
+            var files = this.MediaFiles.Project().To<BasicMediaFileViewModel>();
+            return this.View(files);
         }
     }
 }
