@@ -8,5 +8,5 @@
 }  
 
 <div class="col-md-10">
-    @Html.PagedListPager(Model, page => Url.Action(action, controller, new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions.OnlyShowFivePagesAtATime, new AjaxOptions { UpdateTargetId = "files-container", HttpMethod = "GET" }))
+    @Html.PagedListPager(Model, page => Url.Action(action, controller, new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions.OnlyShowFivePagesAtATime, new AjaxOptions { UpdateTargetId = "files-container", LoadingElementId = "Loader", HttpMethod = "GET" }))
 </div>

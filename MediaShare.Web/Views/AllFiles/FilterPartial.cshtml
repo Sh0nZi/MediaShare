@@ -1,25 +1,32 @@
 ﻿@using MediaShare.Web.Models
 @model FilterViewModel
-
-@using (Ajax.BeginForm("RenderFiles", "AllFiles", new AjaxOptions { HttpMethod = "GET",InsertionMode = InsertionMode.Replace, UpdateTargetId = "files-container" }))
+@using (Ajax.BeginForm("RenderFiles", "AllFiles", new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, LoadingElementId = "Loader", UpdateTargetId = "files-container" }))
 {
     <div class="row">
-        <div class="col-md-3">
-            @Html.TextBox("SearchString", "", new { placeholder = "Search by title ", onkeyup = "$(this.form).submit();" })
-        </div>
-        <div class="col-md-3">
-            <b class="pull-left">Media Type:&nbsp;</b>
-            @Html.EditorFor(f=>f.Type,"TypeDropdown")
-        </div>
-        <div class="col-md-3">
-            <b class="pull-left">Order by:&nbsp;</b>
-            @Html.EditorFor(f => f.OrderBy, "OrderDropdown")
-        </div>
-        <div class="col-md-3">
-            <b class="pull-left">Asc/Desc:&nbsp;</b>
-            @Html.EditorFor(f => f.SortType, "SortTypeDropdown")
-        </div>
+        <div class="form-group col-lg-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">Search</button>
+                </span>
+                @Html.TextBox("SearchString", "", new { @class = "form-control", placeholder = "Search by title... " })                
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+        <div class="form-group col-lg-12">
+            <div class="col-md-3">
+                <b class="pull-left">Media Type:&nbsp;</b>
+                @Html.EditorFor(f => f.Type, "TypeDropdown")
+            </div>
+            <div class="col-md-3">
+                <b class="pull-left">Order by:&nbsp;</b>
+                @Html.EditorFor(f => f.OrderBy, "OrderDropdown")
+            </div>
+            <div class="col-md-3">
+                <b class="pull-left">Asc/Desc:&nbsp;</b>
+                @Html.EditorFor(f => f.SortType, "SortTypeDropdown")
+            </div>
+
+        </div>   
     </div>
 
 }
- 
+

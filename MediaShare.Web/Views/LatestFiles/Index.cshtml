@@ -9,7 +9,7 @@
     <hr />
    
     @{
-        Html.RenderPartial("LatestPartial", @Model.Where(f => f.Type == MediaShare.Models.MediaType.Video).ToList());
+        Html.RenderPartial("LatestPartial", @Model.Where(f => f.Type == MediaShare.Models.MediaType.Video));
     }    
     
 
@@ -18,7 +18,7 @@
     <h3>Latest Audio files</h3>
     <hr />
     @{
-        Html.RenderPartial("LatestPartial", @Model.Where(f => f.Type == MediaShare.Models.MediaType.Audio).ToList());
+        Html.RenderPartial("LatestPartial", @Model.Where(f => f.Type == MediaShare.Models.MediaType.Audio));
     }
     
 

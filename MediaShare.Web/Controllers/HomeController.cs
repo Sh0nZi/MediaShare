@@ -19,7 +19,7 @@
              
         public ActionResult Index()
         {
-            var topItems = this.MediaFiles.Project().To<BasicMediaFileViewModel>().ToList();
+            var topItems = this.MediaFiles.Project().To<BasicMediaFileViewModel>();
             return this.View(topItems);
         }
 

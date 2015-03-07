@@ -16,7 +16,8 @@
     {
         private const int PageSize = 5;
 
-        public AllFilesController(IMediaShareData data) : base(data)
+        public AllFilesController(IMediaShareData data)
+            : base(data)
         {
 
         }
@@ -27,16 +28,19 @@
             {
                 if (this.Session["AllFiles"] == null)
                 {
-                    this.Session["AllFiles"] =  this.MediaFiles.Project().To<AdvancedMediaFileViewModel>().ToList();
+                    this.Session["AllFiles"] = this.MediaFiles.Project().To<AdvancedMediaFileViewModel>().OrderByDescending(f => f.DateCreated);
                 }
                 return this.Session["AllFiles"] as IEnumerable<AdvancedMediaFileViewModel>;
+            }
+            set
+            {
+                this.Session["AllFiles"] = value;
             }
         }
 
         // GET: AllFiles
         public ActionResult Index()
         {
-            
             var videos = this.AllFiles.OrderByDescending(f => f.DateCreated);
             return this.View(videos.ToPagedList(1, PageSize));
         }
@@ -44,99 +48,109 @@
         [HttpGet]
         public ActionResult RenderFiles(int? page, FilterViewModel filter)
         {
-            var files = AllFiles;
-
-            string filterType = filter.Type;
-            string searchString = filter.SearchString;
-            string orderBy = filter.OrderBy;
-            string sortType = filter.SortType;
-
-            this.SaveToSession("type", ref filterType);
-            this.SaveToSession("orderBy", ref orderBy);
-            this.SaveToSession("sortType", ref sortType);
-
-            files = this.Filter(files, searchString, filterType);
-            files = this.Sort(files, orderBy, sortType);
-
-            return this.PartialView("_PagedFiles", files.ToPagedList(page ?? 1, PageSize));
-        }
-
-        private IEnumerable<AdvancedMediaFileViewModel> Filter(IEnumerable<AdvancedMediaFileViewModel> files, string searchString, string filterType)
-        {
-            if (!string.IsNullOrEmpty(searchString))
+            if (filter.OrderBy != null)
             {
-                files = files.Where(s => s.Title.ToUpper().Contains(searchString.ToUpper()));
+                if (!this.IsSameInSession("type", filter.Type))
+                {
+                    ResetSession("AllFiles", "searchString", "orderType", "sortType", filter.Type);
+                }
+
+                if (!this.IsSameInSession("searchString", filter.SearchString))
+                {
+                    ResetSession("AllFiles", "searchString", "orderType", "sortType", filter.Type);
+                    AllFiles = AllFiles.Where(s => s.Title.ToUpper()
+                           .Contains(filter.SearchString != null ? filter.SearchString.ToUpper() : string.Empty));
+                }
+
+                if (!this.IsSameInSession("orderBy", filter.OrderBy)
+                    || !this.IsSameInSession("sortType", filter.SortType))
+                {
+                    this.Sort(filter.OrderBy, filter.SortType);
+                }
             }
 
+            return this.PartialView("_PagedFiles", AllFiles.ToPagedList(page ?? 1, PageSize));
+        }
+
+        private void Filter(string filterType)
+        {
             if (filterType != null)
             {
                 if (filterType == "Video")
                 {
-                    return files.Where(s => s.Type == MediaType.Video);
+                    AllFiles = AllFiles.Where(s => s.Type == MediaType.Video);
                 }
 
                 if (filterType == "Audio")
                 {
-                    return files.Where(s => s.Type == MediaType.Audio);
-                }
-            }
-            return files;
-
-        }
-
-        private IEnumerable<AdvancedMediaFileViewModel> Sort(IEnumerable<AdvancedMediaFileViewModel> files, string orderBy, string sortType)
-        {
-            
-            if (orderBy == "Views")
-            {
-                if (sortType == "Ascending")
-                {
-                    return files.OrderBy(f => f.ViewsCount);
-                }
-                else
-                {
-                    return files.OrderByDescending(f => f.ViewsCount);
-                }
-            }
-            else if (orderBy == "Rating")
-            {
-                if (sortType == "Ascending")
-                {
-                    return files.OrderBy(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count);
-                }
-                else
-                {
-                    return files.OrderByDescending(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count);
-                }
-            }
-            else
-            {
-                if (sortType == "Ascending")
-                {
-                    return files.OrderBy(f => f.DateCreated);
-                }
-                else
-                {
-                    return files.OrderByDescending(f => f.DateCreated);
+                    AllFiles = AllFiles.Where(s => s.Type == MediaType.Audio);
                 }
             }
         }
 
-        private void SaveToSession(string key, ref string value)
+        private void Sort(string orderBy, string sortType)
         {
-            if (this.Session[key] == null)
+
+            switch (orderBy)
             {
-                this.Session[key] = string.Empty;
+                case "Views":
+                    {
+                        if (sortType == "Ascending")
+                        {
+                            AllFiles = AllFiles.OrderBy(f => f.ViewsCount);
+                        }
+                        else
+                        {
+                            AllFiles = AllFiles.OrderByDescending(f => f.ViewsCount);
+                        }
+                    }
+                    break;
+                case "Rating":
+                    {
+                        if (sortType == "Ascending")
+                        {
+                            AllFiles = AllFiles.OrderBy(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count);
+                        }
+                        else
+                        {
+                            AllFiles = AllFiles.OrderByDescending(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count);
+                        }
+                    }
+                    break;
+                default:
+                    {
+                        if (sortType == "Ascending")
+                        {
+                            AllFiles = AllFiles.OrderBy(f => f.DateCreated);
+                        }
+                        else
+                        {
+                            AllFiles = AllFiles.OrderByDescending(f => f.DateCreated);
+                        }
+                    }
+                    break;
+            }
+        }
+
+        private bool IsSameInSession(string key, string value)
+        {
+            value = value ?? (this.Session[key] != null ? this.Session[key].ToString() : null);
+            if (this.Session[key] != null && this.Session[key].ToString() == value)
+            {
+                return true;
             }
 
-            if (value != null)
+            this.Session[key] = value;
+            return false;
+        }
+
+        private void ResetSession(params string[] keys)
+        {
+            foreach (var key in keys)
             {
-                this.Session[key] = value;
+                this.Session[key] = null;
             }
-            else
-            {
-                value = this.Session[key].ToString();
-            }
+            this.Filter(keys.Last());
         }
     }
 }

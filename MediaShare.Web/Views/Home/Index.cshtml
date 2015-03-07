@@ -13,7 +13,7 @@
         <h3>Top Rated Video clips</h3>
         <hr />
         @{
-            Html.RenderPartial("HomePartial", @Model.Where(f => f.Type == MediaShare.Models.MediaType.Video).ToList());
+            Html.RenderPartial("HomePartial", @Model.Where(f => f.Type == MediaShare.Models.MediaType.Video));
         }
         
     </div>
@@ -21,7 +21,7 @@
         <h3>Top Rated Songs</h3>
         <hr />
         @{
-            Html.RenderPartial("HomePartial", @Model.Where(f => f.Type == MediaShare.Models.MediaType.Audio).ToList());
+            Html.RenderPartial("HomePartial", @Model.Where(f => f.Type == MediaShare.Models.MediaType.Audio));
         }
         
     </div>

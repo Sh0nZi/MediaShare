@@ -19,6 +19,7 @@ select,
 textarea
 {
     max-width: 280px;
+      color:black;
 }
 
 a img:hover
@@ -28,6 +29,8 @@ a img:hover
 .well
 {
     border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: whitesmoke;
 }
 .btn
 {
@@ -116,15 +119,8 @@ footer
 {
     opacity: 0.8;
 }
-.well
-{ 
-    background-color: rgba(255, 255, 255, 0.2);
-    color: whitesmoke;
-}
+
 .pagination, label,h1,h2,h3,h4
 {
     color: whitesmoke;
-}
-input, select, textarea{
-    color:black;
 }
