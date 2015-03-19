@@ -22,73 +22,55 @@
 
         }
 
-        protected IEnumerable<AdvancedMediaFileViewModel> AllFiles
-        {
-            get
-            {
-                if (this.Session["AllFiles"] == null)
-                {
-                    this.Session["AllFiles"] = this.MediaFiles.Project().To<AdvancedMediaFileViewModel>().OrderByDescending(f => f.DateCreated);
-                }
-                return this.Session["AllFiles"] as IEnumerable<AdvancedMediaFileViewModel>;
-            }
-            set
-            {
-                this.Session["AllFiles"] = value;
-            }
-        }
-
         // GET: AllFiles
         public ActionResult Index()
         {
-            var videos = this.AllFiles.OrderByDescending(f => f.DateCreated);
+            var videos = this.MediaFiles.Project().To<AdvancedMediaFileViewModel>().OrderByDescending(f => f.DateCreated);
+
+            this.IsSameInSession("type", "Both");
+            this.IsSameInSession("searchString", string.Empty);
             return this.View(videos.ToPagedList(1, PageSize));
         }
 
         [HttpGet]
         public ActionResult RenderFiles(int? page, FilterViewModel filter)
         {
-            if (filter.OrderBy != null)
+            var allFiles = this.MediaFiles.Project().To<AdvancedMediaFileViewModel>();
+            
+            if (!this.IsSameInSession("type", filter.Type))
             {
-                if (!this.IsSameInSession("type", filter.Type))
-                {
-                    ResetSession("AllFiles", "searchString", "orderType", "sortType", filter.Type);
-                }
-
-                if (!this.IsSameInSession("searchString", filter.SearchString))
-                {
-                    ResetSession("AllFiles", "searchString", "orderType", "sortType", filter.Type);
-                    AllFiles = AllFiles.Where(s => s.Title.ToUpper()
-                           .Contains(filter.SearchString != null ? filter.SearchString.ToUpper() : string.Empty));
-                }
-
-                if (!this.IsSameInSession("orderBy", filter.OrderBy)
-                    || !this.IsSameInSession("sortType", filter.SortType))
-                {
-                    this.Sort(filter.OrderBy, filter.SortType);
-                }
+                allFiles = this.Filter(allFiles, filter.Type);
             }
+                
+            if (!this.IsSameInSession("searchString", filter.SearchString))
+            {
+                allFiles = allFiles.Where(s => s.Title.ToUpper()
+                        .Contains(filter.SearchString != null ? filter.SearchString.ToUpper() : string.Empty));
+            }
+            
+            allFiles = this.Sort(allFiles, filter.OrderBy, filter.SortType);
+            
+            
 
-            return this.PartialView("_PagedFiles", AllFiles.ToPagedList(page ?? 1, PageSize));
+            return this.PartialView("_PagedFiles", allFiles.ToPagedList(page ?? 1, PageSize));
         }
 
-        private void Filter(string filterType)
-        {
-            if (filterType != null)
+        private IQueryable<AdvancedMediaFileViewModel> Filter(IQueryable<AdvancedMediaFileViewModel> files, string filterType)
+        {           
+            if (filterType == "Video")
             {
-                if (filterType == "Video")
-                {
-                    AllFiles = AllFiles.Where(s => s.Type == MediaType.Video);
-                }
-
-                if (filterType == "Audio")
-                {
-                    AllFiles = AllFiles.Where(s => s.Type == MediaType.Audio);
-                }
+                return files.Where(s => s.Type == MediaType.Video);
             }
+
+            if (filterType == "Audio")
+            {
+                return files.Where(s => s.Type == MediaType.Audio);
+            }
+
+            return files;
         }
 
-        private void Sort(string orderBy, string sortType)
+        private IQueryable<AdvancedMediaFileViewModel> Sort(IQueryable<AdvancedMediaFileViewModel> files, string orderBy, string sortType)
         {
 
             switch (orderBy)
@@ -97,38 +79,35 @@
                     {
                         if (sortType == "Ascending")
                         {
-                            AllFiles = AllFiles.OrderBy(f => f.ViewsCount);
+                            return files.OrderBy(f => f.ViewsCount);
                         }
                         else
                         {
-                            AllFiles = AllFiles.OrderByDescending(f => f.ViewsCount);
+                            return  files.OrderByDescending(f => f.ViewsCount);
                         }
                     }
-                    break;
                 case "Rating":
                     {
                         if (sortType == "Ascending")
                         {
-                            AllFiles = AllFiles.OrderBy(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count);
+                            return files.OrderBy(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count);
                         }
                         else
                         {
-                            AllFiles = AllFiles.OrderByDescending(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count);
+                            return files.OrderByDescending(f => (double)f.Votes.Sum(v => v.Value) / f.Votes.Count);
                         }
                     }
-                    break;
                 default:
                     {
                         if (sortType == "Ascending")
                         {
-                            AllFiles = AllFiles.OrderBy(f => f.DateCreated);
+                            return files.OrderBy(f => f.DateCreated);
                         }
                         else
                         {
-                            AllFiles = AllFiles.OrderByDescending(f => f.DateCreated);
+                            return files.OrderByDescending(f => f.DateCreated);
                         }
                     }
-                    break;
             }
         }
 
@@ -150,7 +129,6 @@
             {
                 this.Session[key] = null;
             }
-            this.Filter(keys.Last());
         }
     }
 }
