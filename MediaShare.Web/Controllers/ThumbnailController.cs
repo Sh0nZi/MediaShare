@@ -27,7 +27,7 @@ namespace MediaShare.Web.Controllers
             }
             else
             {
-                 ViewBag.ThumbLink = "BhFJ.mp3thumb.jpeg";
+                 ViewBag.ThumbLink = DropboxHandler.GetUrl("FYGuzop.mp4thumb.jpeg");
             }
             return PartialView(id);
         }
