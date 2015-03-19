@@ -27,7 +27,7 @@ namespace MediaShare.Web.Controllers
             }
             else
             {
-                 ViewBag.ThumbLink = "";
+                 ViewBag.ThumbLink = "BhFJ.mp3thumb.jpeg";
             }
             return PartialView(id);
         }
