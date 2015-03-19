@@ -6,7 +6,8 @@
     using Microsoft.AspNet.Identity;
     using AutoMapper.QueryableExtensions;
     using MediaShare.Data;
-    using MediaShare.Web.Models;
+    using MediaShare.Models;
+    using MediaShare.Web.Models;	
     using MediaShare.Web.Models.Files;
     using MediaShare.Web.Infrastructure.Helpers;
     using System.Net;
