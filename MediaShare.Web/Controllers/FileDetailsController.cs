@@ -45,11 +45,14 @@
             
          
             ViewBag.MediaLink = DropboxHandler.GetUrl(file.Content);
-            ViewBag.ThumbLink = DropboxHandler.GetUrl(file.Thumbnail);
-			if (file.Type == MediaType.Audio)
-            {
-                ViewBag.ThumbLink = DropboxHandler.GetUrl("Audio Symbol.png");
-            }
+			if (file.Type == MediaType.Video)
+            {			
+				ViewBag.ThumbLink = DropboxHandler.GetUrl(file.Thumbnail);
+               
+            }else
+			{
+			    ViewBag.ThumbLink = DropboxHandler.GetUrl("Audio Symbol.png");
+			}
             if (file.AuthorId == currentUser)
             {
                 this.ViewBag.IsYours = true;
