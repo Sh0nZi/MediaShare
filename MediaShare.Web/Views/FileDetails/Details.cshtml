@@ -18,7 +18,7 @@
     
     @if (Model.Type == MediaType.Video)
     {
-            <video width="650" height="500" controls  onplay="increaseViewCount()">
+            <video style="width:100%" height="500" controls  onplay="increaseViewCount()">
                 <source src="@ViewBag.MediaLink" type="video/mp4" />
                 <source src="@ViewBag.MediaLink" type="video/webm" />
 
@@ -74,7 +74,7 @@
     <p>
         <b>Description:</b>
     </p>
-    <pre>@Model.Description</pre>
+    <pre style="width:100%">@Model.Description</pre>
     
     <div style="margin-left:30px" id="comment-container">
         @using (Ajax.BeginForm("PostComment", "DetailsAuthorized", new { Id = Model.Id }, new AjaxOptions { UpdateTargetId = "container-for-comments", InsertionMode = InsertionMode.Replace, OnComplete = "hideCommentContainer", OnSuccess = "pesho" }, new { @class = "form-horizontal", role = "form" }))

@@ -4,7 +4,7 @@
     string id = this.ViewData["id"] != null ? this.ViewData["id"].ToString() : null;  
 }
 
-<h4 style="height:50px; font-weight:bold">
+<h4 style="font-weight:bold">
     <a href="@Url.Action("Details", "FileDetails", new {area="", Id = id })">
         @Model
     </a>
